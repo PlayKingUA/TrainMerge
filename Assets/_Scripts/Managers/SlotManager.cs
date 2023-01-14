@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using _Scripts.Slot_Logic;
 using _Scripts.Weapons;
 using UnityEngine;
@@ -11,7 +10,6 @@ namespace _Scripts.Managers
     public class SlotManager : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private Weapon firstLevelWeapon;
         [SerializeField] private Slot[] slots;
         [Space]
         [SerializeField] private List<Slot> emptySlots;
@@ -35,17 +33,17 @@ namespace _Scripts.Managers
             emptySlots.Clear();
             busySlots.Clear();
 
-            for (var i = 0; i < slots.Length; i++)
+            foreach (var slot in slots)
             {
-                slots[i].Init(i);
+                slot.Init();
 
-                switch (slots[i].SlotState)
+                switch (slot.SlotState)
                 {
                     case SlotState.Empty:
-                        emptySlots.Add(slots[i]);
+                        emptySlots.Add(slot);
                         break;
                     case SlotState.Busy:
-                        busySlots.Add(slots[i]);
+                        busySlots.Add(slot);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -53,12 +51,12 @@ namespace _Scripts.Managers
             }
         }
 
-        public void CreateNewWeapon()
+        public void CreateNewWeapon(int targetLevel = 0)
         {
             var index = Random.Range(0, emptySlots.Count);
             var targetSlot = emptySlots[index];
             
-            targetSlot.CreateWeapon(firstLevelWeapon);
+            targetSlot.Spawn(targetLevel);
             emptySlots.Remove(targetSlot);
         }
     }

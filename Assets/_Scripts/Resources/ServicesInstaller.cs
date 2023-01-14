@@ -9,11 +9,13 @@ namespace _Scripts.Resources
     {
         [SerializeField] private SlotManager slotManager;
         [SerializeField] private MoneyWallet moneyWallet;
+        [SerializeField] private WeaponManager weaponManager;
     
         public override void InstallBindings()
         {
             Container.Bind<SlotManager>().FromInstance(slotManager).AsSingle().NonLazy();
             Container.Bind<MoneyWallet>().FromInstance(moneyWallet).AsSingle().NonLazy();
+            Container.Bind<WeaponManager>().FromInstance(weaponManager).AsSingle().NonLazy();
         }
     }
 }
