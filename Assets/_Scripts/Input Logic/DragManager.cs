@@ -40,7 +40,6 @@ namespace _Scripts.Input_Logic
         }
         #endregion
 
-
         #region Drag Logic
         private void StartDragging()
         {
@@ -73,24 +72,22 @@ namespace _Scripts.Input_Logic
             selectedWeapon.transform.position = new Vector3(worldPosition.x, yWeaponPosition, worldPosition.z);
 
             if (!_inputHandler.IsTouchReleased) return;
+            currentDragState = DragState.FinishDragging;
+            
             var ray = CastRay();
 
             if (ray.collider != null)
             {
-                if (!ray.collider.TryGetComponent(out Slot unitSlot))
+                if (!ray.collider.TryGetComponent(out Slot selectedSlot))
                 {
-                    //previousSlot.Return(selectedGroup);
-                    currentDragState = DragState.FinishDragging;
+                    previousSlot.SetWeaponWithMotion(selectedWeapon);
                     return;
                 }
-
-                //unitSlot.Refresh(selectedGroup, previousSlot);
-                currentDragState = DragState.FinishDragging;
+                selectedSlot.Refresh(selectedWeapon, previousSlot);
             }
             else
             {
-                //previousSlot.Return(selectedGroup);
-                currentDragState = DragState.FinishDragging;
+                previousSlot.SetWeaponWithMotion(selectedWeapon);
             }
         }
 

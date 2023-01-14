@@ -58,5 +58,23 @@ namespace _Scripts.Slot_Logic
             targetSlot.SpawnWeapon(targetLevel);
             emptySlots.Remove(targetSlot);
         }
+        
+        public void RefreshSlots(Slot weaponSLot)
+        {
+            switch (weaponSLot.SlotState)
+            {
+                case SlotState.Empty:
+                    emptySlots.Add(weaponSLot);
+                    busySlots.Remove(weaponSLot);
+                    break;
+                case SlotState.Busy:
+                    emptySlots.Remove(weaponSLot);
+                    busySlots.Remove(weaponSLot);
+                    busySlots.Add(weaponSLot);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 }
