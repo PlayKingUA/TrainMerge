@@ -1,5 +1,5 @@
-﻿using _Scripts.Managers;
-using _Scripts.Money_Logic;
+﻿using _Scripts.Money_Logic;
+using _Scripts.Slot_Logic;
 using _Scripts.UI.Buttons.Shop_Buttons;
 using TMPro;
 using UnityEngine;

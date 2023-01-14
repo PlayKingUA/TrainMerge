@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6067838002639376070}
   - component: {fileID: 2498147909930217114}
   m_Layer: 0
-  m_Name: Platforms
+  m_Name: Slots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,8 +38,8 @@ Transform:
   - {fileID: 5754291569558586091}
   - {fileID: 5754291569175735924}
   - {fileID: 5754291568539999385}
-  - {fileID: 5754291569736697816}
   - {fileID: 5754291569068747632}
+  - {fileID: 5754291569736697816}
   - {fileID: 5754291568122987021}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,8 +56,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010a4c083e2b4486bda6982ee1dc1535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevelWeapon: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
-    type: 3}
   slots:
   - {fileID: 1717739656652548765}
   - {fileID: 1717739655131647563}
@@ -138,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (6)
+      value: Slot (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -225,7 +223,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform
+      value: Slot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -257,7 +255,7 @@ PrefabInstance:
     - target: {fileID: 2012567190965582008, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2012567190965582008, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
@@ -312,7 +310,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (9)
+      value: Slot (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -399,7 +397,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (5)
+      value: Slot (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -486,7 +484,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (2)
+      value: Slot (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -573,7 +571,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (7)
+      value: Slot (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -605,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 2012567190965582008, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2012567190965582008, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
@@ -660,7 +658,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (10)
+      value: Slot (10)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -747,7 +745,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (3)
+      value: Slot (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -834,7 +832,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (8)
+      value: Slot (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -921,7 +919,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (11)
+      value: Slot (11)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -1008,7 +1006,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (1)
+      value: Slot (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}
@@ -1095,7 +1093,7 @@ PrefabInstance:
     - target: {fileID: 3858758181996374002, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b,
         type: 3}
       propertyPath: m_Name
-      value: Weapon Platform (4)
+      value: Slot (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91bc17192d6cbd443bc3ea8e5b8f1d5b, type: 3}

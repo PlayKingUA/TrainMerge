@@ -1,5 +1,6 @@
-using _Scripts.Managers;
+using _Scripts.Input_Logic;
 using _Scripts.Money_Logic;
+using _Scripts.Slot_Logic;
 using UnityEngine;
 using Zenject;
 
@@ -10,12 +11,16 @@ namespace _Scripts.Resources
         [SerializeField] private SlotManager slotManager;
         [SerializeField] private MoneyWallet moneyWallet;
         [SerializeField] private WeaponManager weaponManager;
+        [SerializeField] private InputHandler inputHandler;
+        [SerializeField] private DragManager dragManager;
     
         public override void InstallBindings()
         {
             Container.Bind<SlotManager>().FromInstance(slotManager).AsSingle().NonLazy();
             Container.Bind<MoneyWallet>().FromInstance(moneyWallet).AsSingle().NonLazy();
             Container.Bind<WeaponManager>().FromInstance(weaponManager).AsSingle().NonLazy();
+            Container.Bind<InputHandler>().FromInstance(inputHandler).AsSingle().NonLazy();
+            Container.Bind<DragManager>().FromInstance(dragManager).AsSingle().NonLazy();
         }
     }
 }

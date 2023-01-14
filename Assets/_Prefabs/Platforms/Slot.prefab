@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1242363894386784354}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4132638729143239454}
   - component: {fileID: 3965972722946044353}
   - component: {fileID: 2706020613668082421}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,8 +139,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2012567190965582008}
   - component: {fileID: 4892010486756415330}
-  m_Layer: 0
-  m_Name: Weapon Platform
+  - component: {fileID: 7266089400338721218}
+  m_Layer: 6
+  m_Name: Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,6 +177,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPosition: {fileID: 3135210491818614229}
+--- !u!65 &7266089400338721218
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3858758181996374002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6810798389889235552
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3135210491818614229}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapon Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

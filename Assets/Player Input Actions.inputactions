@@ -1,0 +1,104 @@
+{
+    "name": "Player Input Actions",
+    "maps": [
+        {
+            "name": "Game Map",
+            "id": "5cb7be46-175f-428a-8bff-af12aafcf3ea",
+            "actions": [
+                {
+                    "name": "Start Dragging",
+                    "type": "Value",
+                    "id": "484bfcd2-26d1-47e2-a02c-12ddaa0dbe56",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Drag",
+                    "type": "Value",
+                    "id": "bfe0e162-812c-490b-a7bf-1f924f3a1d62",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "End Dragging",
+                    "type": "Value",
+                    "id": "f00d0a5b-8b2b-431a-a85b-394a7a398537",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "af2630bd-04d2-43cc-bcdd-a0eaa3525452",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start Dragging",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3048840c-1b69-4ce2-8254-2cb7bf5fbb64",
+                    "path": "<Touchscreen>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start Dragging",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55df5504-389b-4add-9bab-7b24414c79e5",
+                    "path": "<Mouse>/position",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f52896dc-9158-453f-afbd-f04d544dd23a",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78547c18-b0a6-4f11-b67d-8eef7dda495a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "End Dragging",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63cba1bb-90ec-4060-aec3-f8ff45f3403b",
+                    "path": "<Touchscreen>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "End Dragging",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

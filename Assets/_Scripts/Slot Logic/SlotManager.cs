@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Scripts.Slot_Logic;
-using _Scripts.Weapons;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace _Scripts.Managers
+namespace _Scripts.Slot_Logic
 {
     public class SlotManager : MonoBehaviour
     {
         #region Variables
         [SerializeField] private Slot[] slots;
         [Space]
-        [SerializeField] private List<Slot> emptySlots;
-        [SerializeField] private List<Slot> busySlots;
+        [SerializeField, ReadOnly] private List<Slot> emptySlots;
+        [SerializeField, ReadOnly] private List<Slot> busySlots;
         #endregion
 
         #region Properties
@@ -56,7 +55,7 @@ namespace _Scripts.Managers
             var index = Random.Range(0, emptySlots.Count);
             var targetSlot = emptySlots[index];
             
-            targetSlot.Spawn(targetLevel);
+            targetSlot.SpawnWeapon(targetLevel);
             emptySlots.Remove(targetSlot);
         }
     }

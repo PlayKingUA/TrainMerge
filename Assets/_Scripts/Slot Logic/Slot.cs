@@ -1,3 +1,4 @@
+using System;
 using _Scripts.Weapons;
 using UnityEngine;
 using Zenject;
@@ -15,6 +16,8 @@ namespace _Scripts.Slot_Logic
         private string _saveKey = "weaponLevel";
 
         private const int NoSlotLevel = -1;
+        
+        public event Action GetWeaponFromSlotEvent;
         #endregion
 
         #region Properties
@@ -29,18 +32,44 @@ namespace _Scripts.Slot_Logic
         }
         #endregion
 
+        #region Slot Logic
+        public void SetWeaponToSlot(Weapon weapon)
+        {
+            _weapon = weapon;
+            SlotState = SlotState.Busy;
+            
+            Save();
+        }
+
+        public Weapon GetWeaponFromSlot()
+        {
+            GetWeaponFromSlotEvent?.Invoke();
+            return _weapon;
+        }
+
+        public void ClearSlot()
+        {
+            _weapon = null;
+            SlotState = SlotState.Empty;
+            
+            Save();
+        }
+
+        public void Upgrade()
+        {
+            //ToDo
+        }
+        #endregion
+        
         public void Init()
         {
             _saveKey += transform.GetSiblingIndex();
             Load();
         }
 
-        public Weapon Spawn(int level)
+        public Weapon SpawnWeapon(int level)
         {
-            _weapon = Instantiate(_weaponManager.GetWeapon(level), weaponPosition);
-            SlotState = SlotState.Busy;
-
-            Save();
+            SetWeaponToSlot(_weaponManager.CreateWeapon(level, weaponPosition));
             return _weapon;
         }
         
@@ -56,7 +85,7 @@ namespace _Scripts.Slot_Logic
 
             if (currentLevel >= 0)
             {
-                Spawn(currentLevel);
+                SpawnWeapon(currentLevel);
             }
         }
         #endregion

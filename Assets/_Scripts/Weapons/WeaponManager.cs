@@ -16,8 +16,8 @@ public class WeaponManager : MonoBehaviour
     }
     #endregion
 
-    public Weapon GetWeapon(int level)
+    public Weapon CreateWeapon(int level, Transform parent)
     {
-        return weapons[level];
+        return Instantiate(weapons[level], parent);
     }
 }
