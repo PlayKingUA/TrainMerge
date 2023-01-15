@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace _Scripts.UI.Buttons.Shop_Buttons
@@ -7,11 +8,11 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
     public class BuyButton : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private ButtonBuyState buttonState;
+        [ShowInInspector] private ButtonBuyState _buttonState;
         [SerializeField] private GameObject[] states;
         private Button _button;
     
-        public ButtonBuyState ButtonState => buttonState;
+        public ButtonBuyState ButtonState => _buttonState;
         public Button Button => _button;
         #endregion
     
@@ -36,14 +37,14 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
 
         private void SetADsState()
         {
-            buttonState = ButtonBuyState.BuyWithADs;
-            SetUIState(buttonState);
+            _buttonState = ButtonBuyState.BuyWithADs;
+            SetUIState(_buttonState);
         }
 
         private void SetMoneyState()
         {
-            buttonState = ButtonBuyState.BuyWithMoney;
-            SetUIState(buttonState);
+            _buttonState = ButtonBuyState.BuyWithMoney;
+            SetUIState(_buttonState);
         }
 
         private void SetUIState(ButtonBuyState targetState)
