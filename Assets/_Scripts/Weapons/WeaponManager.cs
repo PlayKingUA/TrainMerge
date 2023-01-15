@@ -1,23 +1,30 @@
+using System;
 using System.Collections.Generic;
-using _Scripts.Weapons;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+namespace _Scripts.Weapons
 {
-    #region Variables
+    public class WeaponManager : MonoBehaviour
+    {
+        #region Variables
+        [SerializeField] private int maxWeaponLevel;
+        [SerializeField] private List<Weapon> weapons;
 
-    [SerializeField] private List<Weapon> weapons;
-    #endregion
+        public int MaxWeaponLevel => maxWeaponLevel - 1;
+        #endregion
     
-    #region Monobehaviour Callbacks
-    private void Start()
-    {
+        #region Monobehaviour Callbacks
+        private void OnValidate()
+        {
+            maxWeaponLevel = Mathf.Min(maxWeaponLevel, weapons.Count);
+        }
+        #endregion
 
-    }
-    #endregion
-
-    public Weapon CreateWeapon(int level, Transform parent)
-    {
-        return Instantiate(weapons[level], parent);
+        public Weapon CreateWeapon(int level, Transform parent)
+        {
+            var weapon = Instantiate(weapons[level], parent);
+            weapon.SetLevel(level);
+            return weapon;
+        }
     }
 }

@@ -1,20 +1,21 @@
 ﻿using _Scripts.Slot_Logic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Scripts.Weapons
 {
     public class Weapon : MonoBehaviour
     {
+        #region Variables
+        [ShowInInspector, ReadOnly]
         private int _level;
 
         public int Level => _level;
+        #endregion
 
-        private Vector2 _inputPosition;
-
-        public bool CanUpgrade(Weapon weapon)
+        public void SetLevel(int level)
         {
-            //ToDo
-            return false;
+            _level = level;
         }
 
         public void ReturnToPreviousPos(Slot previousSlot)

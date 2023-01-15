@@ -1,3 +1,4 @@
+using System;
 using _Scripts.Weapons;
 using DG.Tweening;
 using UnityEngine;
@@ -25,7 +26,6 @@ namespace _Scripts.Slot_Logic
         #region Properties
         private int GetCurrentLevel => (_weapon) ? _weapon.Level : NoSlotLevel;
         #endregion
-    
 
         #region Slot Logic
         private void SetWeaponToSlot(Weapon weapon)
@@ -61,24 +61,36 @@ namespace _Scripts.Slot_Logic
         {
             switch (SlotState)
             {
-                case SlotState.Busy when _weapon.CanUpgrade(weapon):
-                    Upgrade();
+                case SlotState.Busy when CanUpgrade(weapon):
+                    Upgrade(weapon);
                     return;
-                case SlotState.Busy when !_weapon.CanUpgrade(weapon):
+                case SlotState.Busy when !CanUpgrade(weapon):
+                    // swap
                     _weapon.ReturnToPreviousPos(previousSlot);
                     ClearSlot();
                     SetWeaponWithMotion(weapon);
                     return;
                 case SlotState.Empty:
-                default:
                     SetWeaponWithMotion(weapon);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
         
-        public void Upgrade()
+        private void Upgrade(Weapon weapon)
         {
-            //ToDo
+            var targetLevel = weapon.Level + 1;
+            Destroy(weapon.gameObject);
+            Destroy(_weapon.gameObject);
+
+            SpawnWeapon(targetLevel);
+        }
+
+        private bool CanUpgrade(Weapon weapon)
+        {
+            return _weapon.Level < _weaponManager.MaxWeaponLevel 
+                && _weapon.Level == weapon.Level;
         }
         #endregion
         

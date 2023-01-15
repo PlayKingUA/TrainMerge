@@ -1,6 +1,7 @@
 using _Scripts.Input_Logic;
 using _Scripts.Money_Logic;
 using _Scripts.Slot_Logic;
+using _Scripts.Weapons;
 using UnityEngine;
 using Zenject;
 
