@@ -1,4 +1,5 @@
-﻿using _Scripts.Slot_Logic;
+﻿using _Scripts.Projectiles;
+using _Scripts.Slot_Logic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -7,6 +8,14 @@ namespace _Scripts.Weapons
     public class Weapon : MonoBehaviour
     {
         #region Variables
+        [SerializeField] private WeaponType weaponType;
+        [SerializeField] private int damage;
+        [SerializeField] private float speedPerSecond;
+        [SerializeField] private float damageArea;
+        [Space] 
+        [SerializeField] private Transform shootPoint;
+        [SerializeField] private Projectile projectile;
+        [Space(10)]
         [ShowInInspector, ReadOnly]
         private int _level;
 
