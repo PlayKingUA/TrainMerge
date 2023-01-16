@@ -13,6 +13,8 @@ namespace _Scripts.Weapons
         [SerializeField] private float speedPerSecond;
         [SerializeField] private float damageArea;
         [Space] 
+        [SerializeField] private GameObject appearFx;
+        [Space] 
         [SerializeField] private Transform shootPoint;
         [SerializeField] private Projectile projectile;
         [Space(10)]
@@ -20,6 +22,7 @@ namespace _Scripts.Weapons
         private int _level;
 
         public int Level => _level;
+        public GameObject AppearFx => appearFx;
         #endregion
 
         public void SetLevel(int level)

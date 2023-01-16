@@ -71,6 +71,7 @@ namespace _Scripts.Slot_Logic
             SetWeaponToSlot(weapon);
             MoveToPosition();
             _slotManager.RefreshSlots(this);
+            _weapon.transform.SetParent(weaponPosition);
         }
         
         public void Refresh(Weapon weapon, Slot previousSlot)
@@ -100,7 +101,7 @@ namespace _Scripts.Slot_Logic
             Destroy(weapon.gameObject);
             Destroy(_weapon.gameObject);
 
-            SpawnWeapon(targetLevel);
+            SpawnWeapon(targetLevel, true);
             BounceWeapon();
         }
 
@@ -118,9 +119,10 @@ namespace _Scripts.Slot_Logic
             ChangeColor();
         }
 
-        public Weapon SpawnWeapon(int level)
+        public Weapon SpawnWeapon(int level, bool showFx = false)
         {
             SetWeaponToSlot(_weaponManager.CreateWeapon(level, weaponPosition));
+            _weapon.AppearFx.SetActive(showFx);
             return _weapon;
         }
 

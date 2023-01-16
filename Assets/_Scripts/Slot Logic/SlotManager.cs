@@ -55,7 +55,7 @@ namespace _Scripts.Slot_Logic
             var index = Random.Range(0, emptySlots.Count);
             var targetSlot = emptySlots[index];
             
-            targetSlot.SpawnWeapon(targetLevel);
+            targetSlot.SpawnWeapon(targetLevel, true);
             emptySlots.Remove(targetSlot);
         }
         
