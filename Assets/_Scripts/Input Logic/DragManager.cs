@@ -65,50 +65,20 @@ namespace _Scripts.Input_Logic
 
         private void Drag()
         {
-            var currentPosition = new Vector3(_inputHandler.TouchPosition.x,
-                _inputHandler.TouchPosition.y, 
-                Camera.main.WorldToScreenPoint(selectedWeapon.transform.position).z);
+            MoveWeapon();
 
-            var worldPosition = Camera.main.ScreenToWorldPoint(currentPosition);
-            selectedWeapon.transform.position = new Vector3(worldPosition.x, yWeaponPosition, worldPosition.z);
-
-            var ray = CastRay();
-
-            if (ray.collider != null && ray.collider.TryGetComponent(out Slot raycastSlot))
-            {
-                if (selectedSlot != raycastSlot)
-                {
-                    if (selectedSlot != null)
-                    {
-                        selectedSlot.ChangeColor();
-                        selectedSlot = null;
-                    }
-                    selectedSlot = raycastSlot;
-                    selectedSlot.ChangeColor(selectedWeapon);
-                }
-            }
-            else if (selectedSlot != null)
-            {
-                selectedSlot.ChangeColor();
-                selectedSlot = null;
-            }
+            UpdateSelectedSlot();
 
             if (!_inputHandler.IsTouchReleased) return;
             currentDragState = DragState.FinishDragging;
             
-            if (selectedSlot)
-            {
-                selectedSlot.Refresh(selectedWeapon, previousSlot);
-            }
-            else
-            {
-                previousSlot.SetWeaponWithMotion(selectedWeapon);
-            }
+            SetWeapon();
         }
 
         private void EndDragging()
         {
             selectedWeapon = null;
+            selectedSlot = null;
             currentDragState = DragState.Empty;
         }
         #endregion
@@ -131,6 +101,49 @@ namespace _Scripts.Input_Logic
                 Mathf.Infinity, layerMask);
 
             return hit;
+        }
+
+        private void MoveWeapon()
+        {
+            var currentPosition = new Vector3(_inputHandler.TouchPosition.x,
+                _inputHandler.TouchPosition.y, 
+                Camera.main.WorldToScreenPoint(selectedWeapon.transform.position).z);
+
+            var worldPosition = Camera.main.ScreenToWorldPoint(currentPosition);
+            selectedWeapon.transform.position = new Vector3(worldPosition.x, yWeaponPosition, worldPosition.z);
+        }
+
+        private void SetWeapon()
+        {
+            if (selectedSlot)
+            {
+                selectedSlot.Refresh(selectedWeapon, previousSlot);
+            }
+            else
+            {
+                previousSlot.SetWeaponWithMotion(selectedWeapon);
+            }
+        }
+        
+        private void UpdateSelectedSlot()
+        {
+            var ray = CastRay();
+
+            if (ray.collider != null && ray.collider.TryGetComponent(out Slot raycastSlot))
+            {
+                if (selectedSlot == raycastSlot) return;
+                if (selectedSlot != null)
+                {
+                    selectedSlot.ChangeColor();
+                }
+                selectedSlot = raycastSlot;
+                selectedSlot.ChangeColor(selectedWeapon);
+            }
+            else if (selectedSlot != null)
+            {
+                selectedSlot.ChangeColor();
+                selectedSlot = null;
+            }
         }
     }
 }

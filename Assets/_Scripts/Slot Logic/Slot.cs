@@ -20,7 +20,12 @@ namespace _Scripts.Slot_Logic
         [SerializeField] private Transform weaponPosition;
         [SerializeField] private float motionTime;
 
+        [Space]
+        [SerializeField, Range(0.5f, 2f)] float scaleEffect;
+        [SerializeField] float scaleEffectDuration;
+        
         private Tween _motionTween;
+        private Tween _scaleTween;
         
         [Inject] private WeaponManager _weaponManager;
         [Inject] private SlotManager _slotManager;
@@ -96,6 +101,7 @@ namespace _Scripts.Slot_Logic
             Destroy(_weapon.gameObject);
 
             SpawnWeapon(targetLevel);
+            BounceWeapon();
         }
 
         private bool CanUpgrade(Weapon weapon)
@@ -143,6 +149,14 @@ namespace _Scripts.Slot_Logic
                 color = freePlace;
             }
             meshRenderer.material.SetColor(MaterialColorId, color);
+        }
+
+        private void BounceWeapon()
+        {
+            _scaleTween.Kill();
+            _scaleTween = weaponPosition.
+                DOScale(weaponPosition.localScale * scaleEffect, scaleEffectDuration / 2)
+                .SetLoops(2, LoopType.Yoyo);
         }
         
         #region Save/Load

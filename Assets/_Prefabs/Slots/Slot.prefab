@@ -55,6 +55,8 @@ MonoBehaviour:
   busy: {r: 0.36470592, g: 0.5327483, b: 1, a: 1}
   weaponPosition: {fileID: 3135210491818614229}
   motionTime: 0.15
+  scaleEffect: 1.2
+  scaleEffectDuration: 0.2
 --- !u!65 &7266089400338721218
 BoxCollider:
   m_ObjectHideFlags: 0
