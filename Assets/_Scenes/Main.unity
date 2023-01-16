@@ -3932,7 +3932,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  yWeaponPosition: 3.85
+  yWeaponPosition: 4.25
   selectedWeapon: {fileID: 0}
   currentDragState: 0
   previousSlot: {fileID: 0}

@@ -52,6 +52,7 @@ MonoBehaviour:
   speedPerSecond: 0
   damageArea: 0
   shootPoint: {fileID: 7254950690811865205}
+  projectile: {fileID: 0}
 --- !u!65 &1963131880440831090
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -89,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2231627494530669355}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
