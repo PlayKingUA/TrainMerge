@@ -6,9 +6,17 @@ using Zenject;
 
 namespace _Scripts.Slot_Logic
 {
-    public class Slot : MonoBehaviour
+    public sealed class Slot : MonoBehaviour
     {
         #region Variables
+        [SerializeField] private MeshRenderer meshRenderer;
+        [Space(10)]
+        [SerializeField] private Color empty;
+        [SerializeField] private Color freePlace;
+        [SerializeField] private Color enabledUpgrade;
+        [SerializeField] private Color disabledUpgrade;
+        [SerializeField] private Color busy;
+        [Space]
         [SerializeField] private Transform weaponPosition;
         [SerializeField] private float motionTime;
 
@@ -20,6 +28,7 @@ namespace _Scripts.Slot_Logic
         private Weapon _weapon;
         
         private string _saveKey = "weaponLevel";
+        private static readonly int MaterialColorId = Shader.PropertyToID("_Color");
         private const int NoSlotLevel = -1;
         #endregion
 
@@ -32,6 +41,7 @@ namespace _Scripts.Slot_Logic
         {
             _weapon = weapon;
             SlotState = SlotState.Busy;
+            ChangeColor();
             
             Save();
         }
@@ -45,6 +55,7 @@ namespace _Scripts.Slot_Logic
         {
             _weapon = null;
             SlotState = SlotState.Empty;
+            ChangeColor();
             _slotManager.RefreshSlots(this);
             
             Save();
@@ -57,7 +68,7 @@ namespace _Scripts.Slot_Logic
             _slotManager.RefreshSlots(this);
         }
         
-        public virtual void Refresh(Weapon weapon, Slot previousSlot)
+        public void Refresh(Weapon weapon, Slot previousSlot)
         {
             switch (SlotState)
             {
@@ -98,6 +109,7 @@ namespace _Scripts.Slot_Logic
         {
             _saveKey += transform.GetSiblingIndex();
             Load();
+            ChangeColor();
         }
 
         public Weapon SpawnWeapon(int level)
@@ -110,6 +122,27 @@ namespace _Scripts.Slot_Logic
         {
             _motionTween.Kill();
             _motionTween = _weapon.transform.DOMove(weaponPosition.position, motionTime);
+        }
+        
+        public void ChangeColor(Weapon weapon = null)
+        {
+            var color = empty;
+            if (_weapon != null)
+            {
+                if (weapon == null)
+                {
+                    color = busy;
+                }
+                else
+                {
+                    color = CanUpgrade(weapon) ? enabledUpgrade : disabledUpgrade;
+                }
+            }
+            else if (weapon != null)
+            {
+                color = freePlace;
+            }
+            meshRenderer.material.SetColor(MaterialColorId, color);
         }
         
         #region Save/Load

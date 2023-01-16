@@ -16,6 +16,7 @@ namespace _Scripts.Input_Logic
         [Space, SerializeField, ReadOnly] private Weapon selectedWeapon;
         [SerializeField, ReadOnly] private DragState currentDragState;
         [SerializeField, ReadOnly] private Slot previousSlot;
+        [SerializeField, ReadOnly] private Slot selectedSlot;
 
         [Inject] private InputHandler _inputHandler;
         #endregion
@@ -71,18 +72,32 @@ namespace _Scripts.Input_Logic
             var worldPosition = Camera.main.ScreenToWorldPoint(currentPosition);
             selectedWeapon.transform.position = new Vector3(worldPosition.x, yWeaponPosition, worldPosition.z);
 
+            var ray = CastRay();
+
+            if (ray.collider != null && ray.collider.TryGetComponent(out Slot raycastSlot))
+            {
+                if (selectedSlot != raycastSlot)
+                {
+                    if (selectedSlot != null)
+                    {
+                        selectedSlot.ChangeColor();
+                        selectedSlot = null;
+                    }
+                    selectedSlot = raycastSlot;
+                    selectedSlot.ChangeColor(selectedWeapon);
+                }
+            }
+            else if (selectedSlot != null)
+            {
+                selectedSlot.ChangeColor();
+                selectedSlot = null;
+            }
+
             if (!_inputHandler.IsTouchReleased) return;
             currentDragState = DragState.FinishDragging;
             
-            var ray = CastRay();
-
-            if (ray.collider != null)
+            if (selectedSlot)
             {
-                if (!ray.collider.TryGetComponent(out Slot selectedSlot))
-                {
-                    previousSlot.SetWeaponWithMotion(selectedWeapon);
-                    return;
-                }
                 selectedSlot.Refresh(selectedWeapon, previousSlot);
             }
             else
