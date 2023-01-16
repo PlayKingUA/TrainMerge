@@ -1,16 +1,16 @@
 ﻿using _Scripts.Projectiles;
 using _Scripts.Slot_Logic;
+using _Scripts.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Scripts.Weapons
 {
-    public class Weapon : MonoBehaviour
+    public class Weapon : AttackingObject
     {
         #region Variables
+        [Space]
         [SerializeField] private WeaponType weaponType;
-        [SerializeField] private int damage;
-        [SerializeField] private float speedPerSecond;
         [SerializeField] private float damageArea;
         [Space] 
         [SerializeField] private GameObject appearFx;
@@ -22,6 +22,7 @@ namespace _Scripts.Weapons
         private int _level;
 
         public int Level => _level;
+        public float Health => health;
         public GameObject AppearFx => appearFx;
         #endregion
 
