@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2131314342147014238, guid: 9e9eed0c49ff1e449b83f336e88335e7,
         type: 3}
       propertyPath: m_Name
-      value: Level 1
+      value: Weapon 1
       objectReference: {fileID: 0}
     - target: {fileID: 3676272542878889842, guid: 9e9eed0c49ff1e449b83f336e88335e7,
         type: 3}
@@ -82,6 +82,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.663
       objectReference: {fileID: 0}
+    - target: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
+        type: 3}
+      propertyPath: gunTransform
+      value: 
+      objectReference: {fileID: 52878658045291540}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9eed0c49ff1e449b83f336e88335e7, type: 3}
 --- !u!4 &5049686325142779664 stripped
@@ -165,6 +170,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9836b8faa286a504c8e75c384ab2955e, type: 3}
+--- !u!4 &52878658045291540 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3191775816525644722, guid: 9836b8faa286a504c8e75c384ab2955e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3238277154635296678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4849983872968123829
 PrefabInstance:
   m_ObjectHideFlags: 0

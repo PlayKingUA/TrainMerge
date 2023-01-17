@@ -147,6 +147,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac8dc4f496d2c684bb9021f32ef62a89, type: 3}
+--- !u!4 &1848090255789372732 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9004352134161543408, guid: ac8dc4f496d2c684bb9021f32ef62a89,
+    type: 3}
+  m_PrefabInstance: {fileID: 7300439195566540236}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8419599818381727450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,6 +225,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
+        type: 3}
+      propertyPath: gunTransform
+      value: 
+      objectReference: {fileID: 1848090255789372732}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9eed0c49ff1e449b83f336e88335e7, type: 3}
 --- !u!4 &2397241438283685776 stripped

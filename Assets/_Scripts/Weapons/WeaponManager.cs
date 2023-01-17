@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace _Scripts.Weapons
 {
@@ -10,6 +11,7 @@ namespace _Scripts.Weapons
         [SerializeField] private int maxWeaponLevel;
         [SerializeField] private List<Weapon> weapons;
 
+        [Inject] private DiContainer _diContainer;
         public int MaxWeaponLevel => maxWeaponLevel - 1;
         #endregion
     
@@ -22,7 +24,7 @@ namespace _Scripts.Weapons
 
         public Weapon CreateWeapon(int level, Transform parent)
         {
-            var weapon = Instantiate(weapons[level], parent);
+            var weapon = _diContainer.InstantiatePrefabForComponent<Weapon>(weapons[level], parent);
             weapon.SetLevel(level);
             return weapon;
         }

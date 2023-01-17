@@ -69,6 +69,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7466359914b3f49428f7024f0e869406, type: 3}
+--- !u!4 &9155156183590850544 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8565265075498478483, guid: 7466359914b3f49428f7024f0e869406,
+    type: 3}
+  m_PrefabInstance: {fileID: 707145673778275427}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4383361454909249656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 2131314342147014238, guid: 9e9eed0c49ff1e449b83f336e88335e7,
         type: 3}
       propertyPath: m_Name
-      value: Level 2
+      value: Weapon 2
       objectReference: {fileID: 0}
     - target: {fileID: 3676272542878889842, guid: 9e9eed0c49ff1e449b83f336e88335e7,
         type: 3}
@@ -141,6 +147,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
+        type: 3}
+      propertyPath: gunTransform
+      value: 
+      objectReference: {fileID: 9155156183590850544}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9eed0c49ff1e449b83f336e88335e7, type: 3}
 --- !u!4 &7332961035132619647 stripped

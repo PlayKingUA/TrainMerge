@@ -2,6 +2,7 @@ using _Scripts.Input_Logic;
 using _Scripts.Money_Logic;
 using _Scripts.Slot_Logic;
 using _Scripts.UI;
+using _Scripts.Units;
 using _Scripts.Weapons;
 using UnityEngine;
 using Zenject;
@@ -16,6 +17,7 @@ namespace _Scripts.Resources
         [SerializeField] private InputHandler inputHandler;
         [SerializeField] private DragManager dragManager;
         [SerializeField] private WindowsManager windowsManager;
+        [SerializeField] private ZombieHolder zombieHolder;
         public override void InstallBindings()
         {
             Container.Bind<SlotManager>().FromInstance(slotManager).AsSingle().NonLazy();
@@ -24,6 +26,7 @@ namespace _Scripts.Resources
             Container.Bind<InputHandler>().FromInstance(inputHandler).AsSingle().NonLazy();
             Container.Bind<DragManager>().FromInstance(dragManager).AsSingle().NonLazy();
             Container.Bind<WindowsManager>().FromInstance(windowsManager).AsSingle().NonLazy();
+            Container.Bind<ZombieHolder>().FromInstance(zombieHolder).AsSingle().NonLazy();
         }
     }
 }
