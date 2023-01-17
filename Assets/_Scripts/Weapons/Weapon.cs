@@ -41,6 +41,7 @@ namespace _Scripts.Weapons
         {
             base.Start();
             ChangeState(WeaponState.Idle);
+            _startRotation = gunTransform.rotation;
         }
 
         protected override void Update()

@@ -1,3 +1,4 @@
+using _Scripts.Game_States;
 using _Scripts.Input_Logic;
 using _Scripts.Money_Logic;
 using _Scripts.Slot_Logic;
@@ -18,6 +19,8 @@ namespace _Scripts.Resources
         [SerializeField] private DragManager dragManager;
         [SerializeField] private WindowsManager windowsManager;
         [SerializeField] private ZombieHolder zombieHolder;
+        [SerializeField] private GameStateManager gameStateManager;
+        
         public override void InstallBindings()
         {
             Container.Bind<SlotManager>().FromInstance(slotManager).AsSingle().NonLazy();
@@ -27,6 +30,7 @@ namespace _Scripts.Resources
             Container.Bind<DragManager>().FromInstance(dragManager).AsSingle().NonLazy();
             Container.Bind<WindowsManager>().FromInstance(windowsManager).AsSingle().NonLazy();
             Container.Bind<ZombieHolder>().FromInstance(zombieHolder).AsSingle().NonLazy();
+            Container.Bind<GameStateManager>().FromInstance(gameStateManager).AsSingle().NonLazy();
         }
     }
 }
