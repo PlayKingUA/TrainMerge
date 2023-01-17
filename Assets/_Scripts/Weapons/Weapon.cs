@@ -24,7 +24,7 @@ namespace _Scripts.Weapons
         private WeaponState _currentState;
         [ShowInInspector, ReadOnly] private int _level;
 
-        [Inject] private ZombieHolder _zombieHolder;
+        [Inject] private ZombieManager _zombieManager;
 
         private Quaternion _startRotation;
         
@@ -94,7 +94,7 @@ namespace _Scripts.Weapons
         
         private void Rotate()
         {
-            var targetZombie = _zombieHolder.GetNearestZombie(transform);
+            var targetZombie = _zombieManager.GetNearestZombie(transform);
             var targetRotation = _startRotation;
             
             if (targetZombie != null)

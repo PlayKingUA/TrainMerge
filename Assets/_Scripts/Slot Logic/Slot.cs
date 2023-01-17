@@ -21,8 +21,9 @@ namespace _Scripts.Slot_Logic
         [SerializeField] private float motionTime;
 
         [Space]
-        [SerializeField, Range(0.5f, 2f)] float scaleEffect;
-        [SerializeField] float scaleEffectDuration;
+        [SerializeField, Range(0.5f, 2f)]
+        private float scaleEffect;
+        [SerializeField] private float scaleEffectDuration;
         
         private Tween _motionTween;
         private Tween _scaleTween;
