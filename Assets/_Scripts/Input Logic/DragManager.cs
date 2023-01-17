@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Game_States;
 using _Scripts.Slot_Logic;
 using _Scripts.Weapons;
 using Sirenix.OdinInspector;
@@ -19,6 +20,7 @@ namespace _Scripts.Input_Logic
         [SerializeField, ReadOnly] private Slot selectedSlot;
 
         [Inject] private InputHandler _inputHandler;
+        [Inject] private GameStateManager _gameStateManager;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -44,9 +46,9 @@ namespace _Scripts.Input_Logic
         #region Drag Logic
         private void StartDragging()
         {
-            if (!_inputHandler.IsTouchStarted) return;
-            //ToDo check game state
-            
+            if (!_inputHandler.IsTouchStarted
+                || _gameStateManager.CurrentState != GameState.PrepareToBattle) return;
+
             var ray = CastRay();
             if (ray.collider == null) return;
                

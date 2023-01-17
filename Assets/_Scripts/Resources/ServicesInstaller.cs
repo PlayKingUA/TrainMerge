@@ -22,6 +22,7 @@ namespace _Scripts.Resources
         [SerializeField] private ZombieManager zombieManager;
         [SerializeField] private GameStateManager gameStateManager;
         [SerializeField] private LevelManager levelManager;
+        [SerializeField] private Train.Train train;
         
         public override void InstallBindings()
         {
@@ -34,6 +35,7 @@ namespace _Scripts.Resources
             Container.Bind<ZombieManager>().FromInstance(zombieManager).AsSingle().NonLazy();
             Container.Bind<GameStateManager>().FromInstance(gameStateManager).AsSingle().NonLazy();
             Container.Bind<LevelManager>().FromInstance(levelManager).AsSingle().NonLazy();
+            Container.Bind<Train.Train>().FromInstance(train).AsSingle().NonLazy();
         }
     }
 }

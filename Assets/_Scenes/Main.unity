@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: b28810b41d6dcb64ebc859a672b841db, type: 2}
 --- !u!1001 &11019220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -139,6 +139,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261972120586004521, guid: 85bda93015b96ff4c9c4461a0805fe13,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3169138062020598828, guid: 85bda93015b96ff4c9c4461a0805fe13,
         type: 3}
@@ -194,6 +199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294800569759281842, guid: 85bda93015b96ff4c9c4461a0805fe13,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85bda93015b96ff4c9c4461a0805fe13, type: 3}
@@ -3255,6 +3265,7 @@ MonoBehaviour:
   zombieManager: {fileID: 1363249009}
   gameStateManager: {fileID: 1827141506}
   levelManager: {fileID: 692661217}
+  train: {fileID: 993770734}
 --- !u!1 &1101747326
 GameObject:
   m_ObjectHideFlags: 0
@@ -5743,12 +5754,12 @@ PrefabInstance:
     - target: {fileID: 6173598563297091283, guid: d0aa3eb503c016841b2be850520703b6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.813831
       objectReference: {fileID: 0}
     - target: {fileID: 6173598563297091283, guid: d0aa3eb503c016841b2be850520703b6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 36.22
       objectReference: {fileID: 0}
     - target: {fileID: 6173598563297091283, guid: d0aa3eb503c016841b2be850520703b6,
         type: 3}

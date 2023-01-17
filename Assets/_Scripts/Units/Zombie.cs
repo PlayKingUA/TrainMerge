@@ -6,7 +6,7 @@ using UnityEngine;
 namespace _Scripts.Units
 {
     [RequireComponent(typeof(UnitMovement))]
-    public class Zombie : AttackingObject, IAlive
+    public sealed class Zombie : AttackingObject, IAlive
     {
         #region Variables
         [Space]
@@ -26,6 +26,14 @@ namespace _Scripts.Units
         #endregion
 
         #region Monobehaviour Callbacks
+        protected override void Start()
+        {
+            _unitMovement = GetComponent<UnitMovement>();
+            _unitMovement.SetSpeed(movementSpeed);
+            ChangeState(UnitState.Run);
+            base.Start();
+        }
+
         protected override void Update()
         {
             UpdateState();
@@ -33,7 +41,7 @@ namespace _Scripts.Units
         #endregion
         
         #region States Logic
-        private void ChangeState(UnitState newState)
+        public void ChangeState(UnitState newState)
         {
             if (IsDead)
                 return;
@@ -79,7 +87,7 @@ namespace _Scripts.Units
             _unitMovement.StopMove();
         }
 
-        protected virtual void AttackState()
+        private void AttackState()
         {
             _unitMovement.Move();
         }
@@ -105,7 +113,6 @@ namespace _Scripts.Units
             if (health <= 0 && !IsDead)
                 Die();
         }
-
 
         public void Die()
         {
