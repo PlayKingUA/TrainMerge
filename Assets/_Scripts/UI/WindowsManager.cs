@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _Scripts.UI
 {
@@ -22,15 +23,15 @@ namespace _Scripts.UI
             currentWindow = window;
             foreach (var item in windows)
             {
-                CanvasGroupSwap(item, 0, false);
+                CanvasGroupSwap(item, false);
             }
 
-            CanvasGroupSwap(windows[(int)currentWindow], 1, true);
+            CanvasGroupSwap(windows[(int)currentWindow], true);
         }
         
-        private static void CanvasGroupSwap(CanvasGroup canvasGroup, float alpha, bool isEnabled)
+        public static void CanvasGroupSwap(CanvasGroup canvasGroup, bool isEnabled)
         {
-            canvasGroup.DOFade(alpha, 0.25f);
+            canvasGroup.DOFade(isEnabled? 1 : 0, 0.25f);
 
             canvasGroup.interactable = isEnabled;
             canvasGroup.blocksRaycasts = isEnabled;

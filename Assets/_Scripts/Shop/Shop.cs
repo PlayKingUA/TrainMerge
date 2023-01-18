@@ -1,16 +1,20 @@
-﻿using _Scripts.Money_Logic;
+﻿using System;
+using _Scripts.Money_Logic;
 using _Scripts.Slot_Logic;
 using _Scripts.UI.Buttons.Shop_Buttons;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace _Scripts.UI.Shop
+namespace _Scripts.Shop
 {
     public class Shop : MonoBehaviour
     {
         #region Variables
         [SerializeField] private BuyButton weaponButton;
+        [SerializeField] private BuyButton damageUpgradeButton;
+        [SerializeField] private BuyButton altSpeedUpgradeButton;
+        [SerializeField] private BuyButton incomeUpgradeButton;
         [Space]
         [SerializeField] private TextMeshProUGUI weaponPriceText;
         [SerializeField] private int startPrice;
@@ -49,12 +53,11 @@ namespace _Scripts.UI.Shop
         {
             if (!_slotManager.HasFreePlace()) return;
             
-            if (weaponButton.ButtonState == ButtonBuyState.BuyWithMoney
-                && _moneyWallet.MoneyCount >= _weaponPrice)
+            if (weaponButton.ButtonState == ButtonBuyState.BuyWithMoney)
             {
                 _moneyWallet.Get(_weaponPrice);
 
-                SpawnWeapon();
+                _slotManager.CreateNewWeapon();
 
                 _weaponPrice += deltaPrice;
                 weaponPriceText.text = _weaponPrice.ToString();
@@ -65,11 +68,6 @@ namespace _Scripts.UI.Shop
             {
                 //ToDo show add
             }
-        }
-
-        private void SpawnWeapon()
-        {
-            _slotManager.CreateNewWeapon();
         }
         #endregion
         
@@ -90,6 +88,9 @@ namespace _Scripts.UI.Shop
         private void CheckMoney(int moneyCount)
         {
             weaponButton.SetButtonState(moneyCount >= _weaponPrice);
+            damageUpgradeButton.SetButtonState(moneyCount >= _weaponPrice);
+            altSpeedUpgradeButton.SetButtonState(moneyCount >= _weaponPrice);
+            incomeUpgradeButton.SetButtonState(moneyCount >= _weaponPrice);
         }
     }
 }

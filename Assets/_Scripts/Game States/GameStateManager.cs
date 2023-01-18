@@ -11,6 +11,7 @@ namespace _Scripts.Game_States
 
         public GameState CurrentState => _currentState;
         
+        public event Action PrepareToBattle;
         public event Action AttackStarted;
         public event Action Victory;
         public event Action Fail;
@@ -33,6 +34,7 @@ namespace _Scripts.Game_States
             switch (_currentState)
             {
                 case GameState.PrepareToBattle:
+                    PrepareToBattle?.Invoke();
                     break;
                 case GameState.Battle:
                     AttackStarted?.Invoke();

@@ -10,16 +10,15 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         #region Variables
         [ShowInInspector] private ButtonBuyState _buttonState;
         [SerializeField] private GameObject[] states;
-        private Button _button;
-    
+
         public ButtonBuyState ButtonState => _buttonState;
-        public Button Button => _button;
+        public Button Button { get; private set; }
         #endregion
     
         #region Monobehaviour Callbacks
         private void Awake()
         {
-            _button = GetComponent<Button>();
+            Button = GetComponent<Button>();
         }
         #endregion
         
