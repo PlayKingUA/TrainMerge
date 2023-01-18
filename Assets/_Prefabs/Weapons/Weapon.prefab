@@ -51,9 +51,10 @@ MonoBehaviour:
   attackSpeedPerSecond: 1
   weaponType: 0
   damageRadius: 0.1
+  attackRadius: 15
   appearFx: {fileID: 6029102746102454934}
   gunTransform: {fileID: 0}
-  shootPoint: {fileID: 0}
+  shootPoint: {fileID: 3676272542878889842}
   projectilePool: {fileID: 0}
   muzzleflarePool: {fileID: 0}
   shellsPool: {fileID: 11400000, guid: a461427cbf0d7994bb77fcfeceb900ec, type: 2}

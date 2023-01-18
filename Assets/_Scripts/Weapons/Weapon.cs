@@ -1,5 +1,4 @@
 ﻿using System;
-using _Scripts.Game_States;
 using _Scripts.Projectiles;
 using _Scripts.Slot_Logic;
 using _Scripts.Units;
@@ -16,6 +15,7 @@ namespace _Scripts.Weapons
         [Space]
         [SerializeField] private WeaponType weaponType;
         [SerializeField] private float damageRadius;
+        [SerializeField] private float attackRadius;
         [Space] 
         [SerializeField] private GameObject appearFx;
         [SerializeField] private Transform gunTransform;
@@ -93,7 +93,9 @@ namespace _Scripts.Weapons
                 return;
 
             var targetZombie = _zombieManager.GetNearestZombie(transform);
-            if (targetZombie == null) return;
+            if (targetZombie == null ||
+                Vector3.Distance(transform.position, targetZombie.transform.position) > attackRadius)
+                return;
             Fire(targetZombie.transform);
             AttackTimer = 0f;
         }
@@ -146,6 +148,8 @@ namespace _Scripts.Weapons
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(shootPoint.position, damageRadius);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
         }
     }
 }
