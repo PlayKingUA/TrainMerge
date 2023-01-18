@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9157617169169606711}
   - component: {fileID: 5573252044222573994}
   - component: {fileID: 5583955000782024027}
+  - component: {fileID: 8965626508447917887}
   m_Layer: 0
   m_Name: Wastelands_Road_L_50_001_Rails
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8965626508447917887
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974310223678562092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -508860487418115271, guid: aec47d28a28d8cc4e8d9cb57d2da1e81, type: 3}
 --- !u!1 &2251279489180690027
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +109,7 @@ GameObject:
   - component: {fileID: 1474355379974225105}
   - component: {fileID: 2583427902477677428}
   - component: {fileID: 305922294357903294}
+  - component: {fileID: 4193456838583621457}
   m_Layer: 0
   m_Name: Wastelands_Road_L_50_001
   m_TagString: Untagged
@@ -168,6 +184,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4193456838583621457
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2251279489180690027}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7685253111544829844, guid: aec47d28a28d8cc4e8d9cb57d2da1e81, type: 3}
 --- !u!1 &5150255281624743842
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +209,7 @@ GameObject:
   - component: {fileID: 1865799301391803899}
   - component: {fileID: 2293186383384601992}
   - component: {fileID: 7409284568062934508}
+  - component: {fileID: 7875146660241368739}
   m_Layer: 0
   m_Name: Wastelands_Road_L_50_001_Sleepers
   m_TagString: Untagged
@@ -251,6 +282,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7875146660241368739
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150255281624743842}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2713048479134171668, guid: aec47d28a28d8cc4e8d9cb57d2da1e81, type: 3}
 --- !u!1 &6539033181112913510
 GameObject:
   m_ObjectHideFlags: 0
