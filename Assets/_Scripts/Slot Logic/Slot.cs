@@ -42,6 +42,7 @@ namespace _Scripts.Slot_Logic
 
         #region Properties
         private int GetCurrentLevel => (_weapon) ? _weapon.Level : NoSlotLevel;
+        public int WeaponHealth => (_weapon) ? _weapon.Health : 0;
         #endregion
 
         #region Monobehavior Callbacks

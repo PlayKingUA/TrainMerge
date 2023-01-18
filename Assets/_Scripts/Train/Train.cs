@@ -1,6 +1,10 @@
-﻿using System;
+﻿using _Scripts.Game_States;
 using _Scripts.Interface;
+using _Scripts.Slot_Logic;
+using _Scripts.Weapons;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace _Scripts.Train
 {
@@ -12,17 +16,23 @@ namespace _Scripts.Train
         [SerializeField] private float movementSpeed;
 
         private TrainMovement _trainMovement;
-        
-        public bool IsDead { get; private set; }
 
-        public event Action<IAlive> DeadEvent;
-        public event Action DamageEvent;
+        [Inject] private GameStateManager _gameStateManager;
+        [Inject] private SlotManager _slotManager;
+        [Inject] private WeaponManager _weaponManager;
+
+        public bool IsDead { get; private set;}
+        [ShowInInspector] public float MaxHealth { get; private set;}
+        public float CurrentHealth { get; private set; }
         #endregion
-        
+
         #region Monobehaviour Callbacks
         private void Start()
         {
             _trainMovement = GetComponent<TrainMovement>();
+            //_trainMovement.SetSpeed(movementSpeed);
+
+            _weaponManager.OnNewWeapon += UpdateMaxHealth;
         }
 
         private void Update()
@@ -31,18 +41,22 @@ namespace _Scripts.Train
             {
                 return;
             }
-            _trainMovement.Move();
+            //_trainMovement.Move();
         }
-
         #endregion
 
+        private void UpdateMaxHealth()
+        {
+            MaxHealth = health + _slotManager.WeaponsHealthSum;
+            CurrentHealth = MaxHealth;
+        }
+        
         #region Get Damage\Die
         public void GetDamage(int damagePoint)
         {
-            health -= damagePoint;
-            DamageEvent?.Invoke();
+            CurrentHealth -= damagePoint;
 
-            if (health <= 0 && !IsDead)
+            if (CurrentHealth <= 0 && !IsDead)
                 Die();
         }
         
@@ -52,8 +66,7 @@ namespace _Scripts.Train
                 return;
 
             IsDead = true;
-
-            DeadEvent?.Invoke(this);
+            _gameStateManager.ChangeState(GameState.Fail);
         }
         #endregion
     }
