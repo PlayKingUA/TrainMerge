@@ -1110,6 +1110,7 @@ Transform:
   - {fileID: 1491026743}
   - {fileID: 1827141505}
   - {fileID: 692661216}
+  - {fileID: 1736867194}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4471,6 +4472,59 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1726123999}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1736867193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1736867194}
+  - component: {fileID: 1736867195}
+  m_Layer: 0
+  m_Name: Master Object Pooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1736867194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736867193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 404311227}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1736867195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736867193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7d75d4e54c16b42b11bb89b17dc809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _singletonMode: 1
+  _pools:
+  - {fileID: 11400000, guid: a461427cbf0d7994bb77fcfeceb900ec, type: 2}
+  - {fileID: 11400000, guid: 28fff9f60737d3d47bc12374324fba02, type: 2}
+  - {fileID: 11400000, guid: 7db41b81ac0497f49ad6142037ed3037, type: 2}
+  - {fileID: 11400000, guid: 42994e018ff398b4db732e399e537e88, type: 2}
+  - {fileID: 11400000, guid: 7c4989bdde4f4c24886c63577f63c00d, type: 2}
+  - {fileID: 11400000, guid: 59b83170f77fff242945735ee2ccede4, type: 2}
+  - {fileID: 11400000, guid: f9e0325ba44e3974fa78b411d9dac15f, type: 2}
 --- !u!1 &1748877476
 GameObject:
   m_ObjectHideFlags: 0

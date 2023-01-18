@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Game_States;
 using _Scripts.Weapons;
 using DG.Tweening;
 using UnityEngine;
@@ -28,6 +29,7 @@ namespace _Scripts.Slot_Logic
         private Tween _motionTween;
         private Tween _scaleTween;
         
+        [Inject] private GameStateManager _gameStateManager;
         [Inject] private WeaponManager _weaponManager;
         [Inject] private SlotManager _slotManager;
         public SlotState SlotState { get; private set; }
@@ -42,6 +44,13 @@ namespace _Scripts.Slot_Logic
         private int GetCurrentLevel => (_weapon) ? _weapon.Level : NoSlotLevel;
         #endregion
 
+        #region Monobehavior Callbacks
+        private void Start()
+        {
+            _gameStateManager.AttackStarted += StartLevel;
+        }
+        #endregion
+        
         #region Slot Logic
         private void SetWeaponToSlot(Weapon weapon)
         {
@@ -70,7 +79,7 @@ namespace _Scripts.Slot_Logic
         public void SetWeaponWithMotion(Weapon weapon)
         {
             SetWeaponToSlot(weapon);
-            MoveToPosition();
+            MoveWeaponToPosition();
             _slotManager.RefreshSlots(this);
             _weapon.transform.SetParent(weaponPosition);
         }
@@ -120,6 +129,15 @@ namespace _Scripts.Slot_Logic
             ChangeColor();
         }
 
+        private void StartLevel()
+        {
+            meshRenderer.gameObject.SetActive(false);
+            if (_weapon != null)
+            {
+                _weapon.ChangeState(WeaponState.Attack);
+            }
+        }
+        
         public Weapon SpawnWeapon(int level, bool showFx = false)
         {
             SetWeaponToSlot(_weaponManager.CreateWeapon(level, weaponPosition));
@@ -127,7 +145,7 @@ namespace _Scripts.Slot_Logic
             return _weapon;
         }
 
-        private void MoveToPosition()
+        private void MoveWeaponToPosition()
         {
             _motionTween.Kill();
             _motionTween = _weapon.transform.DOMove(weaponPosition.position, motionTime);
