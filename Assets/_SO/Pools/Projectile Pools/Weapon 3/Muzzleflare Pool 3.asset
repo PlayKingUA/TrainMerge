@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Muzzleflare Pool 3
   m_EditorClassIdentifier: 
   _name: Muzzleflare Pool 3
-  _template: {fileID: 1584403288528622, guid: a7f7e53efb9c16141af1c5631e25cbb8, type: 3}
+  _template: {fileID: 1584403288528622, guid: 0e30974a292908a45b707f0d4d3c87b2, type: 3}
   _defaultSize: 15
   _maxSize: -1
   _incrementalInstanceNames: 0

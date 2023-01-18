@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShellsPool
   m_EditorClassIdentifier: 
   _name: Shell Pool
-  _template: {fileID: 1467181274829480, guid: 41e86fd3ee46b76448791422f9949474, type: 3}
+  _template: {fileID: 1467181274829480, guid: ad9e55a7aad04f1479e4efc1b624ee18, type: 3}
   _defaultSize: 15
   _maxSize: -1
   _incrementalInstanceNames: 0

@@ -115,6 +115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
         type: 3}
+      propertyPath: damage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
+        type: 3}
       propertyPath: hasShells
       value: 1
       objectReference: {fileID: 0}
@@ -154,7 +159,7 @@ PrefabInstance:
     - target: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
         type: 3}
       propertyPath: attackSpeedPerSecond
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9eed0c49ff1e449b83f336e88335e7, type: 3}
@@ -177,6 +182,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5377281230909582685}
     m_Modifications:
+    - target: {fileID: 3400080665155448534, guid: 9836b8faa286a504c8e75c384ab2955e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5056237491693423139, guid: 9836b8faa286a504c8e75c384ab2955e,
         type: 3}
       propertyPath: m_RootOrder
@@ -236,6 +246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tower_antipersonnel_red_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590732540329499521, guid: 9836b8faa286a504c8e75c384ab2955e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9836b8faa286a504c8e75c384ab2955e, type: 3}

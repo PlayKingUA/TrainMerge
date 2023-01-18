@@ -7,22 +7,15 @@ namespace _Scripts.Projectiles
     public sealed class Projectile : MonoBehaviour
     {
         #region Variables
-        [Header("Speed")]
-        [SerializeField] private float maxSpeed;
-        [SerializeField] private float minSpeed;
-        [SerializeField] private float maxSpeedDistance;
-        [Space]
-        [SerializeField] private AnimationCurve yFlyTrajectory;
-        [SerializeField] private float yFlyWeight = 1;
+        [SerializeField] private float speed;
 
+        private const float LifeTime = 3.0f;
+        
         private float _damageRadius;
 
         private Vector3 _launchPosition;
         private Vector3 _targetPosition;
 
-        private float _flyTime;
-        private float _flySpeed;
-        
         private float _damage;
         private ObjectPool _projectilePool;
 
@@ -46,12 +39,8 @@ namespace _Scripts.Projectiles
         public void Init(Vector3 targetPosition, float damage, float damageRadius, ObjectPool objectPool)
         {
             _projectilePool = objectPool;
+            _launchPosition = transform.position;
             _targetPosition = targetPosition;
-            
-            var distanceToTargetPoint = Vector3.Distance(transform.position, _targetPosition);
-            var distanceT = distanceToTargetPoint / maxSpeedDistance;
-            _flySpeed = Mathf.Lerp(minSpeed, maxSpeed, distanceT);
-            _flyTime = distanceToTargetPoint / _flySpeed;
 
             _damageRadius = damageRadius;
             _damage = damage;
@@ -61,36 +50,28 @@ namespace _Scripts.Projectiles
 
         private void HitTarget()
         {
-            
+            ReturnToPool();
         }
 
         private IEnumerator FlyToTarget()
         {
             float t = 0;
-
+            var direction = (_targetPosition - _launchPosition).normalized;
+            
             while (true)
             {
-                transform.position = GetPositionOnTrajectory(t);
-                var trajectoryDirection = (GetPositionOnTrajectory(t + 0.05f) -
-                                           transform.position).normalized;
-                transform.rotation = Quaternion.LookRotation(trajectoryDirection);
+                transform.position += direction * speed * Time.deltaTime;
+                transform.rotation = Quaternion.LookRotation(direction);
 
                 t += Time.deltaTime;
                 yield return null;
 
-                if (t < 1f) continue;
+                if (t < LifeTime) continue;
                 ReturnToPool();
                 yield break;
             }
         }
-
-        private Vector3 GetPositionOnTrajectory(float time)
-        {
-            Vector3 targetPosition = Vector3.Lerp(_launchPosition, _targetPosition, time);
-            targetPosition.y += yFlyTrajectory.Evaluate(time) * yFlyWeight;
-            return targetPosition;
-        }
-
+        
         private void ReturnToPool()
         {
             if(_flyRoutine != null) 

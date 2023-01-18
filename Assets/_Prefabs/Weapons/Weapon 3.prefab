@@ -176,6 +176,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_gatling_blue_3
       objectReference: {fileID: 0}
+    - target: {fileID: 6509975870637019232, guid: ac8dc4f496d2c684bb9021f32ef62a89,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045524935031062854, guid: ac8dc4f496d2c684bb9021f32ef62a89,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac8dc4f496d2c684bb9021f32ef62a89, type: 3}
 --- !u!4 &1848090255789372732 stripped
@@ -258,6 +268,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
         type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
+        type: 3}
       propertyPath: shootPoint
       value: 
       objectReference: {fileID: 4674850418641642810}
@@ -278,6 +293,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f9e0325ba44e3974fa78b411d9dac15f,
         type: 2}
+    - target: {fileID: 7302678815591443850, guid: 9e9eed0c49ff1e449b83f336e88335e7,
+        type: 3}
+      propertyPath: attackSpeedPerSecond
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9eed0c49ff1e449b83f336e88335e7, type: 3}
 --- !u!4 &2397241438283685776 stripped
