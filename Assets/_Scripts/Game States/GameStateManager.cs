@@ -1,14 +1,21 @@
 using System;
+using _Scripts.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace _Scripts.Game_States
 {
     public class GameStateManager : MonoBehaviour
     {
         #region Variables
+        [SerializeField] private int failDelay;
+        [SerializeField] private int victoryDelay;
+        
         [ShowInInspector, ReadOnly] private GameState _currentState;
-
+        
+        [Inject] private WindowsManager _windowsManager;
+        
         public GameState CurrentState => _currentState;
         
         public event Action PrepareToBattle;
@@ -41,9 +48,11 @@ namespace _Scripts.Game_States
                     break;
                 case GameState.Victory:
                     Victory?.Invoke();
+                    _windowsManager.SwapWindow(WindowType.Victory, victoryDelay);
                     break;
                 case GameState.Fail:
                     Fail?.Invoke();
+                    _windowsManager.SwapWindow(WindowType.Fail, failDelay);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

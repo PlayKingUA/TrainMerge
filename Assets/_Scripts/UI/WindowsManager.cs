@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,18 @@ namespace _Scripts.UI
                 CanvasGroupSwap(item, false);
             }
 
+            CanvasGroupSwap(windows[(int)currentWindow], true);
+        }
+        
+        public async void SwapWindow(WindowType window, int delay)
+        {
+            currentWindow = window;
+            foreach (var item in windows)
+            {
+                CanvasGroupSwap(item, false);
+            }
+
+            await Task.Delay(delay);
             CanvasGroupSwap(windows[(int)currentWindow], true);
         }
         

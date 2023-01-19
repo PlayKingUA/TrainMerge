@@ -52,6 +52,7 @@ namespace _Scripts.Units
         private void CreateZombie(Object targetZombie)
         {
             var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform);
+            zombie.DeadEvent += RemoveZombie;
             _aliveZombies.Add(zombie);
         }
         #endregion
@@ -72,5 +73,13 @@ namespace _Scripts.Units
             return targetZombie;
         }
         
+        private void RemoveZombie(Zombie zombie)
+        {
+            _aliveZombies.Remove(zombie);
+            if (_zombieToCreate.IsEmpty() && _aliveZombies.Count == 0)
+            {
+                _gameStateManager.ChangeState(GameState.Victory);
+            }
+        }
     }
 }

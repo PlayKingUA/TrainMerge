@@ -21,7 +21,7 @@ namespace _Scripts.Units
         public bool IsDead { get; private set; }
         public float Reward => reward;
         
-        public event Action<IAlive> DeadEvent;
+        public event Action<Zombie> DeadEvent;
         public event Action DamageEvent;
         #endregion
 
@@ -122,6 +122,7 @@ namespace _Scripts.Units
             IsDead = true;
 
             DeadEvent?.Invoke(this);
+            gameObject.SetActive(false);
         }
         #endregion
     }

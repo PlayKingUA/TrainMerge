@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using _Scripts.Units;
 using QFSW.MOP2;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace _Scripts.Projectiles
         private Vector3 _launchPosition;
         private Vector3 _targetPosition;
 
-        private float _damage;
+        private int _damage;
         private ObjectPool _projectilePool;
 
         private MasterObjectPooler _masterObjectPooler;
@@ -32,11 +33,14 @@ namespace _Scripts.Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
-            HitTarget();
+            if (other.TryGetComponent(out Zombie zombie))
+            {
+                HitZombie(zombie);
+            }
         }
         #endregion
 
-        public void Init(Vector3 targetPosition, float damage, float damageRadius, ObjectPool objectPool)
+        public void Init(Vector3 targetPosition, int damage, float damageRadius, ObjectPool objectPool)
         {
             _projectilePool = objectPool;
             _launchPosition = transform.position;
@@ -48,8 +52,9 @@ namespace _Scripts.Projectiles
             _flyRoutine = StartCoroutine(FlyToTarget());
         }
 
-        private void HitTarget()
+        private void HitZombie(Zombie zombie)
         {
+            zombie.GetDamage(_damage);
             ReturnToPool();
         }
 
