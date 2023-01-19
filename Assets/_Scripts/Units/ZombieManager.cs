@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using _Scripts.Game_States;
 using ModestTree;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Units
 {
@@ -21,6 +24,11 @@ namespace _Scripts.Units
         [Inject] private DiContainer _diContainer;
 
         private Coroutine _creatingCoroutine;
+
+        public float WholeHpSum { get; private set; }
+        public float LostHp { get; private set; }
+        
+        public event Action OnHpChanged;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -35,6 +43,14 @@ namespace _Scripts.Units
         {
             _zombieToCreate = targetZombies;
             _timeBetweenZombieCreation = timeBetweenZombieCreation;
+
+            WholeHpSum = _zombieToCreate.Sum(zombie => zombie.Health);
+        }
+
+        private void UpdateLostHp(int deltaHp)
+        {
+            LostHp += deltaHp;
+            OnHpChanged?.Invoke();
         }
 
         #region Zombie Creating
@@ -53,13 +69,15 @@ namespace _Scripts.Units
             }
         }
 
-        private void CreateZombie(Zombie targetZombie)
+        private void CreateZombie(Component targetZombie)
         {
             var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, 
                 GetZombieCreatingPosition(),
                 targetZombie.transform.rotation, transform);
             
             zombie.DeadEvent += RemoveZombie;
+            zombie.GetDamageEvent += UpdateLostHp;
+            
             _aliveZombies.Add(zombie);
         }
 

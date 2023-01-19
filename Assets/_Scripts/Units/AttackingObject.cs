@@ -15,6 +15,8 @@ namespace _Scripts.Units
         #endregion
 
         #region Properties
+        public int Health => health;
+        
         public virtual float GetCoolDown()
         {
             return 1f / attackSpeedPerSecond;

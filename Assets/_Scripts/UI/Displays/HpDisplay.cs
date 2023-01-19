@@ -1,6 +1,4 @@
-﻿using _Scripts.Money_Logic;
-using DG.Tweening;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

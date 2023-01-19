@@ -23,7 +23,7 @@ namespace _Scripts.UI.Buttons
 
         private void StartWave()
         {
-            _levelManager.RestartForce();
+            LevelManager.RestartForce();
         }
     }
 }

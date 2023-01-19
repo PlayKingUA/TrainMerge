@@ -24,6 +24,7 @@ namespace _Scripts.Units
         
         public bool IsDead { get; private set; }
 
+        public event Action<int> GetDamageEvent;
         public event Action<Zombie> DeadEvent;
         #endregion
 
@@ -118,7 +119,9 @@ namespace _Scripts.Units
         #region Get Damage\Die
         public void GetDamage(int damagePoint)
         {
+            var healthBefore = health;
             health = Mathf.Max(0, health -damagePoint);
+            GetDamageEvent?.Invoke(healthBefore - health);
 
             if (health <= 0 && !IsDead)
                 Die();
