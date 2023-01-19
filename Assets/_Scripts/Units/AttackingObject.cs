@@ -8,25 +8,11 @@ namespace _Scripts.Units
         [SerializeField] private protected int health;
         [SerializeField] private protected int damage;
         [SerializeField] private protected float attackSpeedPerSecond;
-
-        protected float AttackTimer;
-        #endregion
-
-        #region Properties
-        public virtual float GetCoolDown()
-        {
-            return 1f / attackSpeedPerSecond;
-        }
-
         #endregion
         
         #region Monobehaviour Callbacks
         protected virtual void Start(){}
-
-        protected virtual void Update()
-        {
-            AttackTimer += Time.deltaTime;
-        }
+        protected virtual void Update(){}
         #endregion
     }
 }

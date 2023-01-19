@@ -5,14 +5,11 @@ using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public sealed class Projectile : MonoBehaviour
+    public class Projectile : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private float speed;
 
-        private const float LifeTime = 3.0f;
-        
-        private float _damageRadius;
+        [SerializeField] private float flightSpeed;
 
         private Vector3 _launchPosition;
         private Vector3 _targetPosition;
