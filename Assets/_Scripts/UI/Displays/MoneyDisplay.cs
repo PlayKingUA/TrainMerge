@@ -1,10 +1,9 @@
-﻿using System;
-using _Scripts.Money_Logic;
+﻿using _Scripts.Money_Logic;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace _Scripts.UI.Money
+namespace _Scripts.UI.Displays
 {
     public class MoneyDisplay : MonoBehaviour
     {
