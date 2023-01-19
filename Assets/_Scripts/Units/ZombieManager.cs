@@ -11,6 +11,7 @@ namespace _Scripts.Units
     public class ZombieManager : MonoBehaviour
     {
         #region Variables
+        [SerializeField] private Transform zombieCreatingPositions;
         [ShowInInspector, ReadOnly] private List<Zombie> _aliveZombies = new ();
 
         private Queue<Zombie> _zombieToCreate;
@@ -52,11 +53,20 @@ namespace _Scripts.Units
             }
         }
 
-        private void CreateZombie(Object targetZombie)
+        private void CreateZombie(Zombie targetZombie)
         {
-            var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform);
+            var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, 
+                GetZombieCreatingPosition(),
+                targetZombie.transform.rotation, transform);
+            
             zombie.DeadEvent += RemoveZombie;
             _aliveZombies.Add(zombie);
+        }
+
+        private Vector3 GetZombieCreatingPosition()
+        {
+            return zombieCreatingPositions.
+                GetChild(Random.Range(0, zombieCreatingPositions.childCount)).position;
         }
         #endregion
 

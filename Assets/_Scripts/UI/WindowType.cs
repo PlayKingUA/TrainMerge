@@ -5,6 +5,7 @@
         PrepareToLevel,
         Game,
         Victory,
-        Fail
+        Fail,
+        Loading
     }
 }

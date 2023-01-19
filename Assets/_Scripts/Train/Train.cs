@@ -78,6 +78,7 @@ namespace _Scripts.Train
         public void GetDamage(int damagePoint)
         {
             CurrentHealth -= damagePoint;
+            CurrentHealth = Mathf.Max(0, CurrentHealth - damagePoint);
             HpChanged?.Invoke();
 
             if (CurrentHealth <= 0 && !IsDead)

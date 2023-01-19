@@ -45,6 +45,7 @@ namespace _Scripts.Projectiles
             _projectilePool = objectPool;
             _launchPosition = transform.position;
             _targetPosition = targetPosition;
+            _targetPosition.y = _launchPosition.y;
 
             _damageRadius = damageRadius;
             _damage = damage;

@@ -118,7 +118,7 @@ namespace _Scripts.Units
         #region Get Damage\Die
         public void GetDamage(int damagePoint)
         {
-            health -= damagePoint;
+            health = Mathf.Max(0, health -damagePoint);
 
             if (health <= 0 && !IsDead)
                 Die();
