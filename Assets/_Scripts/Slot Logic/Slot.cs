@@ -49,6 +49,8 @@ namespace _Scripts.Slot_Logic
         private void Start()
         {
             _gameStateManager.AttackStarted += StartLevel;
+            _gameStateManager.Victory += FinishLevel;
+            _gameStateManager.Fail += FinishLevel;
         }
         #endregion
         
@@ -136,6 +138,14 @@ namespace _Scripts.Slot_Logic
             if (_weapon != null)
             {
                 _weapon.ChangeState(WeaponState.Attack);
+            }
+        }
+
+        private void FinishLevel()
+        {
+            if (_weapon != null)
+            {
+                _weapon.ChangeState(WeaponState.Idle);
             }
         }
         

@@ -15,7 +15,6 @@ namespace _Scripts.Weapons
         [Space]
         [SerializeField] private WeaponType weaponType;
         [SerializeField] private float damageRadius;
-        [SerializeField] private float attackRadius;
         [Space] 
         [SerializeField] private GameObject appearFx;
         [SerializeField] private Transform gunTransform;
@@ -57,7 +56,6 @@ namespace _Scripts.Weapons
         {
             base.Update();
             UpdateState();
-            Rotate();
         }
         #endregion
         
@@ -84,11 +82,11 @@ namespace _Scripts.Weapons
 
         private void IdleState()
         {
-            
         }
 
         private void AttackState()
         {
+            Rotate();
             if (AttackTimer < GetCoolDown()) 
                 return;
 
@@ -99,6 +97,8 @@ namespace _Scripts.Weapons
             Fire(targetZombie.transform);
             AttackTimer = 0f;
         }
+        
+        
         #endregion
 
         public void SetLevel(int level)
@@ -145,11 +145,10 @@ namespace _Scripts.Weapons
                 targetRotation, t);
         }
         
-        private void OnDrawGizmos()
+        protected override void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(shootPoint.position, damageRadius);
-            Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, attackRadius);
+            base.OnDrawGizmos();
         }
     }
 }

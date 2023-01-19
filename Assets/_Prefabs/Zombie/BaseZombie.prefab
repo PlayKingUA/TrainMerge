@@ -94,6 +94,7 @@ MonoBehaviour:
   health: 50
   damage: 10
   attackSpeedPerSecond: 1
+  attackRadius: 1
   movementSpeed: 5
   reward: 30
 --- !u!195 &6112769720920916972

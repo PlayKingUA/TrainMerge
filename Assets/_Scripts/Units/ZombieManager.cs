@@ -18,12 +18,15 @@ namespace _Scripts.Units
 
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private DiContainer _diContainer;
+
+        private Coroutine _creatingCoroutine;
         #endregion
         
         #region Monobehaviour Callbacks
         private void Start()
         {
             _gameStateManager.AttackStarted += StartCreatingZombies;
+            _gameStateManager.Fail += ZombieWin;
         }
         #endregion
 
@@ -36,7 +39,7 @@ namespace _Scripts.Units
         #region Zombie Creating
         private void StartCreatingZombies()
         {
-            StartCoroutine(CreateZombies());
+            _creatingCoroutine = StartCoroutine(CreateZombies());
         }
 
         private IEnumerator CreateZombies()
@@ -79,6 +82,17 @@ namespace _Scripts.Units
             if (_zombieToCreate.IsEmpty() && _aliveZombies.Count == 0)
             {
                 _gameStateManager.ChangeState(GameState.Victory);
+            }
+        }
+        
+        private void ZombieWin()
+        {
+            if (_creatingCoroutine != null) 
+                StopCoroutine(_creatingCoroutine);
+            
+            foreach (var zombie in _aliveZombies)
+            {
+                zombie.ChangeState(UnitState.Victory);
             }
         }
     }

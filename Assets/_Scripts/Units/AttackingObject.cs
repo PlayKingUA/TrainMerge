@@ -1,15 +1,17 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace _Scripts.Units
 {
     public class AttackingObject : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private protected int health;
-        [SerializeField] private protected int damage;
-        [SerializeField] private protected float attackSpeedPerSecond;
+        [SerializeField] protected int health;
+        [SerializeField] protected int damage;
+        [SerializeField] protected float attackSpeedPerSecond;
+        [SerializeField] protected float attackRadius;
 
-        protected float AttackTimer;
+        [ShowInInspector, ReadOnly] protected float AttackTimer;
         #endregion
 
         #region Properties
@@ -28,5 +30,11 @@ namespace _Scripts.Units
             AttackTimer += Time.deltaTime;
         }
         #endregion
+        
+        protected virtual void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
+        }
     }
 }
