@@ -32,7 +32,7 @@ namespace _Scripts.Weapons
 
         #region Properties
         public int Level => _level;
-        public float Health => health;
+        public int Health => health;
         public GameObject AppearFx => appearFx;
         #endregion
         

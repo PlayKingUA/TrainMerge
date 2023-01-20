@@ -5,7 +5,7 @@ namespace _Scripts.Units
     public class AttackingObject : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private protected float health;
+        [SerializeField] private protected int health;
         [SerializeField] private protected int damage;
         [SerializeField] private protected float attackSpeedPerSecond;
         #endregion

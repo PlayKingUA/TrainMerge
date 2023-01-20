@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,7 +18,7 @@ namespace _Scripts.Slot_Logic
 
         #region Properties
         public bool HasFreePlace() => emptySlots.Count > 0;
-
+        public int WeaponsHealthSum => slots.Sum(slot => slot.WeaponHealth);
         #endregion
 
         #region Monobehaviour Callbacks
