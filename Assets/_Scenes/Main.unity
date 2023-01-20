@@ -5389,6 +5389,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3929085919871084369, guid: d1d53dac9c838524b807a97cb90437b9,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3929085919871084369, guid: d1d53dac9c838524b807a97cb90437b9,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6470502332147662493, guid: d1d53dac9c838524b807a97cb90437b9,
         type: 3}
       propertyPath: m_RootOrder
@@ -5448,6 +5458,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577995354293585882, guid: d1d53dac9c838524b807a97cb90437b9,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577995354293585882, guid: d1d53dac9c838524b807a97cb90437b9,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679077624866416369, guid: d1d53dac9c838524b807a97cb90437b9,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679077624866416369, guid: d1d53dac9c838524b807a97cb90437b9,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1d53dac9c838524b807a97cb90437b9, type: 3}
@@ -5629,7 +5659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d63b45d50d430799c971778d87907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyCount: 1500
+  moneyCount: 100000
 --- !u!114 &1755915060 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2498147909930217114, guid: bf759de9ed0839b47909cd6c38a0ec51,
@@ -5868,11 +5898,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a031040b406f243bd3573c91ffe1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWeaponLevel: 3
+  maxWeaponLevel: 4
   weapons:
   - {fileID: 8816773139507464605, guid: 149b72ba0441d694aa4c69658f859e6b, type: 3}
   - {fileID: 6452681581367162354, guid: 3a61d9510a137b1438ec98201295f555, type: 3}
   - {fileID: 1261077010504956752, guid: 14b5993a26de44e4da879f4460860e35, type: 3}
+  - {fileID: 1261077010504956752, guid: 8f45b841f1edb0a49a4c71676b5f830b, type: 3}
 --- !u!1 &1784262583
 GameObject:
   m_ObjectHideFlags: 0

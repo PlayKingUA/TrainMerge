@@ -9,20 +9,15 @@ namespace _Scripts.Weapons
     public class WeaponManager : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private int maxWeaponLevel;
         [SerializeField] private List<Weapon> weapons;
 
         [Inject] private DiContainer _diContainer;
-        public int MaxWeaponLevel => maxWeaponLevel - 1;
+        public int MaxWeaponLevel => weapons.Count - 1;
         
         public event Action OnNewWeapon;
         #endregion
     
         #region Monobehaviour Callbacks
-        private void OnValidate()
-        {
-            maxWeaponLevel = Mathf.Min(maxWeaponLevel, weapons.Count);
-        }
         #endregion
 
         public Weapon CreateWeapon(int level, Transform parent)
