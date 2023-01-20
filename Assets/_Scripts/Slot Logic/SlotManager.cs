@@ -53,11 +53,18 @@ namespace _Scripts.Slot_Logic
 
         public void CreateNewWeapon(int targetLevel = 0)
         {
-            var index = Random.Range(0, emptySlots.Count);
-            var targetSlot = emptySlots[index];
+            if (!HasFreePlace())
+            {
+                return;
+            }
             
-            targetSlot.SpawnWeapon(targetLevel, true);
-            emptySlots.Remove(targetSlot);
+            foreach (var slot in slots)
+            {
+                if (slot.SlotState != SlotState.Empty) continue;
+                slot.SpawnWeapon(targetLevel, true);
+                emptySlots.Remove(slot);
+                return;
+            }
         }
         
         public void RefreshSlots(Slot weaponSLot)

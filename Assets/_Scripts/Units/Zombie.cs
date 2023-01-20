@@ -1,7 +1,9 @@
 using System;
 using _Scripts.Interface;
+using _Scripts.Money_Logic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace _Scripts.Units
 {
@@ -12,17 +14,22 @@ namespace _Scripts.Units
         [Space]
         [SerializeField] private float movementSpeed;
         [Space]
-        [SerializeField] private float reward;
+        [SerializeField] private int reward;
         [Space]
         [ShowInInspector, ReadOnly] private UnitState _currentState;
 
         private UnitMovement _unitMovement;
-
-        public bool IsDead { get; private set; }
-        public float Reward => reward;
+        [Inject] private Train.Train _train;
+        [Inject] private MoneyWallet _moneyWallet;
         
-        public event Action<IAlive> DeadEvent;
-        public event Action DamageEvent;
+        public bool IsDead { get; private set; }
+
+        public event Action<int> GetDamageEvent;
+        public event Action<Zombie> DeadEvent;
+        #endregion
+
+        #region Properties
+        private bool CanAttack => _unitMovement.DistanceFromTarget < attackRadius;
         #endregion
 
         #region Monobehaviour Callbacks
@@ -30,12 +37,14 @@ namespace _Scripts.Units
         {
             _unitMovement = GetComponent<UnitMovement>();
             _unitMovement.SetSpeed(movementSpeed);
+            
             ChangeState(UnitState.Run);
             base.Start();
         }
 
         protected override void Update()
         {
+            base.Update();
             UpdateState();
         }
         #endregion
@@ -82,14 +91,18 @@ namespace _Scripts.Units
         {
             _unitMovement.Move();
 
-            if (!CanAttack()) return;
+            if (!CanAttack) return;
             ChangeState(UnitState.Attack);
-            _unitMovement.StopMove();
         }
 
         private void AttackState()
         {
             _unitMovement.Move();
+            if (AttackTimer < GetCoolDown() || !CanAttack) 
+                return;
+
+            Attack();
+            AttackTimer = 0f;
         }
 
         private  void VictoryState()
@@ -98,17 +111,17 @@ namespace _Scripts.Units
         }
         #endregion
 
-        private bool CanAttack()
+        private void Attack()
         {
-            // ToDo
-            return false;
+            _train.GetDamage(damage);
         }
         
         #region Get Damage\Die
         public void GetDamage(int damagePoint)
         {
-            health -= damagePoint;
-            DamageEvent?.Invoke();
+            var healthBefore = health;
+            health = Mathf.Max(0, health -damagePoint);
+            GetDamageEvent?.Invoke(healthBefore - health);
 
             if (health <= 0 && !IsDead)
                 Die();
@@ -122,6 +135,8 @@ namespace _Scripts.Units
             IsDead = true;
 
             DeadEvent?.Invoke(this);
+            _moneyWallet.Add(reward);
+            gameObject.SetActive(false);
         }
         #endregion
     }

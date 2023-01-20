@@ -1,6 +1,9 @@
+using System;
+using _Scripts.Game_States;
 using _Scripts.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace _Scripts.Levels
@@ -16,28 +19,45 @@ namespace _Scripts.Levels
         private int _currentLevelIndex;
 
         [Inject] private ZombieManager _zombieManager;
+        [Inject] private GameStateManager _gameStateManager;
+
+        public event Action<int> OnLevelLoaded;
         #endregion
 
-        
         #region Monobehaviour Callbacks
         private void Awake()
         {
             Load();
+            _gameStateManager.Victory += IncreaseLevel;
         }
         #endregion
 
-        public void IncreaseLevel()
+        private void IncreaseLevel()
         {
             _currentLevelIndex++;
-            
+
             Save();
         }
+        
+        #region Restart Logic
+        public static void RestartForce()
+        {
+            RestartGame();
+        }
+
+        private static void RestartGame()
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
+        #endregion
         
         private void LoadLevel()
         {
             var currentLevel = _currentLevelIndex % levels.Length;
             _currentLevel = levels[currentLevel];
             _zombieManager.Init(_currentLevel.Zombies, _currentLevel.TimeBetweenZombie);
+            
+            OnLevelLoaded?.Invoke(currentLevel + 1);
         }
         
         #region Save/Load

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8692823435732292197}
   - component: {fileID: 8692823435732292196}
   - component: {fileID: 6112769720920916972}
+  - component: {fileID: 1434586539212394079}
   m_Layer: 0
   m_Name: BaseZombie
   m_TagString: Untagged
@@ -93,6 +94,7 @@ MonoBehaviour:
   health: 50
   damage: 10
   attackSpeedPerSecond: 1
+  attackRadius: 1
   movementSpeed: 5
   reward: 30
 --- !u!195 &6112769720920916972
@@ -117,3 +119,16 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &1434586539212394079
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692823435732292194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.0835092, z: 1}
+  m_Center: {x: -0, y: 1.0126289, z: -0}

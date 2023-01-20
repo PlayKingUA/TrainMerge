@@ -2,6 +2,7 @@
 {
     public enum LevelLocation
     {
-        Wasteland
+        Wasteland,
+        Metropolis
     }
 }

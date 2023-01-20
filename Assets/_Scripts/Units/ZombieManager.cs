@@ -1,16 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using _Scripts.Game_States;
 using ModestTree;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Units
 {
     public class ZombieManager : MonoBehaviour
     {
         #region Variables
+        [SerializeField] private Transform zombieCreatingPositions;
         [ShowInInspector, ReadOnly] private List<Zombie> _aliveZombies = new ();
 
         private Queue<Zombie> _zombieToCreate;
@@ -18,12 +22,20 @@ namespace _Scripts.Units
 
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private DiContainer _diContainer;
+
+        private Coroutine _creatingCoroutine;
+
+        public float WholeHpSum { get; private set; }
+        public float LostHp { get; private set; }
+        
+        public event Action OnHpChanged;
         #endregion
         
         #region Monobehaviour Callbacks
         private void Start()
         {
             _gameStateManager.AttackStarted += StartCreatingZombies;
+            _gameStateManager.Fail += ZombieWin;
         }
         #endregion
 
@@ -31,12 +43,20 @@ namespace _Scripts.Units
         {
             _zombieToCreate = targetZombies;
             _timeBetweenZombieCreation = timeBetweenZombieCreation;
+
+            WholeHpSum = _zombieToCreate.Sum(zombie => zombie.Health);
+        }
+
+        private void UpdateLostHp(int deltaHp)
+        {
+            LostHp += deltaHp;
+            OnHpChanged?.Invoke();
         }
 
         #region Zombie Creating
         private void StartCreatingZombies()
         {
-            StartCoroutine(CreateZombies());
+            _creatingCoroutine = StartCoroutine(CreateZombies());
         }
 
         private IEnumerator CreateZombies()
@@ -49,10 +69,22 @@ namespace _Scripts.Units
             }
         }
 
-        private void CreateZombie(Object targetZombie)
+        private void CreateZombie(Component targetZombie)
         {
-            var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform);
+            var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, 
+                GetZombieCreatingPosition(),
+                targetZombie.transform.rotation, transform);
+            
+            zombie.DeadEvent += RemoveZombie;
+            zombie.GetDamageEvent += UpdateLostHp;
+            
             _aliveZombies.Add(zombie);
+        }
+
+        private Vector3 GetZombieCreatingPosition()
+        {
+            return zombieCreatingPositions.
+                GetChild(Random.Range(0, zombieCreatingPositions.childCount)).position;
         }
         #endregion
 
@@ -72,5 +104,24 @@ namespace _Scripts.Units
             return targetZombie;
         }
         
+        private void RemoveZombie(Zombie zombie)
+        {
+            _aliveZombies.Remove(zombie);
+            if (_zombieToCreate.IsEmpty() && _aliveZombies.Count == 0)
+            {
+                _gameStateManager.ChangeState(GameState.Victory);
+            }
+        }
+        
+        private void ZombieWin()
+        {
+            if (_creatingCoroutine != null) 
+                StopCoroutine(_creatingCoroutine);
+            
+            foreach (var zombie in _aliveZombies)
+            {
+                zombie.ChangeState(UnitState.Victory);
+            }
+        }
     }
 }

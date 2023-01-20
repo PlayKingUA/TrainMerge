@@ -4,6 +4,5 @@
     {
         void Move();
         void StopMove();
-        void SetSpeed(float targetSpeed);
     }
 }

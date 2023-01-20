@@ -24,6 +24,8 @@ public class Hovl_Laser : MonoBehaviour
     private bool LaserSaver = false;
     private bool UpdateSaver = false;
 
+    private Vector3 _targetPosition;
+    
     private ParticleSystem[] Effects;
     private ParticleSystem[] Hit;
 
@@ -54,13 +56,13 @@ public class Hovl_Laser : MonoBehaviour
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, MaxLength))//CHANGE THIS IF YOU WANT TO USE LASERRS IN 2D: if (hit.collider != null)
             {
                 //End laser position if collides with object
-                Laser.SetPosition(1, hit.point);
+                Laser.SetPosition(1, _targetPosition);
 
-                    HitEffect.transform.position = hit.point + hit.normal * HitOffset;
+                    HitEffect.transform.position = _targetPosition + hit.normal * HitOffset;
                 if (useLaserRotation)
                     HitEffect.transform.rotation = transform.rotation;
                 else
-                    HitEffect.transform.LookAt(hit.point + hit.normal);
+                    HitEffect.transform.LookAt(_targetPosition + hit.normal);
 
                 foreach (var AllPs in Effects)
                 {
@@ -104,6 +106,11 @@ public class Hovl_Laser : MonoBehaviour
         }  
     }
 
+    public void UpdateLaserTargetPosition(Vector3 targetPosition)
+    {
+        _targetPosition = targetPosition;
+    }
+    
     public void DisablePrepare()
     {
         if (Laser != null)

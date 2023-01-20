@@ -1,5 +1,4 @@
 ﻿using System;
-using _Scripts.Projectiles;
 using _Scripts.Slot_Logic;
 using _Scripts.Units;
 using Sirenix.OdinInspector;
@@ -11,14 +10,10 @@ namespace _Scripts.Weapons
     public class Weapon : AttackingObject
     {
         #region Variables
-        [Space]
-        [SerializeField] private WeaponType weaponType;
-        [SerializeField] private float damageArea;
         [Space] 
         [SerializeField] private GameObject appearFx;
         [SerializeField] private Transform gunTransform;
-        [SerializeField] private Transform shootPoint;
-        [SerializeField] private Projectile projectile;
+
         [Space(10)]
         [ShowInInspector, ReadOnly] 
         private WeaponState _currentState;
@@ -27,13 +22,16 @@ namespace _Scripts.Weapons
         [Inject] private ZombieManager _zombieManager;
 
         private Quaternion _startRotation;
+        [ShowInInspector, ReadOnly]private protected Zombie TargetZombie;
         
         #endregion
 
         #region Properties
         public int Level => _level;
-        public int Health => health;
         public GameObject AppearFx => appearFx;
+
+        private protected bool CanAttack => TargetZombie != null &&
+                                  Vector3.Distance(transform.position, TargetZombie.transform.position) <= attackRadius;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -46,6 +44,7 @@ namespace _Scripts.Weapons
 
         protected override void Update()
         {
+            base.Update();
             UpdateState();
         }
         #endregion
@@ -71,12 +70,11 @@ namespace _Scripts.Weapons
             }
         }
 
-        private void IdleState()
+        protected virtual void IdleState()
         {
-            Rotate();
         }
 
-        private void AttackState()
+        protected virtual void AttackState()
         {
             Rotate();
         }
@@ -91,15 +89,15 @@ namespace _Scripts.Weapons
         {
             previousSlot.Refresh(this, previousSlot);
         }
-        
+
         private void Rotate()
         {
-            var targetZombie = _zombieManager.GetNearestZombie(transform);
+            UpdateTargetZombie();
             var targetRotation = _startRotation;
             
-            if (targetZombie != null)
+            if (TargetZombie != null)
             {
-                var direction = targetZombie.transform.position - gunTransform.position;
+                var direction = TargetZombie.transform.position - gunTransform.position;
                 var rotateY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
                 targetRotation = Quaternion.Euler(0, rotateY, 0);
             }
@@ -108,6 +106,11 @@ namespace _Scripts.Weapons
             var t =  Mathf.Clamp(Time.deltaTime * 10, 0f, 0.99f);
             gunTransform.rotation = Quaternion.Lerp(gunTransform.rotation,
                 targetRotation, t);
+        }
+
+        private void UpdateTargetZombie()
+        {
+            TargetZombie = _zombieManager.GetNearestZombie(transform);
         }
     }
 }
