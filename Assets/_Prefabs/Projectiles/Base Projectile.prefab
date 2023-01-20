@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 588428771100745382}
   - component: {fileID: 2216925026567127683}
   - component: {fileID: 7466057708396137894}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a9ba198bf346f295616a2b27dc6917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageRadius: 0.1
   speed: 20
+  muzzleflarePool: {fileID: 0}
+  shellsPool: {fileID: 11400000, guid: a461427cbf0d7994bb77fcfeceb900ec, type: 2}
+  hasShells: 1
 --- !u!54 &2216925026567127683
 Rigidbody:
   m_ObjectHideFlags: 0

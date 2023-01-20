@@ -5,69 +5,53 @@ using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public sealed class Projectile : MonoBehaviour
+    public sealed class Projectile : ProjectileBase
     {
         #region Variables
+        [Space(10)]
         [SerializeField] private float speed;
-
+        [SerializeField] private ObjectPool muzzleflarePool;
+        [SerializeField] private ObjectPool shellsPool;
+        [SerializeField] private bool hasShells;
+        
         private const float LifeTime = 3.0f;
-        
-        private float _damageRadius;
 
-        private Vector3 _launchPosition;
-        private Vector3 _targetPosition;
-
-        private int _damage;
-        private ObjectPool _projectilePool;
-
-        private MasterObjectPooler _masterObjectPooler;
-        
         private Coroutine _flyRoutine;
         #endregion
 
         #region Monobehavior Callbacks
-        private void Start()
+        protected override void OnTriggerEnter(Collider other)
         {
-            _masterObjectPooler = MasterObjectPooler.Instance;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent(out Zombie zombie))
-            {
-                HitZombie(zombie);
-            }
+            HitZombie();
         }
         #endregion
 
-        public void Init(Vector3 targetPosition, int damage, float damageRadius, ObjectPool objectPool)
+        public override void Init(Vector3 targetPosition, int damage, ObjectPool objectPool)
         {
-            _projectilePool = objectPool;
-            _launchPosition = transform.position;
-            _targetPosition = targetPosition;
-            _targetPosition.y = _launchPosition.y;
-
-            _damageRadius = damageRadius;
-            _damage = damage;
-            
+            base.Init(targetPosition, damage, objectPool);
             _flyRoutine = StartCoroutine(FlyToTarget());
+            
+            MasterObjectPooler.GetObject(muzzleflarePool.PoolName, transform.position, transform.rotation);
+            if (hasShells)
+            {
+                MasterObjectPooler.GetObject(shellsPool.PoolName, transform.position, transform.rotation);
+            }
         }
 
-        private void HitZombie(Zombie zombie)
+        public override void HitZombie(Transform damagePoint = null)
         {
-            zombie.GetDamage(_damage);
+            base.HitZombie(damagePoint);
             ReturnToPool();
         }
 
         private IEnumerator FlyToTarget()
         {
             float t = 0;
-            var direction = (_targetPosition - _launchPosition).normalized;
             
             while (true)
             {
-                transform.position += direction * speed * Time.deltaTime;
-                transform.rotation = Quaternion.LookRotation(direction);
+                transform.position += Direction * speed * Time.deltaTime;
+                transform.rotation = Quaternion.LookRotation(Direction);
 
                 t += Time.deltaTime;
                 yield return null;
@@ -78,11 +62,11 @@ namespace _Scripts.Projectiles
             }
         }
         
-        private void ReturnToPool()
+        protected override void ReturnToPool()
         {
             if(_flyRoutine != null) 
                 StopCoroutine(_flyRoutine);
-            _masterObjectPooler.Release(gameObject, _projectilePool.PoolName);
+            base.ReturnToPool();
         }
     }
 }

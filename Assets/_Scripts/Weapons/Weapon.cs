@@ -1,8 +1,6 @@
 ﻿using System;
-using _Scripts.Projectiles;
 using _Scripts.Slot_Logic;
 using _Scripts.Units;
-using QFSW.MOP2;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -12,40 +10,33 @@ namespace _Scripts.Weapons
     public class Weapon : AttackingObject
     {
         #region Variables
-        [Space]
-        [SerializeField] private WeaponType weaponType;
-        [SerializeField] private float damageRadius;
         [Space] 
         [SerializeField] private GameObject appearFx;
         [SerializeField] private Transform gunTransform;
-        [SerializeField] private Transform shootPoint;
-        [Space(10)]
-        [SerializeField] private ObjectPool projectilePool;
-        [SerializeField] private ObjectPool muzzleflarePool;
-        [SerializeField] private ObjectPool shellsPool;
-        [SerializeField] private bool hasShells;
+
         [Space(10)]
         [ShowInInspector, ReadOnly] 
         private WeaponState _currentState;
         [ShowInInspector, ReadOnly] private int _level;
 
         [Inject] private ZombieManager _zombieManager;
-        private MasterObjectPooler _masterObjectPooler;
 
         private Quaternion _startRotation;
+        [ShowInInspector, ReadOnly]private protected Zombie TargetZombie;
         
         #endregion
 
         #region Properties
         public int Level => _level;
         public GameObject AppearFx => appearFx;
+
+        private protected bool CanAttack => TargetZombie != null &&
+                                  Vector3.Distance(transform.position, TargetZombie.transform.position) <= attackRadius;
         #endregion
         
         #region Monobehaviour Callbacks
         protected override void Start()
         {
-            _masterObjectPooler =MasterObjectPooler.Instance;
-            
             base.Start();
             ChangeState(WeaponState.Idle);
             _startRotation = gunTransform.rotation;
@@ -79,25 +70,14 @@ namespace _Scripts.Weapons
             }
         }
 
-        private void IdleState()
+        protected virtual void IdleState()
         {
         }
 
-        private void AttackState()
+        protected virtual void AttackState()
         {
             Rotate();
-            if (AttackTimer < GetCoolDown()) 
-                return;
-
-            var targetZombie = _zombieManager.GetNearestZombie(transform);
-            if (targetZombie == null ||
-                Vector3.Distance(transform.position, targetZombie.transform.position) > attackRadius)
-                return;
-            Fire(targetZombie.transform);
-            AttackTimer = 0f;
         }
-        
-        
         #endregion
 
         public void SetLevel(int level)
@@ -110,30 +90,14 @@ namespace _Scripts.Weapons
             previousSlot.Refresh(this, previousSlot);
         }
 
-        private void Fire(Transform targetPosition)
-        {
-            var bullet =
-                _masterObjectPooler.GetObjectComponent<Projectile>(projectilePool.PoolName, shootPoint.position, shootPoint.rotation);
-            var muzzleflare =
-                _masterObjectPooler.GetObject(muzzleflarePool.PoolName, shootPoint.position, shootPoint.rotation);
-            if (hasShells)
-            {
-                _masterObjectPooler.GetObject(shellsPool.PoolName, 
-                    shootPoint.position, shootPoint.rotation);
-            }
-
-            bullet.Init(targetPosition.position,
-                damage, damageRadius, projectilePool);
-        }
-        
         private void Rotate()
         {
-            var targetZombie = _zombieManager.GetNearestZombie(transform);
+            UpdateTargetZombie();
             var targetRotation = _startRotation;
             
-            if (targetZombie != null)
+            if (TargetZombie != null)
             {
-                var direction = targetZombie.transform.position - gunTransform.position;
+                var direction = TargetZombie.transform.position - gunTransform.position;
                 var rotateY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
                 targetRotation = Quaternion.Euler(0, rotateY, 0);
             }
@@ -143,11 +107,10 @@ namespace _Scripts.Weapons
             gunTransform.rotation = Quaternion.Lerp(gunTransform.rotation,
                 targetRotation, t);
         }
-        
-        protected override void OnDrawGizmos()
+
+        private void UpdateTargetZombie()
         {
-            Gizmos.DrawWireSphere(transform.position, attackRadius);
-            base.OnDrawGizmos();
+            TargetZombie = _zombieManager.GetNearestZombie(transform);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace _Scripts.Units
         #endregion
 
         #region Properties
-        private bool CanAttack() => _unitMovement.DistanceFromTarget < attackRadius;
+        private bool CanAttack => _unitMovement.DistanceFromTarget < attackRadius;
         #endregion
 
         #region Monobehaviour Callbacks
@@ -91,14 +91,14 @@ namespace _Scripts.Units
         {
             _unitMovement.Move();
 
-            if (!CanAttack()) return;
+            if (!CanAttack) return;
             ChangeState(UnitState.Attack);
         }
 
         private void AttackState()
         {
             _unitMovement.Move();
-            if (AttackTimer < GetCoolDown() || !CanAttack()) 
+            if (AttackTimer < GetCoolDown() || !CanAttack) 
                 return;
 
             Attack();

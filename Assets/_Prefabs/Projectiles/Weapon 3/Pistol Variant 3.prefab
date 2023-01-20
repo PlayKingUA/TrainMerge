@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 588428771100745382, guid: e6d58459a1c059a4ca10f992b6497e93,
+        type: 3}
+      propertyPath: muzzleflarePool
+      value: 
+      objectReference: {fileID: 11400000, guid: f9e0325ba44e3974fa78b411d9dac15f,
+        type: 2}
     - target: {fileID: 588428771202438820, guid: e6d58459a1c059a4ca10f992b6497e93,
         type: 3}
       propertyPath: m_Name
