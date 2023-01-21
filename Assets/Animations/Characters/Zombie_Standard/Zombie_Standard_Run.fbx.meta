@@ -19,7 +19,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Spine_003' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -31,7 +34,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Standart Run
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -80,7 +112,152 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Zombie_Standard_Run(Clone)
+      parentName: 
+      position: {x: -0.020377602, y: -0.16340953, z: 0.06614091}
+      rotation: {x: -0.72372407, y: 0.020931123, z: 0.0035822548, w: 0.68976265}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Root
+      parentName: Zombie_Standard_Run(Clone)
+      position: {x: -0.0024299491, y: -0.0045598745, z: 0.94229805}
+      rotation: {x: 0.53306025, y: -0.07670601, z: 0.0067868102, w: 0.8425657}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spine_001
+      parentName: Root
+      position: {x: -0, y: 0.1732, z: 0}
+      rotation: {x: 0.15968326, y: 0.010787286, z: -0.039218836, w: 0.98633}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spine_002
+      parentName: Spine_001
+      position: {x: -0, y: 0.1835, z: 0}
+      rotation: {x: 0.3149888, y: 0.021736786, z: -0.07377469, w: 0.94597405}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spine_003
+      parentName: Spine_002
+      position: {x: -0, y: 0.181, z: 0}
+      rotation: {x: -0.05056789, y: -0.023840496, z: 0.019087773, w: 0.9982536}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Neck
+      parentName: Spine_003
+      position: {x: -0, y: 0.1402, z: 0}
+      rotation: {x: -0.04985859, y: -0.024081785, z: 0.019248854, w: 0.99828035}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head
+      parentName: Neck
+      position: {x: -0, y: 0.0688, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Clavicle_L
+      parentName: Spine_002
+      position: {x: -0.0663, y: 0.2218, z: 0}
+      rotation: {x: 0.009638125, y: -0.010803772, z: 0.6564652, w: 0.7542174}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Upper_Arm_L
+      parentName: Clavicle_L
+      position: {x: -0, y: 0.1249, z: 0}
+      rotation: {x: 0.020508492, y: 0.084658764, z: 0.14220315, w: 0.9859973}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Lower_Arm_L
+      parentName: Upper_Arm_L
+      position: {x: -0, y: 0.3064, z: 0}
+      rotation: {x: 0.014238084, y: 0.0047634016, z: -0.018446725, w: 0.9997171}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hand_L
+      parentName: Lower_Arm_L
+      position: {x: -0, y: 0.2122, z: 0}
+      rotation: {x: 0.16083518, y: 0.46232277, z: -0.019760277, w: 0.8717794}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Middle_Finger_L
+      parentName: Hand_L
+      position: {x: -0, y: 0.147, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Thumb_Finger_001_L
+      parentName: Hand_L
+      position: {x: -0, y: 0.0539, z: 0.0529}
+      rotation: {x: 0.24988167, y: -0.10760418, z: 0.19360691, w: 0.9426011}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Thumb_Finger_002_L
+      parentName: Thumb_Finger_001_L
+      position: {x: -0, y: 0.0542, z: 0}
+      rotation: {x: -0.13881706, y: 0, z: 0, w: 0.99031806}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Clavicle_R
+      parentName: Spine_002
+      position: {x: 0.0663, y: 0.2218, z: 0}
+      rotation: {x: 0.0014432392, y: 0.010388549, z: -0.6454291, w: 0.7637482}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Upper_Arm_R
+      parentName: Clavicle_R
+      position: {x: -0, y: 0.1249, z: 0}
+      rotation: {x: -0.0075299805, y: -0.48176807, z: -0.036709208, w: 0.8754972}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Lower_Arm_R
+      parentName: Upper_Arm_R
+      position: {x: -0, y: 0.3064, z: 0}
+      rotation: {x: 0.026176756, y: -0.0039480333, z: 0.014563301, w: 0.9995435}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hand_R
+      parentName: Lower_Arm_R
+      position: {x: -0, y: 0.2122, z: 0}
+      rotation: {x: 0.16614366, y: -0.35916772, z: -0.08364683, w: 0.9145481}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Middle_Finger_R
+      parentName: Hand_R
+      position: {x: -0, y: 0.147, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Thumb_Finger_001_R
+      parentName: Hand_R
+      position: {x: -0, y: 0.0539, z: 0.0529}
+      rotation: {x: 0.24785051, y: 0.2268841, z: -0.27373537, w: 0.90120065}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Thumb_Finger_002_R
+      parentName: Thumb_Finger_001_R
+      position: {x: -0, y: 0.0542, z: 0}
+      rotation: {x: -0.13881706, y: 0, z: -0, w: 0.99031806}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Upper_Leg_L
+      parentName: Root
+      position: {x: -0.1224, y: -0.0413, z: -0.0248}
+      rotation: {x: 0.6139503, y: -0.16849184, z: 0.77100474, w: -0.015077915}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Lower_Leg_L
+      parentName: Upper_Leg_L
+      position: {x: -0, y: 0.3467, z: 0}
+      rotation: {x: -0.04344092, y: 0.022349076, z: 0.30143163, w: 0.9522355}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot_L
+      parentName: Lower_Leg_L
+      position: {x: -0, y: 0.3343, z: 0}
+      rotation: {x: 0.05491811, y: -0.033415984, z: -0.5574845, w: 0.82769465}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toe_L
+      parentName: Foot_L
+      position: {x: -0, y: 0.1422, z: 0}
+      rotation: {x: 0, y: 0, z: -0.26393536, w: 0.9645404}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Upper_Leg_R
+      parentName: Root
+      position: {x: 0.1224, y: -0.0413, z: -0.0248}
+      rotation: {x: -0.6063807, y: -0.11915744, z: 0.7810638, w: 0.08968542}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Lower_Leg_R
+      parentName: Upper_Leg_R
+      position: {x: -0, y: 0.3467, z: 0}
+      rotation: {x: 0.009421004, y: 0.061810777, z: -0.31416082, w: 0.9473086}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Foot_R
+      parentName: Lower_Leg_R
+      position: {x: -0, y: 0.3343, z: 0}
+      rotation: {x: -0.014783326, y: -0.033029635, z: 0.77970165, w: 0.6251048}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toe_R
+      parentName: Foot_R
+      position: {x: -0, y: 0.1422, z: 0}
+      rotation: {x: 0, y: 0, z: 0.26393536, w: 0.9645404}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -95,7 +272,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1

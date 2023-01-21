@@ -19,8 +19,6 @@ namespace _Scripts.Units
 
         #region Properties
         private Vector3 TargetPosition => _train.GetTargetZombiePosition(_targetPositionX);
-
-        [ShowInInspector, ReadOnly]
         public float DistanceFromTarget => Vector3.Distance(transform.position, TargetPosition);
         #endregion
         

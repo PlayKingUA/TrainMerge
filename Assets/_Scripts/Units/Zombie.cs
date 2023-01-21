@@ -7,7 +7,7 @@ using Zenject;
 
 namespace _Scripts.Units
 {
-    [RequireComponent(typeof(UnitMovement))]
+    [RequireComponent(typeof(UnitMovement), typeof(ZombieAnimationManager))]
     public sealed class Zombie : AttackingObject, IAlive
     {
         #region Variables
@@ -18,6 +18,7 @@ namespace _Scripts.Units
         [Space]
         [ShowInInspector, ReadOnly] private UnitState _currentState;
 
+        private ZombieAnimationManager _zombieAnimationManager;
         private UnitMovement _unitMovement;
         [Inject] private Train.Train _train;
         [Inject] private MoneyWallet _moneyWallet;
@@ -35,6 +36,8 @@ namespace _Scripts.Units
         #region Monobehaviour Callbacks
         protected override void Start()
         {
+            _zombieAnimationManager = GetComponent<ZombieAnimationManager>();
+                
             _unitMovement = GetComponent<UnitMovement>();
             _unitMovement.SetSpeed(movementSpeed);
             
@@ -56,6 +59,10 @@ namespace _Scripts.Units
                 return;
 
             _currentState = newState;
+            if (_currentState != UnitState.Attack)
+            {
+                _zombieAnimationManager.SetAnimation(_currentState);
+            }
         }
 
         private void UpdateState()
@@ -101,7 +108,7 @@ namespace _Scripts.Units
             if (AttackTimer < GetCoolDown() || !CanAttack) 
                 return;
 
-            Attack();
+            _zombieAnimationManager.SetAnimation(_currentState);
             AttackTimer = 0f;
         }
 
@@ -111,7 +118,7 @@ namespace _Scripts.Units
         }
         #endregion
 
-        private void Attack()
+        public void Attack()
         {
             _train.GetDamage(damage);
         }
