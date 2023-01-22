@@ -66,6 +66,7 @@ MonoBehaviour:
   attackRadius: 1
   movementSpeed: 5
   reward: 30
+  damageColor: {r: 0.7176101, g: 0.8018868, b: 0.71488965, a: 1}
 --- !u!195 &6112769720920916972
 NavMeshAgent:
   m_ObjectHideFlags: 0

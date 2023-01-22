@@ -1,6 +1,7 @@
 using System;
 using _Scripts.Interface;
 using _Scripts.Money_Logic;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -16,13 +17,19 @@ namespace _Scripts.Units
         [Space]
         [SerializeField] private int reward;
         [Space]
+        [SerializeField] private Color damageColor;
+        [Space]
         [ShowInInspector, ReadOnly] private UnitState _currentState;
 
         private ZombieAnimationManager _zombieAnimationManager;
         private UnitMovement _unitMovement;
         [Inject] private Train.Train _train;
         [Inject] private MoneyWallet _moneyWallet;
-        
+
+        private Material[] _materials;
+        private Tween[] _damageTweens;
+        private const float DamageAnimationDuration = 0.1f;
+
         public bool IsDead { get; private set; }
 
         public event Action<int> GetDamageEvent;
@@ -37,6 +44,8 @@ namespace _Scripts.Units
         protected override void Start()
         {
             _zombieAnimationManager = GetComponent<ZombieAnimationManager>();
+            _materials = GetComponentInChildren<SkinnedMeshRenderer>().materials;
+            _damageTweens = new Tween[_materials.Length];
                 
             _unitMovement = GetComponent<UnitMovement>();
             _unitMovement.SetSpeed(movementSpeed);
@@ -132,6 +141,17 @@ namespace _Scripts.Units
 
             if (health <= 0 && !IsDead)
                 Die();
+            else
+            {
+                if (_damageTweens[0] != null && _damageTweens[0].active)
+                    return;
+                for (var i = 0; i < _materials.Length; i++)
+                {
+                    _damageTweens[i].Kill();
+                    _damageTweens[i] = _materials[i].DOColor(damageColor, "_Color", DamageAnimationDuration)
+                        .SetLoops(2, LoopType.Yoyo);
+                }
+            }
         }
 
         public void Die()
