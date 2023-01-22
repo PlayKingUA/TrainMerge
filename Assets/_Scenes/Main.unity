@@ -757,6 +757,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 46c0c194ace861c4ea9f7370f0537971,
         type: 3}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: saveKey
+      value: Speed Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: upgradeStats
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4030392460292522711, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
       propertyPath: m_Name
@@ -800,6 +810,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 366985359738286125, guid: b663bd94b13197547ba4357249e33c31,
     type: 3}
   m_PrefabInstance: {fileID: 204375782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &204375784 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+    type: 3}
+  m_PrefabInstance: {fileID: 204375782}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6812b1de36834ff995e234741423aa08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &218620037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1508847444588202557, guid: bc84d657b3d2fd448a954565eed9a37f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8513734415621073062}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &228638359
 GameObject:
@@ -939,7 +967,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 267750974}
-  - component: {fileID: 267750975}
   - component: {fileID: 267750976}
   - component: {fileID: 267750977}
   m_Layer: 0
@@ -972,25 +999,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &267750975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267750973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4111f71991b6406c9bcb9d80a2c317c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponButton: {fileID: 8513734415621073064}
-  damageUpgradeButton: {fileID: 1996802706}
-  altSpeedUpgradeButton: {fileID: 1394109453}
-  incomeUpgradeButton: {fileID: 1179322372}
-  weaponPriceText: {fileID: 8513734415621073065}
-  startPrice: 100
-  deltaPrice: 20
 --- !u!225 &267750976
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1017,6 +1025,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeButton: {fileID: 1572529219}
   closeUpgradeButton: {fileID: 1277992809}
+  damageUpgrade: {fileID: 7932462811488704904}
+  speedUpgrade: {fileID: 204375784}
+  incomeUpgrade: {fileID: 1179322372}
   buyPanel: {fileID: 2006382745}
   upgradePanel: {fileID: 81730007}
 --- !u!1 &274370132
@@ -3088,6 +3099,7 @@ MonoBehaviour:
   levelManager: {fileID: 692661217}
   train: {fileID: 993770734}
   speedUpLogic: {fileID: 463774467}
+  upgradeMenu: {fileID: 267750977}
 --- !u!1 &1101504054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,6 +3354,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a1c4afd42f3abf64dba77ee0e3fce232,
         type: 3}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: saveKey
+      value: Income Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: upgradeStats
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4030392460292522711, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
       propertyPath: m_Name
@@ -3388,14 +3410,14 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1179322372 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 419710930946515610, guid: b663bd94b13197547ba4357249e33c31,
+  m_CorrespondingSourceObject: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
     type: 3}
   m_PrefabInstance: {fileID: 1179322370}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c49ad446f1f4348b6cd24f081716cef, type: 3}
+  m_Script: {fileID: 11500000, guid: 6812b1de36834ff995e234741423aa08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1179729923
@@ -4278,6 +4300,12 @@ Transform:
   m_Father: {fileID: 2035913937}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1356602204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6483794165693223360, guid: bc84d657b3d2fd448a954565eed9a37f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8513734415621073062}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1359034837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4589,18 +4617,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
---- !u!114 &1394109453 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 419710930946515610, guid: b663bd94b13197547ba4357249e33c31,
-    type: 3}
-  m_PrefabInstance: {fileID: 204375782}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c49ad446f1f4348b6cd24f081716cef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1398988233
 GameObject:
   m_ObjectHideFlags: 0
@@ -5391,6 +5407,12 @@ Transform:
   m_Father: {fileID: 2035913937}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1683324885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1784425743186608773, guid: bc84d657b3d2fd448a954565eed9a37f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8513734415621073062}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1685934070
 GameObject:
   m_ObjectHideFlags: 0
@@ -6439,18 +6461,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7932462811488704903}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1996802706 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 419710930946515610, guid: b663bd94b13197547ba4357249e33c31,
-    type: 3}
-  m_PrefabInstance: {fileID: 7932462811488704903}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c49ad446f1f4348b6cd24f081716cef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2006382743
 GameObject:
   m_ObjectHideFlags: 0
@@ -7567,6 +7577,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: saveKey
+      value: Damage Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: maxUpgrade
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4030392460292522711, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
       propertyPath: m_Name
@@ -7574,6 +7594,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b663bd94b13197547ba4357249e33c31, type: 3}
+--- !u!114 &7932462811488704904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+    type: 3}
+  m_PrefabInstance: {fileID: 7932462811488704903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6812b1de36834ff995e234741423aa08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8513734415621073062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7721,7 +7753,7 @@ PrefabInstance:
     - target: {fileID: 6483794165693223360, guid: bc84d657b3d2fd448a954565eed9a37f,
         type: 3}
       propertyPath: m_Name
-      value: Buy Weapon
+      value: Buy Weapon Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 7164128826443486353, guid: bc84d657b3d2fd448a954565eed9a37f,
         type: 3}
@@ -7894,7 +7926,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7766132344299811213, guid: bc84d657b3d2fd448a954565eed9a37f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bc84d657b3d2fd448a954565eed9a37f, type: 3}
 --- !u!224 &8513734415621073063 stripped
 RectTransform:
@@ -7902,18 +7935,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8513734415621073062}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8513734415621073064 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7766132344299811213, guid: bc84d657b3d2fd448a954565eed9a37f,
-    type: 3}
-  m_PrefabInstance: {fileID: 8513734415621073062}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c49ad446f1f4348b6cd24f081716cef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8513734415621073065 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 888024228550313655, guid: bc84d657b3d2fd448a954565eed9a37f,
@@ -7926,3 +7947,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8513734415621073071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356602204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af2ce41823748909050b84cda6eebca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states:
+  - {fileID: 218620037}
+  - {fileID: 1683324885}
+  saveKey: Weapon Level
+  startPrise: 100
+  maxPrise: 1000
+  levelsToMaxPrise: 100
+  priseText: {fileID: 8513734415621073065}

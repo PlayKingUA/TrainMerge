@@ -3,6 +3,7 @@
     public enum ButtonBuyState
     {
         BuyWithMoney,
-        BuyWithADs
+        BuyWithADs,
+        MaxLevel
     }
 }

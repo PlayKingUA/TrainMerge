@@ -1,6 +1,10 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using _Scripts.Money_Logic;
+using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace _Scripts.UI.Buttons.Shop_Buttons
 {
@@ -10,39 +14,53 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         #region Variables
         [ShowInInspector] private ButtonBuyState _buttonState;
         [SerializeField] private GameObject[] states;
+        [SerializeField] private string saveKey = "WeaponPrice";
+        [Space(10)]
+        [SerializeField] protected int startPrise;
+        [SerializeField] protected int maxPrise;
+        [SerializeField] protected int levelsToMaxPrise;
+        [SerializeField] private TextMeshProUGUI priseText;
 
-        public ButtonBuyState ButtonState => _buttonState;
-        public Button Button { get; private set; }
+        protected int CurrentLevel;
+        
+        [Inject] private MoneyWallet _moneyWallet;
+        #endregion
+
+        #region Properties
+
+        private ButtonBuyState ButtonState => _buttonState;
+        protected Button Button { get; private set; }
+
+        private int CurrentPrise => 100;
         #endregion
     
         #region Monobehaviour Callbacks
-        private void Awake()
+        protected virtual void Awake()
         {
             Button = GetComponent<Button>();
         }
+
+        protected virtual void Start()
+        {
+            Load();
+            CheckMoney(_moneyWallet.MoneyCount);
+        }
+
+        protected virtual void OnEnable()
+        {
+            _moneyWallet.MoneyCountChanged += CheckMoney;
+        }
+
+        protected virtual void OnDisable()
+        {
+            _moneyWallet.MoneyCountChanged -= CheckMoney;
+        }
         #endregion
         
-        public void SetButtonState(bool isEnoughMoney)
+        #region Display
+        private void SetButtonState(bool isEnoughMoney)
         {
-            if (isEnoughMoney)
-            {
-                SetMoneyState();
-            }
-            else
-            {
-                SetADsState();
-            }
-        }
-
-        private void SetADsState()
-        {
-            _buttonState = ButtonBuyState.BuyWithADs;
-            SetUIState(_buttonState);
-        }
-
-        private void SetMoneyState()
-        {
-            _buttonState = ButtonBuyState.BuyWithMoney;
+            _buttonState = isEnoughMoney ? ButtonBuyState.BuyWithADs : ButtonBuyState.BuyWithMoney;
             SetUIState(_buttonState);
         }
 
@@ -54,6 +72,57 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             }
 
             states[(int)targetState].SetActive(true);
+        }
+
+        private void UpdatePrise()
+        {
+            priseText.text = CurrentPrise.ToString();
+        }
+        #endregion
+
+        #region Click
+        protected virtual void Click()
+        {
+            switch (ButtonState)
+            {
+                case ButtonBuyState.BuyWithMoney:
+                    ClickEvent();
+                    _moneyWallet.Get(CurrentPrise);
+                    break;
+                case ButtonBuyState.BuyWithADs:
+                    //ToDo show add
+                    break;
+                case ButtonBuyState.MaxLevel:
+                    return;
+                default:
+                    break;
+            }
+        }
+
+        protected virtual void ClickEvent()
+        {
+            CurrentLevel++;
+            UpdatePrise();
+            Save();
+        }
+        #endregion
+        
+        #region Save/Load
+        private void Save()
+        {
+            PlayerPrefs.SetInt(saveKey, CurrentLevel);
+        }
+
+        private void Load()
+        {
+            CurrentLevel = PlayerPrefs.GetInt(saveKey, startPrise);
+            UpdatePrise();
+        }
+        #endregion
+
+        private void CheckMoney(int moneyCount)
+        {
+            SetButtonState(moneyCount >= CurrentPrise);
         }
     }
 }

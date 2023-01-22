@@ -4,6 +4,8 @@ using _Scripts.Levels;
 using _Scripts.Money_Logic;
 using _Scripts.Slot_Logic;
 using _Scripts.UI;
+using _Scripts.UI.Buttons.Shop_Buttons;
+using _Scripts.UI.Upgrade;
 using _Scripts.Units;
 using _Scripts.Weapons;
 using UnityEngine;
@@ -24,6 +26,7 @@ namespace _Scripts.Resources
         [SerializeField] private LevelManager levelManager;
         [SerializeField] private Train.Train train;
         [SerializeField] private SpeedUpLogic speedUpLogic;
+        [SerializeField] private UpgradeMenu upgradeMenu;
         
         public override void InstallBindings()
         {
@@ -38,6 +41,7 @@ namespace _Scripts.Resources
             Container.Bind<LevelManager>().FromInstance(levelManager).AsSingle().NonLazy();
             Container.Bind<Train.Train>().FromInstance(train).AsSingle().NonLazy();
             Container.Bind<SpeedUpLogic>().FromInstance(speedUpLogic).AsSingle().NonLazy();
+            Container.Bind<UpgradeMenu>().FromInstance(upgradeMenu).AsSingle().NonLazy();
         }
     }
 }

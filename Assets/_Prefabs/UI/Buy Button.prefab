@@ -290,6 +290,11 @@ MonoBehaviour:
   states:
   - {fileID: 1508847444588202557}
   - {fileID: 1784425743186608773}
+  saveKey: WeaponPrice
+  startPrise: 0
+  maxPrise: 0
+  levelsToMaxPrise: 0
+  priseText: {fileID: 888024228550313655}
 --- !u!1 &8991398699578224259
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +549,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b453d1e5d0b658d48b1f93ffb25082ee, type: 3}
+--- !u!114 &888024228550313655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8547146505392645790, guid: b453d1e5d0b658d48b1f93ffb25082ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 8849420585848594473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1563072700096715073 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8033950543508994408, guid: b453d1e5d0b658d48b1f93ffb25082ee,

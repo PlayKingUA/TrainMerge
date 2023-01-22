@@ -1,5 +1,4 @@
-﻿using System;
-using _Scripts.Shop;
+﻿using _Scripts.UI.Buttons.Shop_Buttons;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,16 +11,19 @@ namespace _Scripts.UI.Upgrade
         [SerializeField] private Button upgradeButton;
         [SerializeField] private Button closeUpgradeButton;
         [Space(10)]
+        [SerializeField] private UpgradeButton damageUpgrade;
+        [SerializeField] private UpgradeButton speedUpgrade;
+        [SerializeField] private UpgradeButton incomeUpgrade;
+        [Space(10)]
         [SerializeField] private CanvasGroup buyPanel;
         [SerializeField] private CanvasGroup upgradePanel;
-        
-        private const string DamageSaveKey = "DamageLevel";
-        private const string AltSpeedSaveKey = "AltSpeedLevel";
-        private const string IncomeSaveKey = "IncomeLevel";
-        
-        private int _damageLevel;
-        private int _altSpeedLevel;
-        private int _incomeLevel;
+        #endregion
+
+        #region Properties
+        public float DamageCoefficient => damageUpgrade.Coefficient;
+        public float AltSpeedCoefficient => speedUpgrade.Coefficient;
+        public float IncomeCoefficient => incomeUpgrade.Coefficient;
+
         #endregion
 
         #region Monobehavior Callbacks
@@ -45,42 +47,5 @@ namespace _Scripts.UI.Upgrade
             WindowsManager.CanvasGroupSwap(upgradePanel, !isBuyPanel);
         }
         
-        public void UpgradeStat(UpgradeStats upgradeStats)
-        {
-            switch (upgradeStats)
-            {
-                case UpgradeStats.Damage:
-                    _damageLevel++;
-                    break;
-                case UpgradeStats.AltSpeed:
-                    _altSpeedLevel++;
-                    break;
-                case UpgradeStats.Income:
-                    _incomeLevel++;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(upgradeStats), upgradeStats, null);
-            }
-
-            Save();
-        }
-        
-        
-        #region Save/Load
-        private void Save()
-        {
-            PlayerPrefs.SetInt(DamageSaveKey, _damageLevel);
-            PlayerPrefs.SetInt(AltSpeedSaveKey, _altSpeedLevel);
-            PlayerPrefs.SetInt(IncomeSaveKey, _incomeLevel);
-        }
-
-        private void Load()
-        {
-            _damageLevel = PlayerPrefs.GetInt(DamageSaveKey);
-            _altSpeedLevel = PlayerPrefs.GetInt(AltSpeedSaveKey);
-            _incomeLevel = PlayerPrefs.GetInt(IncomeSaveKey);
-        }
-        #endregion
-
     }
 }
