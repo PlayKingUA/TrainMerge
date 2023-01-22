@@ -20,6 +20,7 @@ namespace _Scripts.Weapons
         [ShowInInspector, ReadOnly] private int _level;
 
         [Inject] private ZombieManager _zombieManager;
+        [Inject] private SpeedUpLogic _speedUpLogic;
 
         private Quaternion _startRotation;
         [ShowInInspector, ReadOnly]private protected Zombie TargetZombie;
@@ -32,6 +33,12 @@ namespace _Scripts.Weapons
 
         private protected bool CanAttack => TargetZombie != null &&
                                   Vector3.Distance(transform.position, TargetZombie.transform.position) <= attackRadius;
+
+        public override float GetCoolDown()
+        {
+            return base.GetCoolDown() / _speedUpLogic.CoolDownSpeedUp;
+        }
+
         #endregion
         
         #region Monobehaviour Callbacks

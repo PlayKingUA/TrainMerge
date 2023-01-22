@@ -23,6 +23,7 @@ namespace _Scripts.Resources
         [SerializeField] private GameStateManager gameStateManager;
         [SerializeField] private LevelManager levelManager;
         [SerializeField] private Train.Train train;
+        [SerializeField] private SpeedUpLogic speedUpLogic;
         
         public override void InstallBindings()
         {
@@ -36,6 +37,7 @@ namespace _Scripts.Resources
             Container.Bind<GameStateManager>().FromInstance(gameStateManager).AsSingle().NonLazy();
             Container.Bind<LevelManager>().FromInstance(levelManager).AsSingle().NonLazy();
             Container.Bind<Train.Train>().FromInstance(train).AsSingle().NonLazy();
+            Container.Bind<SpeedUpLogic>().FromInstance(speedUpLogic).AsSingle().NonLazy();
         }
     }
 }
