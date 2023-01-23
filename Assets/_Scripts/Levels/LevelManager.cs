@@ -20,6 +20,7 @@ namespace _Scripts.Levels
 
         [Inject] private ZombieManager _zombieManager;
         [Inject] private GameStateManager _gameStateManager;
+        [Inject] private LevelGeneration _levelGeneration;
 
         public event Action<int> OnLevelLoaded;
         #endregion
@@ -56,6 +57,7 @@ namespace _Scripts.Levels
             var currentLevel = _currentLevelIndex % levels.Length;
             _currentLevel = levels[currentLevel];
             _zombieManager.Init(_currentLevel.Zombies, _currentLevel.TimeBetweenZombie);
+            _levelGeneration.SetLocation(_currentLevel.LevelLocation);
             
             OnLevelLoaded?.Invoke(currentLevel + 1);
         }
