@@ -7,7 +7,7 @@ namespace _Scripts.Units
     {
         #region Variables
         [SerializeField] protected int health;
-        [SerializeField] protected int damage;
+        [SerializeField] private int damage;
         [SerializeField] protected float attackSpeedPerSecond;
         [SerializeField] protected float attackRadius;
 
@@ -16,12 +16,9 @@ namespace _Scripts.Units
 
         #region Properties
         public int Health => health;
-        
-        public virtual float GetCoolDown()
-        {
-            return 1f / attackSpeedPerSecond;
-        }
+        protected virtual float CoolDown => 1f / attackSpeedPerSecond;
 
+        protected virtual int Damage => damage; 
         #endregion
         
         #region Monobehaviour Callbacks

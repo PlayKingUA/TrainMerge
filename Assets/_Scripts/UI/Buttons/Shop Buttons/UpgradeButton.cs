@@ -1,28 +1,37 @@
-﻿using _Scripts.Shop;
-using _Scripts.UI.Upgrade;
+﻿using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace _Scripts.UI.Buttons.Shop_Buttons
 {
     public class UpgradeButton : BuyButton
     {
         #region Variables
-        [Space(10)]
-        [SerializeField] private UpgradeStats upgradeStats;
-        
         [SerializeField, Range(1f, 10f)] private float maxUpgrade;
-
-        [Inject] private UpgradeMenu _upgradeMenu;
-        #endregion
-        
-        #region Monobehavior Callbaacks
+        [Space(10)] [SerializeField] private TextMeshProUGUI valueBefore;
+        [SerializeField] private TextMeshProUGUI moreText;
+        [SerializeField] private TextMeshProUGUI valueAfter;
         #endregion
 
         #region Properties
-        public float Coefficient => (float) CurrentLevel / levelsToMaxPrise * maxUpgrade;
-        
+        public float Coefficient => GetCoefficient(CurrentLevel);
+
+        protected override bool CanBeBought => CurrentLevel < levelsToMaxPrise;
         #endregion
         
+        private float GetCoefficient(int level)
+        {
+            return 1f + (float) level / levelsToMaxPrise * (maxUpgrade - 1f);
+        }
+
+        protected override void UpdateText()
+        {
+            base.UpdateText();
+            
+            moreText.gameObject.SetActive(CanBeBought);
+            valueAfter.gameObject.SetActive(CanBeBought);
+            
+            valueBefore.text = Coefficient.ToString();
+            valueAfter.text = GetCoefficient(CurrentLevel+ 1).ToString();
+        }
     }
 }

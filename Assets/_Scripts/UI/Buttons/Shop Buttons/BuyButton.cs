@@ -21,33 +21,34 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         [SerializeField] protected int levelsToMaxPrise;
         [SerializeField] private TextMeshProUGUI priseText;
 
+        private Button _button;
+        
         protected int CurrentLevel;
         
         [Inject] private MoneyWallet _moneyWallet;
         #endregion
 
         #region Properties
-
         private ButtonBuyState ButtonState => _buttonState;
-        protected Button Button { get; private set; }
 
-        private int CurrentPrise => 100;
+        private int CurrentPrise =>
+            (int) (startPrise + (maxPrise - startPrise) * ((float) CurrentLevel / levelsToMaxPrise));
+
+        protected virtual bool CanBeBought => true;
         #endregion
     
         #region Monobehaviour Callbacks
         protected virtual void Awake()
         {
-            Button = GetComponent<Button>();
+            _button = GetComponent<Button>();
+            _button.onClick.AddListener(Click);
         }
 
         protected virtual void Start()
         {
             Load();
             CheckMoney(_moneyWallet.MoneyCount);
-        }
-
-        protected virtual void OnEnable()
-        {
+            
             _moneyWallet.MoneyCountChanged += CheckMoney;
         }
 
@@ -58,9 +59,11 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         #endregion
         
         #region Display
-        private void SetButtonState(bool isEnoughMoney)
+        private void ChangeButtonState(int moneyCount)
         {
-            _buttonState = isEnoughMoney ? ButtonBuyState.BuyWithADs : ButtonBuyState.BuyWithMoney;
+            _buttonState = (moneyCount >= CurrentPrise)
+                ? ButtonBuyState.BuyWithMoney
+                : ButtonBuyState.BuyWithADs;
             SetUIState(_buttonState);
         }
 
@@ -74,15 +77,18 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             states[(int)targetState].SetActive(true);
         }
 
-        private void UpdatePrise()
+        protected virtual void UpdateText()
         {
             priseText.text = CurrentPrise.ToString();
         }
         #endregion
 
         #region Click
-        protected virtual void Click()
+        private void Click()
         {
+            if (!CanBeBought)
+                return;
+            
             switch (ButtonState)
             {
                 case ButtonBuyState.BuyWithMoney:
@@ -102,7 +108,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         protected virtual void ClickEvent()
         {
             CurrentLevel++;
-            UpdatePrise();
+            UpdateText();
             Save();
         }
         #endregion
@@ -115,14 +121,14 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
 
         private void Load()
         {
-            CurrentLevel = PlayerPrefs.GetInt(saveKey, startPrise);
-            UpdatePrise();
+            CurrentLevel = PlayerPrefs.GetInt(saveKey);
+            UpdateText();
         }
         #endregion
 
         private void CheckMoney(int moneyCount)
         {
-            SetButtonState(moneyCount >= CurrentPrise);
+            ChangeButtonState(moneyCount);
         }
     }
 }

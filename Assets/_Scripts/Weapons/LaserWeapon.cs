@@ -35,7 +35,7 @@ namespace _Scripts.Weapons
             EnableLaser(true);
             laser.UpdateTargetPosition(TargetZombie.transform.position);
 
-            if (AttackTimer < GetCoolDown())
+            if (AttackTimer < CoolDown)
                 return;
             laser.HitZombie(TargetZombie.transform);
             AttackTimer = 0f;

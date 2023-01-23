@@ -26,7 +26,7 @@ namespace _Scripts.Weapons
         protected override void AttackState()
         {
             base.AttackState();
-            if (AttackTimer < GetCoolDown() || !CanAttack) 
+            if (AttackTimer < CoolDown|| !CanAttack) 
                 return;
 
             Fire(TargetZombie.transform);
@@ -40,7 +40,7 @@ namespace _Scripts.Weapons
                 _masterObjectPooler.GetObjectComponent<Projectile>(projectilePool.PoolName, shootPoint.position, shootPoint.rotation);
 
             bullet.Init(targetPosition.position,
-                damage, projectilePool);
+                Damage, projectilePool);
         }
     }
 }

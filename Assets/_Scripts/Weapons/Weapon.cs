@@ -1,5 +1,6 @@
 ﻿using System;
 using _Scripts.Slot_Logic;
+using _Scripts.UI.Upgrade;
 using _Scripts.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace _Scripts.Weapons
         [ShowInInspector, ReadOnly] private int _level;
 
         [Inject] private ZombieManager _zombieManager;
+        [Inject] private UpgradeMenu _upgradeMenu;
         [Inject] private SpeedUpLogic _speedUpLogic;
 
         private Quaternion _startRotation;
@@ -32,12 +34,13 @@ namespace _Scripts.Weapons
         public GameObject AppearFx => appearFx;
 
         private protected bool CanAttack => TargetZombie != null &&
-                                  Vector3.Distance(transform.position, TargetZombie.transform.position) <= attackRadius;
+                                            Vector3.Distance(transform.position, TargetZombie.transform.position) <=
+                                            attackRadius;
 
-        public override float GetCoolDown()
-        {
-            return base.GetCoolDown() / _speedUpLogic.CoolDownSpeedUp;
-        }
+        protected override float CoolDown =>
+            base.CoolDown / _speedUpLogic.CoolDownSpeedUp / _upgradeMenu.AltSpeedCoefficient;
+        
+        protected override int Damage => (int) (base.Damage * _upgradeMenu.DamageCoefficient);
 
         #endregion
         

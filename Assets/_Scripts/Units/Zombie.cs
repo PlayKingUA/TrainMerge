@@ -1,6 +1,7 @@
 using System;
 using _Scripts.Interface;
 using _Scripts.Money_Logic;
+using _Scripts.UI.Upgrade;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace _Scripts.Units
         private UnitMovement _unitMovement;
         [Inject] private Train.Train _train;
         [Inject] private MoneyWallet _moneyWallet;
+        [Inject] private UpgradeMenu _upgradeMenu;
 
         private Material[] _materials;
         private Tween[] _damageTweens;
@@ -38,6 +40,8 @@ namespace _Scripts.Units
 
         #region Properties
         private bool CanAttack => _unitMovement.DistanceFromTarget < attackRadius;
+
+        private int Reward => (int) (reward * _upgradeMenu.IncomeCoefficient);
         #endregion
 
         #region Monobehaviour Callbacks
@@ -114,7 +118,7 @@ namespace _Scripts.Units
         private void AttackState()
         {
             _unitMovement.Move();
-            if (AttackTimer < GetCoolDown() || !CanAttack) 
+            if (AttackTimer < CoolDown || !CanAttack) 
                 return;
 
             _zombieAnimationManager.SetAnimation(_currentState);
@@ -129,7 +133,7 @@ namespace _Scripts.Units
 
         public void Attack()
         {
-            _train.GetDamage(damage);
+            _train.GetDamage(Damage);
         }
         
         #region Get Damage\Die
@@ -162,7 +166,7 @@ namespace _Scripts.Units
             IsDead = true;
 
             DeadEvent?.Invoke(this);
-            _moneyWallet.Add(reward);
+            _moneyWallet.Add(Reward);
             gameObject.SetActive(false);
         }
         #endregion
