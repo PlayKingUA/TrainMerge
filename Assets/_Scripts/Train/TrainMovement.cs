@@ -1,24 +1,58 @@
 ﻿using System;
+using _Scripts.Game_States;
 using _Scripts.Interface;
+using _Scripts.Levels;
 using UnityEngine;
+using Zenject;
 
 namespace _Scripts.Train
 {
-    public class TrainMovement : MonoBehaviour, IMove
+    public class TrainMovement : MonoBehaviour
     {
-        public void Move()
+        #region Variables
+        [SerializeField] private float movementSpeed;
+        
+        private Chunk _currentChunk;
+
+        [Inject] private GameStateManager _gameStateManager;
+
+        private bool _isMoving;
+        
+        private float _currentChunkProgress;
+        #endregion
+
+        #region Monobehaviour Callbacks
+        private void Start()
         {
-            throw new NotImplementedException();
+            _gameStateManager.AttackStarted += () => { _isMoving = true;};
+            _gameStateManager.Fail += () => { _isMoving = false;};
         }
 
-        public void StopMove()
+        private void Update()
         {
-            throw new NotImplementedException();
+            if (_isMoving)
+            {
+                Move();
+            }
         }
+        #endregion
         
-        public void SetSpeed(float targetSpeed)
+        public void Init(Chunk firstChunk)
         {
-            throw new NotImplementedException();
+            _currentChunk = firstChunk;
+            _currentChunkProgress = _currentChunk.GetCurrentProgress(transform.position);
+        }
+
+        private void Move()
+        {
+            _currentChunkProgress += Time.deltaTime * movementSpeed / _currentChunk.Length;
+            if (_currentChunkProgress > 1f)
+            {
+                _currentChunkProgress--;
+                _currentChunk = _currentChunk.nextChunk;
+            }
+            transform.position = _currentChunk.GetPoint(_currentChunkProgress);
+            transform.rotation = Quaternion.LookRotation(_currentChunk.GetFirstDerivative(_currentChunkProgress));
         }
     }
 }

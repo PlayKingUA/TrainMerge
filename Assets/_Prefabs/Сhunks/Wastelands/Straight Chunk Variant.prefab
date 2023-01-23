@@ -222,7 +222,7 @@ PrefabInstance:
     - target: {fileID: 6024425162040444560, guid: 741729c22fac481489883d8522fdd263,
         type: 3}
       propertyPath: m_Name
-      value: Straight Chunk
+      value: Straight Chunk Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
         type: 3}
@@ -278,6 +278,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876537335401003101, guid: 741729c22fac481489883d8522fdd263,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876537335401003101, guid: 741729c22fac481489883d8522fdd263,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042197599677346957, guid: 741729c22fac481489883d8522fdd263,
+        type: 3}
+      propertyPath: length
+      value: 50.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042197599677346957, guid: 741729c22fac481489883d8522fdd263,
+        type: 3}
+      propertyPath: segmentsCount
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 741729c22fac481489883d8522fdd263, type: 3}

@@ -7,7 +7,7 @@ using Zenject;
 namespace _Scripts.Units
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class UnitMovement : MonoBehaviour, IMove
+    public class UnitMovement : MonoBehaviour
     {
         #region Variables
         private NavMeshAgent _agent;

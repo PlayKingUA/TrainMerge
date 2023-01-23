@@ -15,8 +15,9 @@ namespace _Scripts.Levels
         [SerializeField] private Transform positionTwo;
         
         [Inject] private DiContainer _diContainer;
+        [Inject] private Train.Train _train;
 
-        private readonly List<GameObject> _createdChunks = new();
+        private readonly List<Chunk> _createdChunks = new();
 
         private const int MaxChunksCount = 3;
         #endregion
@@ -27,6 +28,8 @@ namespace _Scripts.Levels
             
             CreateChunk(positionOne, true);
             CreateChunk(positionTwo, true);
+            
+            _train.InitMotion(_createdChunks[1]);
         }
 
         public GameObject CreateChunk(Transform targetPosition, bool isStraight = false)
@@ -35,13 +38,15 @@ namespace _Scripts.Levels
                 ? chunks[(int) _location].StraightChunk
                 : chunks[(int) _location].RandomChunk();
 
-            _createdChunks.Add(_diContainer.InstantiatePrefab(chunk, 
-                targetPosition.position, targetPosition.rotation, transform));
+            var createdChunk = _diContainer.InstantiatePrefabForComponent<Chunk>(chunk, 
+                targetPosition.position, targetPosition.rotation, transform);
+            if (_createdChunks.Count > 0)
+                _createdChunks[^1].nextChunk = createdChunk;
+            
+            _createdChunks.Add(createdChunk);
 
             if (_createdChunks.Count > MaxChunksCount)
-            {
                 DestroyFirstChunk();
-            }
 
             return chunk;
         }
@@ -66,7 +71,7 @@ namespace _Scripts.Levels
 
         public GameObject RandomChunk()
         {
-            var targetChunk = Random.Range(0, 2) switch
+            var targetChunk = Random.Range(0, 4) switch
             {
                 0 => turnChunk,
                 1 => turnTwoChunk,

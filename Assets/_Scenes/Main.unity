@@ -2889,6 +2889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a3873e3d0344a18415f66a1ec691ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 5
 --- !u!114 &993770734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2904,7 +2905,6 @@ MonoBehaviour:
   zombiePositionFrom: {fileID: 1666650373}
   zombiePositionTo: {fileID: 1345137925}
   health: 100
-  movementSpeed: 0
 --- !u!65 &993770736
 BoxCollider:
   m_ObjectHideFlags: 0
