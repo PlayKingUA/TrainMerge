@@ -55,7 +55,7 @@ namespace _Scripts.Levels
         {
             var removedObject = _createdChunks[0];
             _createdChunks.Remove(removedObject);
-            Destroy(removedObject);
+            Destroy(removedObject.gameObject);
         }
     }
 

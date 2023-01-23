@@ -10,7 +10,6 @@ namespace _Scripts.Levels
         #region Variables
         [SerializeField] private Transform startPosition;
         [SerializeField] private Transform bezierPoint2;
-        [SerializeField] private Transform bezierPoint3;
         [SerializeField] private Transform finishPosition;
 
         [HideInInspector] public Chunk nextChunk; 
@@ -28,15 +27,8 @@ namespace _Scripts.Levels
         #region Properties
         public Vector3 GetPoint(float t) => Bezier.GetPoint(startPosition.position, 
             bezierPoint2.position,
-            bezierPoint3.position,
-            finishPosition.position, t);
-
-        public Vector3 GetFirstDerivative(float t) => Bezier.GetFirstDerivative(startPosition.position, 
-            bezierPoint2.position,
-            bezierPoint3.position,
             finishPosition.position, t);
         #endregion
-        
         
         public float GetCurrentProgress(Vector3 fromPoint)
         {
@@ -45,8 +37,7 @@ namespace _Scripts.Levels
 
             for (var i = 0; i < SegmentsCount + 1; i++) {
                 var t = (float) i / SegmentsCount;
-                var point = Bezier.GetPoint(startPosition.position, bezierPoint2.position, bezierPoint3.position,
-                    finishPosition.position, t);
+                var point = GetPoint(t);
 
                 var distance = Vector3.Distance(fromPoint, point);
                 if (!(distance < minDistance)) continue;
@@ -61,13 +52,11 @@ namespace _Scripts.Levels
         private void CalculateLength()
         {
             length = 0;
-            
             var previousPoint = startPosition.position;
 
             for (var i = 1; i < SegmentsCount + 1; i++) {
                 var t = (float) i / SegmentsCount;
-                var point = Bezier.GetPoint(startPosition.position, bezierPoint2.position, bezierPoint3.position,
-                    finishPosition.position, t);
+                var point = GetPoint(t);
                 length += Vector3.Distance(previousPoint, point);
                 previousPoint = point;
             }
@@ -87,9 +76,9 @@ namespace _Scripts.Levels
 
             for (var i = 0; i < segmentsCount + 1; i++) {
                 var t = (float) i / segmentsCount;
-                var point = Bezier.GetPoint(startPosition.position, bezierPoint2.position, bezierPoint3.position,
-                    finishPosition.position, t);
-                Gizmos.DrawLine(previousPoint, point);
+                var point = GetPoint(t);
+                var point2 = point + Vector3.up;
+                Gizmos.DrawLine(point, point2);
                 previousPoint = point;
             }
         }
