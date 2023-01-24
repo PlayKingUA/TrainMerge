@@ -5422,6 +5422,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7c4989bdde4f4c24886c63577f63c00d, type: 2}
   - {fileID: 11400000, guid: 59b83170f77fff242945735ee2ccede4, type: 2}
   - {fileID: 11400000, guid: f9e0325ba44e3974fa78b411d9dac15f, type: 2}
+  - {fileID: 11400000, guid: 8069ab577477ce84995885005b2203dd, type: 2}
+  - {fileID: 11400000, guid: c37fff4d290af1c45897548704f67781, type: 2}
+  - {fileID: 11400000, guid: 797a62b4059d1554aa4eb49976a06758, type: 2}
+  - {fileID: 11400000, guid: b8f6f3278afd8d64d854220fc9814a54, type: 2}
+  - {fileID: 11400000, guid: 55e99204010fd9f45a7862a0e3ab693d, type: 2}
+  - {fileID: 11400000, guid: 0e8ec95360b959e488f0c46677918c2b, type: 2}
+  - {fileID: 11400000, guid: 3d4cb2dcff6f9584ab978ea655c636fc, type: 2}
+  - {fileID: 11400000, guid: 28d4cf3c8f838fb4d826792a33d5fcb7, type: 2}
+  - {fileID: 11400000, guid: 1518c4a7a1638c345ac2f9bb789e76c0, type: 2}
+  - {fileID: 11400000, guid: f98d0551f07af2a46b283e6c7d01ccc6, type: 2}
 --- !u!1 &1748877476
 GameObject:
   m_ObjectHideFlags: 0
@@ -5584,6 +5594,11 @@ MonoBehaviour:
   - {fileID: 7185278281823479843, guid: 14b5993a26de44e4da879f4460860e35, type: 3}
   - {fileID: 2291499406409112261, guid: 8f45b841f1edb0a49a4c71676b5f830b, type: 3}
   - {fileID: 2291499406409112261, guid: 36a821b834159294f8b8bf68d954f593, type: 3}
+  - {fileID: 7185278281823479843, guid: c781c61b1c45b6b46be490806a0be818, type: 3}
+  - {fileID: 7185278281823479843, guid: 192b55aff0f35854286a7abd9a816f49, type: 3}
+  - {fileID: 7185278281823479843, guid: 7f9274804b0eedc41bbcfd7d243a1d34, type: 3}
+  - {fileID: 8038581478565598410, guid: 90b688e02dd69b44c96d1979a9b13a10, type: 3}
+  - {fileID: 7185278281823479843, guid: fc90fdcdd838a6543a76e5e688798e26, type: 3}
 --- !u!1 &1784262583
 GameObject:
   m_ObjectHideFlags: 0
@@ -7750,3 +7765,4 @@ MonoBehaviour:
   maxPrise: 1000
   levelsToMaxPrise: 100
   priseText: {fileID: 8513734415621073065}
+  weaponLevel: 1

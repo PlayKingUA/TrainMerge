@@ -88,9 +88,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1955566163644328153}
     m_Modifications:
+    - target: {fileID: 1467553209736476, guid: 6c6c2a3bbf7c85449b8e9515d0c6f273, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563182032946696, guid: 6c6c2a3bbf7c85449b8e9515d0c6f273, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1796749963149706, guid: 6c6c2a3bbf7c85449b8e9515d0c6f273, type: 3}
       propertyPath: m_Name
       value: Bullet_GoldFire_Medium_Projectile_Template
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796749963149706, guid: 6c6c2a3bbf7c85449b8e9515d0c6f273, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924905033165216, guid: 6c6c2a3bbf7c85449b8e9515d0c6f273, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4736024230581622, guid: 6c6c2a3bbf7c85449b8e9515d0c6f273, type: 3}
       propertyPath: m_RootOrder

@@ -11,6 +11,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet_GoldFire_Small_Projectile_Template
       objectReference: {fileID: 0}
+    - target: {fileID: 1238843893459588, guid: edc555170136714468e06ae43a7e0c86, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540588367011230, guid: edc555170136714468e06ae43a7e0c86, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1700654917114306, guid: edc555170136714468e06ae43a7e0c86, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1809025296285686, guid: edc555170136714468e06ae43a7e0c86, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4836675779974994, guid: edc555170136714468e06ae43a7e0c86, type: 3}
       propertyPath: m_RootOrder
       value: 0

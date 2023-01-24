@@ -13,6 +13,7 @@ namespace _Scripts.Projectiles
         [SerializeField] private ObjectPool muzzleflarePool;
         [SerializeField] private ObjectPool shellsPool;
         [SerializeField] private bool hasShells;
+        [SerializeField] private bool hasMuzzleflare = true;
         
         private const float LifeTime = 3.0f;
 
@@ -30,8 +31,11 @@ namespace _Scripts.Projectiles
         {
             base.Init(targetPosition, damage, objectPool);
             _flyRoutine = StartCoroutine(FlyToTarget());
-            
-            MasterObjectPooler.GetObject(muzzleflarePool.PoolName, transform.position, transform.rotation);
+
+            if (hasMuzzleflare)
+            {
+                MasterObjectPooler.GetObject(muzzleflarePool.PoolName, transform.position, transform.rotation);
+            }
             if (hasShells)
             {
                 MasterObjectPooler.GetObject(shellsPool.PoolName, transform.position, transform.rotation);

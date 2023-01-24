@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2154018189252864188}
   - component: {fileID: 2154018189252864189}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LaserProjectile 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,9 +54,53 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2154018189252864188}
     m_Modifications:
+    - target: {fileID: 1034448610112352, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179814216739644, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299210273892000, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1300881809885098, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316352175465546, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406382090570490, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604368145376176, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1818483698145146, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
       propertyPath: m_Name
       value: Laser beam 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818483698145146, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910334406089272, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943400313318704, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946883773836014, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4218847627608472, guid: 6028b5b4fbbf45e45a362de709aa2e18, type: 3}
       propertyPath: m_RootOrder
