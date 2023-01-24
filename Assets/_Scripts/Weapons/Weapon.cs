@@ -5,6 +5,7 @@ using _Scripts.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Weapons
 {
@@ -121,6 +122,12 @@ namespace _Scripts.Weapons
         private void UpdateTargetZombie()
         {
             TargetZombie = _zombieManager.GetNearestZombie(transform);
+        }
+        
+        protected virtual void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
         }
     }
 }

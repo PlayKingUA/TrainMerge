@@ -7,9 +7,9 @@ namespace _Scripts.Train
     {
         #region Variables
         [SerializeField] private float movementSpeed;
+        [SerializeField] private bool mirrorRotation;
         
         private float _currentChunkProgress;
-
         private bool _isMoving;
         
         public float MovementSpeed => movementSpeed;
@@ -26,14 +26,11 @@ namespace _Scripts.Train
         }
         #endregion
         
-        public void Init(Chunk firstChunk, float? speed = null)
+        public void Init(Chunk firstChunk)
         {
             CurrentChunk = firstChunk;
             _currentChunkProgress = CurrentChunk.GetCurrentProgress(transform.position);
             transform.position = CurrentChunk.GetPoint(_currentChunkProgress);
-            
-            if (speed != null)
-                SetSpeed((float) speed);
         }
         
         public void SetSpeed(float targetSpeed)
@@ -57,11 +54,15 @@ namespace _Scripts.Train
 
             var targetPosition = CurrentChunk.GetPoint(_currentChunkProgress);
             
-            var direction = transform.position - targetPosition;
+            var direction = (targetPosition - transform.position).normalized;
+            if (mirrorRotation)
+                direction *= -1;
+            
             var rotateY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             var targetRotation  = Quaternion.Euler(0, rotateY, 0);
 
             transform.position = targetPosition;
+            
             if (Quaternion.Angle(transform.rotation, targetRotation) == 0) return;
             transform.rotation = Quaternion.Lerp(transform.rotation,
                 targetRotation,  

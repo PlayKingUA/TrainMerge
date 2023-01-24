@@ -9,6 +9,7 @@ using ModestTree;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace _Scripts.Units
@@ -17,7 +18,8 @@ namespace _Scripts.Units
     public class ZombieManager : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private Transform zombieCreatingPositions;
+        [SerializeField] private Transform creatingPositionFrom;
+        [SerializeField] private Transform creatingPositionTo;
         [ShowInInspector, ReadOnly] private List<Zombie> _aliveZombies = new ();
 
         private Queue<Zombie> _zombieToCreate;
@@ -85,13 +87,11 @@ namespace _Scripts.Units
             }
         }
 
-        private void CreateZombie(Component targetZombie)
+        private void CreateZombie(Object targetZombie)
         {
-            var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, 
-                GetZombieCreatingPosition(),
-                targetZombie.transform.rotation, transform);
+            var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform);
             
-            zombie.InitMotion(_chunkMovement.CurrentChunk);
+            zombie.InitMotion(_chunkMovement.CurrentChunk, ZombieDelta);
             
             zombie.DeadEvent += RemoveZombie;
             zombie.GetDamageEvent += UpdateLostHp;
@@ -99,11 +99,8 @@ namespace _Scripts.Units
             _aliveZombies.Add(zombie);
         }
 
-        private Vector3 GetZombieCreatingPosition()
-        {
-            return zombieCreatingPositions.
-                GetChild(Random.Range(0, zombieCreatingPositions.childCount)).position;
-        }
+        private float ZombieDelta => Random.Range(creatingPositionFrom.position.x,
+            creatingPositionTo.position.x);
         #endregion
 
         public Zombie GetNearestZombie(Transform fromTransform)
@@ -113,7 +110,7 @@ namespace _Scripts.Units
             
             foreach (var zombie in _aliveZombies)
             {
-                var currentDistance = Vector3.Distance(fromTransform.position, zombie.transform.position);
+                var currentDistance = Vector3.Distance(fromTransform.position, zombie.ShootPoint.position);
                 if (!(currentDistance < minDistance)) continue;
                 minDistance = currentDistance;
                 targetZombie = zombie;

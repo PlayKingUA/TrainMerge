@@ -29,7 +29,7 @@ namespace _Scripts.Weapons
             if (AttackTimer < CoolDown|| !CanAttack) 
                 return;
 
-            Fire(TargetZombie.transform);
+            Fire(TargetZombie.ShootPoint);
             AttackTimer = 0f;
         }
         #endregion

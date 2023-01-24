@@ -29,11 +29,5 @@ namespace _Scripts.Units
             AttackTimer += Time.deltaTime;
         }
         #endregion
-        
-        protected virtual void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, attackRadius);
-        }
     }
 }

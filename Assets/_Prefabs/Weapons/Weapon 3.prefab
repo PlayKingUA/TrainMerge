@@ -4988,7 +4988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 60
-  damage: 10
+  damage: 5
   attackSpeedPerSecond: 2.2
   attackRadius: 21
   appearFx: {fileID: 2842827359928896588}
