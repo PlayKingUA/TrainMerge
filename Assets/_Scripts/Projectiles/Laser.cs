@@ -10,8 +10,7 @@ namespace _Scripts.Projectiles
 
         public override void UpdateTargetPosition(Vector3 targetPosition)
         {
-            base.UpdateTargetPosition(targetPosition);
-            laserScript.UpdateLaserTargetPosition(TargetPosition);
+            laserScript.UpdateLaserTargetPosition(targetPosition);
         }
     }
 }

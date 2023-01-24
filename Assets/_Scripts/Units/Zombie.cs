@@ -16,6 +16,7 @@ namespace _Scripts.Units
     {
         #region Variables
         [Space]
+        [SerializeField] private Transform shootPoint;
         [SerializeField] private int reward;
         [Space]
         [SerializeField] private Color damageColor;
@@ -39,13 +40,13 @@ namespace _Scripts.Units
         #endregion
 
         #region Properties
-        private bool CanAttack => Vector3.Distance(transform.position, _train.transform.position) < attackRadius;
-
         private int Reward => (int) (reward * _upgradeMenu.IncomeCoefficient);
+
+        public Transform ShootPoint => shootPoint;
+
         #endregion
 
         #region Monobehaviour Callbacks
-
         private void Awake()
         {
             _zombieAnimationManager = GetComponent<ZombieAnimationManager>();
@@ -66,6 +67,15 @@ namespace _Scripts.Units
             base.Update();
             UpdateState();
         }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.TryGetComponent(out Train.Train train)) return;
+            
+            ChangeState(UnitState.Attack);
+            transform.parent = _train.transform;
+            _chunkMovement.ChangeState(false);
+        }
         #endregion
         
         #region States Logic
@@ -75,11 +85,7 @@ namespace _Scripts.Units
                 return;
 
             _currentState = newState;
-            if (_currentState == UnitState.Attack)
-            {
-                _chunkMovement.SetSpeed(_train.TrainSpeed);
-            }
-            else
+            if (_currentState != UnitState.Attack)
             {
                 _zombieAnimationManager.SetAnimation(_currentState);
             }
@@ -92,29 +98,21 @@ namespace _Scripts.Units
 
             switch (_currentState)
             {
-                case UnitState.Run:
-                    RunState();
-                    break;
                 case UnitState.Attack:
                     AttackState();
                     break;
                 case UnitState.Idle:
                 case UnitState.Victory:
+                case UnitState.Run:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        private void RunState()
-        {
-            if (!CanAttack) return;
-            ChangeState(UnitState.Attack);
-        }
-
         private void AttackState()
         {
-            if (AttackTimer < CoolDown || !CanAttack) 
+            if (AttackTimer < CoolDown) 
                 return;
 
             _zombieAnimationManager.SetAnimation(_currentState);
@@ -122,10 +120,16 @@ namespace _Scripts.Units
         }
         #endregion
 
-        public void InitMotion(Chunk firstChunk)
+        public void InitMotion(Chunk firstChunk, float deltaX)
         {
             _chunkMovement.Init(firstChunk);
             _chunkMovement.ChangeState(true);
+            
+            transform.GetChild(0).localPosition = new Vector3(deltaX, 0, 0);
+            var boxCollider = GetComponent<BoxCollider>();
+            var targetCenter = boxCollider.center;
+            targetCenter.x = deltaX;
+            boxCollider.center = targetCenter;
         }
         
         public void Attack()

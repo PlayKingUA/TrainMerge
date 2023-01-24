@@ -11,12 +11,11 @@ namespace _Scripts.Weapons
         #endregion
 
         #region Monobehavior Callbacks
-
         protected override void Start()
         {
             base.Start();
+            laser.SetDamage(Damage);
         }
-
         #endregion
         
         #region States
@@ -30,14 +29,14 @@ namespace _Scripts.Weapons
         protected override void AttackState()
         {
             base.AttackState();
+            EnableLaser(CanAttack);
             if (!CanAttack)
                 return;
-            EnableLaser(true);
-            laser.UpdateTargetPosition(TargetZombie.transform.position);
+            laser.UpdateTargetPosition(TargetZombie.ShootPoint.position);
 
             if (AttackTimer < CoolDown)
                 return;
-            laser.HitZombie(TargetZombie.transform);
+            laser.HitZombie(TargetZombie.ShootPoint);
             AttackTimer = 0f;
         }
         #endregion

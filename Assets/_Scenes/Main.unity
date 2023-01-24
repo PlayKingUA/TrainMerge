@@ -2260,7 +2260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 788842154}
   m_Layer: 0
-  m_Name: Point (1)
+  m_Name: To
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2273,12 +2273,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788842153}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1685934071}
+  m_Father: {fileID: 1363249008}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &791771658
@@ -2354,7 +2354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 827538956}
   m_Layer: 0
-  m_Name: Point
+  m_Name: From
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2367,12 +2367,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827538955}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1685934071}
+  m_Father: {fileID: 1363249008}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &828231409
@@ -2872,6 +2872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
+  mirrorRotation: 1
 --- !u!114 &993770734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2896,8 +2897,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.6974418, y: 2.4223037, z: 3.5153744}
-  m_Center: {x: -0.19747627, y: 0.71115184, z: -1.2576874}
+  m_Size: {x: 3.3856058, y: 2.4223037, z: 6.1865454}
+  m_Center: {x: 0, y: 0.71115184, z: 0.077898026}
 --- !u!54 &993770737
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4313,7 +4314,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1685934071}
+  - {fileID: 827538956}
+  - {fileID: 788842154}
   m_Father: {fileID: 1555794359}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4329,7 +4331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94147c1c92f5e940abffc2d9966d423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieCreatingPositions: {fileID: 1685934071}
+  creatingPositionFrom: {fileID: 827538956}
+  creatingPositionTo: {fileID: 788842154}
 --- !u!114 &1363249010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4343,6 +4346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0
+  mirrorRotation: 0
 --- !u!1 &1369775631
 GameObject:
   m_ObjectHideFlags: 0
@@ -5217,39 +5221,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1757540400}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1685934070
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1685934071}
-  m_Layer: 0
-  m_Name: Zombie Creating Points
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1685934071
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685934070}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 827538956}
-  - {fileID: 788842154}
-  m_Father: {fileID: 1363249008}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700900314

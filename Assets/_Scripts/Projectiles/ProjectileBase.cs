@@ -1,5 +1,6 @@
 ﻿using _Scripts.Units;
 using QFSW.MOP2;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -9,13 +10,13 @@ namespace _Scripts.Projectiles
         #region Variables
         [SerializeField] private protected float damageRadius;
         
-        private protected Vector3 LaunchPosition;
-        private protected Vector3 TargetPosition;
+        private Vector3 _launchPosition;
+        private Vector3 _targetPosition;
         private protected Vector3 Direction;
         
         private Collider[] _colliders;
         
-        private int _damage;
+        [ShowInInspector]private int _damage;
         private float _damageRadius;
 
         private protected MasterObjectPooler MasterObjectPooler;
@@ -35,19 +36,23 @@ namespace _Scripts.Projectiles
         public virtual void Init(Vector3 targetPosition, int damage, ObjectPool objectPool)
         {
             _projectilePool = objectPool;
-            LaunchPosition = transform.position;
+            _launchPosition = transform.position;
             UpdateTargetPosition(targetPosition);
 
-            Direction = (TargetPosition - LaunchPosition).normalized;
+            Direction = (_targetPosition - _launchPosition).normalized;
 
             _damageRadius = damageRadius;
+            SetDamage(damage);
+        }
+
+        public void SetDamage(int damage)
+        {
             _damage = damage;
         }
 
         public virtual void UpdateTargetPosition(Vector3 targetPosition)
         {
-            TargetPosition = targetPosition;
-            TargetPosition.y = LaunchPosition.y;
+            _targetPosition = targetPosition;
         }
         
         protected  virtual void ReturnToPool()
