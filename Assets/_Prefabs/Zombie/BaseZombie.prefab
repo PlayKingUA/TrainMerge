@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8692823435732292195}
-  - component: {fileID: 8692823435732292197}
   - component: {fileID: 8692823435732292196}
   - component: {fileID: 6112769720920916972}
   - component: {fileID: 1434586539212394079}
   - component: {fileID: 6774645047640472658}
+  - component: {fileID: 4775836231666797679}
   m_Layer: 0
   m_Name: BaseZombie
   m_TagString: Untagged
@@ -36,18 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8692823435732292197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8692823435732292194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffba710c9da44e69a2e3a6d369609084, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8692823435732292196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +52,6 @@ MonoBehaviour:
   damage: 10
   attackSpeedPerSecond: 1
   attackRadius: 1
-  movementSpeed: 5
   reward: 30
   damageColor: {r: 0.7176101, g: 0.8018868, b: 0.71488965, a: 1}
 --- !u!195 &6112769720920916972
@@ -115,3 +102,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+--- !u!114 &4775836231666797679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692823435732292194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a3873e3d0344a18415f66a1ec691ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 9

@@ -1,3 +1,4 @@
+using System;
 using _Scripts.Game_States;
 using _Scripts.Levels;
 using _Scripts.Units;
@@ -14,6 +15,7 @@ namespace _Scripts.UI.Displays
 
         [SerializeField] private CanvasGroup distanceTextObject;
         [SerializeField] private TextMeshProUGUI distanceText;
+        [SerializeField] private float speedForDistance;
         [SerializeField] private TextMeshProUGUI currentLevelText;
         [SerializeField] private TextMeshProUGUI nextLevelText;
         [SerializeField] private Slider progressSlider;
@@ -21,6 +23,8 @@ namespace _Scripts.UI.Displays
         [Inject] private ZombieManager _zombieManager;
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private LevelManager _levelManager;
+
+        private float _startPlayTime;
         #endregion
     
         #region Monobehaviour Callbacks
@@ -33,10 +37,20 @@ namespace _Scripts.UI.Displays
             {
                 DisplayHp();
                 EnableDistanceObject(true);
+                _startPlayTime = Time.time;
             };
 
             _levelManager.OnLevelLoaded += UpdateLevelText;
         }
+
+        private void Update()
+        {
+            if (_gameStateManager.CurrentState == GameState.Battle)
+            {
+                DisplayDistance();
+            }
+        }
+
         #endregion
 
         private void DisplayHp()
@@ -46,12 +60,7 @@ namespace _Scripts.UI.Displays
 
         private void DisplayDistance()
         {
-            
-        }
-
-        private void UpdateRemainingZombies()
-        {
-            
+            distanceText.text = ((Time.time - _startPlayTime) * speedForDistance).ToString("F0");
         }
 
         private void UpdateLevelText(int level)

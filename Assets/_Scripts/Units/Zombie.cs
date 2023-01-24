@@ -1,6 +1,8 @@
 using System;
 using _Scripts.Interface;
+using _Scripts.Levels;
 using _Scripts.Money_Logic;
+using _Scripts.Train;
 using _Scripts.UI.Upgrade;
 using DG.Tweening;
 using Sirenix.OdinInspector;
@@ -9,12 +11,10 @@ using Zenject;
 
 namespace _Scripts.Units
 {
-    [RequireComponent(typeof(UnitMovement), typeof(ZombieAnimationManager))]
+    [RequireComponent(typeof(ChunkMovement), typeof(ZombieAnimationManager))]
     public sealed class Zombie : AttackingObject, IAlive
     {
         #region Variables
-        [Space]
-        [SerializeField] private float movementSpeed;
         [Space]
         [SerializeField] private int reward;
         [Space]
@@ -23,7 +23,7 @@ namespace _Scripts.Units
         [ShowInInspector, ReadOnly] private UnitState _currentState;
 
         private ZombieAnimationManager _zombieAnimationManager;
-        private UnitMovement _unitMovement;
+        private ChunkMovement _chunkMovement;
         [Inject] private Train.Train _train;
         [Inject] private MoneyWallet _moneyWallet;
         [Inject] private UpgradeMenu _upgradeMenu;
@@ -39,21 +39,24 @@ namespace _Scripts.Units
         #endregion
 
         #region Properties
-        private bool CanAttack => _unitMovement.DistanceFromTarget < attackRadius;
+        private bool CanAttack => Vector3.Distance(transform.position, _train.transform.position) < attackRadius;
 
         private int Reward => (int) (reward * _upgradeMenu.IncomeCoefficient);
         #endregion
 
         #region Monobehaviour Callbacks
-        protected override void Start()
+
+        private void Awake()
         {
             _zombieAnimationManager = GetComponent<ZombieAnimationManager>();
             _materials = GetComponentInChildren<SkinnedMeshRenderer>().materials;
             _damageTweens = new Tween[_materials.Length];
-                
-            _unitMovement = GetComponent<UnitMovement>();
-            _unitMovement.SetSpeed(movementSpeed);
             
+            _chunkMovement = GetComponent<ChunkMovement>();
+        }
+
+        protected override void Start()
+        {
             ChangeState(UnitState.Run);
             base.Start();
         }
@@ -72,7 +75,11 @@ namespace _Scripts.Units
                 return;
 
             _currentState = newState;
-            if (_currentState != UnitState.Attack)
+            if (_currentState == UnitState.Attack)
+            {
+                _chunkMovement.SetSpeed(_train.TrainSpeed);
+            }
+            else
             {
                 _zombieAnimationManager.SetAnimation(_currentState);
             }
@@ -85,52 +92,42 @@ namespace _Scripts.Units
 
             switch (_currentState)
             {
-                case UnitState.Idle:
-                    IdleState();
-                    break;
                 case UnitState.Run:
                     RunState();
                     break;
                 case UnitState.Attack:
                     AttackState();
                     break;
+                case UnitState.Idle:
                 case UnitState.Victory:
-                    VictoryState();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        private  void IdleState()
-        {
-            _unitMovement.StopMove();
-        }
-
         private void RunState()
         {
-            _unitMovement.Move();
-
             if (!CanAttack) return;
             ChangeState(UnitState.Attack);
         }
 
         private void AttackState()
         {
-            _unitMovement.Move();
             if (AttackTimer < CoolDown || !CanAttack) 
                 return;
 
             _zombieAnimationManager.SetAnimation(_currentState);
             AttackTimer = 0f;
         }
-
-        private  void VictoryState()
-        {
-            _unitMovement.StopMove();
-        }
         #endregion
 
+        public void InitMotion(Chunk firstChunk)
+        {
+            _chunkMovement.Init(firstChunk);
+            _chunkMovement.ChangeState(true);
+        }
+        
         public void Attack()
         {
             _train.GetDamage(Damage);

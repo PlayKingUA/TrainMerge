@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Game_States;
+using _Scripts.Levels;
+using _Scripts.Train;
 using ModestTree;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,6 +13,7 @@ using Random = UnityEngine.Random;
 
 namespace _Scripts.Units
 {
+    [RequireComponent(typeof(ChunkMovement))]
     public class ZombieManager : MonoBehaviour
     {
         #region Variables
@@ -21,8 +24,10 @@ namespace _Scripts.Units
         [ShowInInspector, ReadOnly] private Vector2 _timeBetweenZombieCreation;
 
         [Inject] private GameStateManager _gameStateManager;
+        [Inject] private Train.Train _train;
         [Inject] private DiContainer _diContainer;
 
+        private ChunkMovement _chunkMovement;
         private Coroutine _creatingCoroutine;
 
         public float WholeHpSum { get; private set; }
@@ -32,9 +37,14 @@ namespace _Scripts.Units
         #endregion
         
         #region Monobehaviour Callbacks
+        private void Awake()
+        {
+            _chunkMovement = GetComponent<ChunkMovement>();
+        }
         private void Start()
         {
             _gameStateManager.AttackStarted += StartCreatingZombies;
+            _gameStateManager.AttackStarted += () => { _chunkMovement.ChangeState(true);};
             _gameStateManager.Fail += ZombieWin;
         }
         #endregion
@@ -45,6 +55,12 @@ namespace _Scripts.Units
             _timeBetweenZombieCreation = timeBetweenZombieCreation;
 
             WholeHpSum = _zombieToCreate.Sum(zombie => zombie.Health);
+        }
+
+        public void InitMotion(Chunk firstChunk)
+        {
+            _chunkMovement.Init(firstChunk);
+            _chunkMovement.SetSpeed(_train.TrainSpeed);
         }
 
         private void UpdateLostHp(int deltaHp)
@@ -74,6 +90,8 @@ namespace _Scripts.Units
             var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, 
                 GetZombieCreatingPosition(),
                 targetZombie.transform.rotation, transform);
+            
+            zombie.InitMotion(_chunkMovement.CurrentChunk);
             
             zombie.DeadEvent += RemoveZombie;
             zombie.GetDamageEvent += UpdateLostHp;
@@ -115,6 +133,8 @@ namespace _Scripts.Units
         
         private void ZombieWin()
         {
+            _chunkMovement.ChangeState(false);
+            
             if (_creatingCoroutine != null) 
                 StopCoroutine(_creatingCoroutine);
             

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Scripts.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -16,6 +17,7 @@ namespace _Scripts.Levels
         
         [Inject] private DiContainer _diContainer;
         [Inject] private Train.Train _train;
+        [Inject] private ZombieManager _zombieManager;
 
         private readonly List<Chunk> _createdChunks = new();
 
@@ -29,6 +31,7 @@ namespace _Scripts.Levels
             CreateChunk(positionOne, true);
             CreateChunk(positionTwo, true);
             
+            _zombieManager.InitMotion(_createdChunks[0]);
             _train.InitMotion(_createdChunks[1]);
         }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6173598563297091283}
   - component: {fileID: 6173598563297091282}
+  - component: {fileID: 6648325095625408911}
   m_Layer: 0
   m_Name: Zombie Holder
   m_TagString: Untagged
@@ -44,3 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94147c1c92f5e940abffc2d9966d423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zombieCreatingPositions: {fileID: 0}
+--- !u!114 &6648325095625408911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173598563297091276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a3873e3d0344a18415f66a1ec691ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0
