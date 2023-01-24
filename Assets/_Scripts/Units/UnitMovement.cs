@@ -1,5 +1,4 @@
-﻿using _Scripts.Interface;
-using Sirenix.OdinInspector;
+﻿using _Scripts.Levels;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -10,39 +9,38 @@ namespace _Scripts.Units
     public class UnitMovement : MonoBehaviour
     {
         #region Variables
-        private NavMeshAgent _agent;
+        [SerializeField] private float movementSpeed;
+        private Chunk _currentChunk;
+
+        private float _currentChunkProgress;
 
         [Inject] private Train.Train _train;
 
         private float _targetPositionX;
         #endregion
 
-        #region Properties
-        private Vector3 TargetPosition => _train.GetTargetZombiePosition(_targetPositionX);
-        public float DistanceFromTarget => Vector3.Distance(transform.position, TargetPosition);
-        #endregion
-        
-        #region Monobehaviour Callbacks
-        private void Awake()
-        {
-            _agent = GetComponent<NavMeshAgent>();
-            _targetPositionX = _train.GetZombiePositionX();
-        }
-        #endregion
-
         public void Move()
         {
-            _agent.SetDestination(TargetPosition);
+            _currentChunkProgress += Time.deltaTime * movementSpeed / _currentChunk.Length;
+            if (_currentChunkProgress > 1f)
+            {
+                _currentChunkProgress--;
+                _currentChunk = _currentChunk.nextChunk;
+            }
+
+            var targetPosition = _currentChunk.GetPoint(_currentChunkProgress);
+            
+            var direction = transform.position - targetPosition;
+            var rotateY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            var targetRotation  = Quaternion.Euler(0, rotateY, 0);
+
+            transform.position = targetPosition;
+            if (Quaternion.Angle(transform.rotation, targetRotation) == 0) return;
+            transform.rotation = Quaternion.Lerp(transform.rotation,
+                targetRotation,  
+                Mathf.Clamp(Time.deltaTime * 10, 0f, 0.99f));
         }
 
-        public void StopMove()
-        {
-            _agent.isStopped = true;
-        }
-
-        public void SetSpeed(float targetSpeed)
-        {
-            _agent.speed = targetSpeed;
-        }
+        
     }
 }

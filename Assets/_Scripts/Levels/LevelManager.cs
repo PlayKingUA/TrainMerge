@@ -26,7 +26,7 @@ namespace _Scripts.Levels
         #endregion
 
         #region Monobehaviour Callbacks
-        private void Awake()
+        private void Start()
         {
             Load();
             _gameStateManager.Victory += IncreaseLevel;

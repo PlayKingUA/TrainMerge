@@ -1,35 +1,22 @@
-﻿using System;
-using _Scripts.Game_States;
-using _Scripts.Interface;
-using _Scripts.Levels;
-using DG.Tweening.Plugins.Core.PathCore;
-using Sirenix.OdinInspector;
+﻿using _Scripts.Levels;
 using UnityEngine;
-using Zenject;
 
 namespace _Scripts.Train
 {
-    public class TrainMovement : MonoBehaviour
+    public class ChunkMovement : MonoBehaviour
     {
         #region Variables
         [SerializeField] private float movementSpeed;
         
-        private Chunk _currentChunk;
-
-        [Inject] private GameStateManager _gameStateManager;
+        private float _currentChunkProgress;
 
         private bool _isMoving;
         
-        [ShowInInspector] private float _currentChunkProgress;
+        public float MovementSpeed => movementSpeed;
+        public Chunk CurrentChunk { get; private set; }
         #endregion
 
         #region Monobehaviour Callbacks
-        private void Start()
-        {
-            _gameStateManager.AttackStarted += () => { _isMoving = true;};
-            _gameStateManager.Fail += () => { _isMoving = false;};
-        }
-
         private void Update()
         {
             if (_isMoving)
@@ -39,23 +26,36 @@ namespace _Scripts.Train
         }
         #endregion
         
-        public void Init(Chunk firstChunk)
+        public void Init(Chunk firstChunk, float? speed = null)
         {
-            _currentChunk = firstChunk;
-            _currentChunkProgress = _currentChunk.GetCurrentProgress(transform.position);
-            transform.position = _currentChunk.GetPoint(_currentChunkProgress);
+            CurrentChunk = firstChunk;
+            _currentChunkProgress = CurrentChunk.GetCurrentProgress(transform.position);
+            transform.position = CurrentChunk.GetPoint(_currentChunkProgress);
+            
+            if (speed != null)
+                SetSpeed((float) speed);
+        }
+        
+        public void SetSpeed(float targetSpeed)
+        {
+            movementSpeed = targetSpeed;
+        }
+        
+        public void ChangeState(bool isMoving)
+        {
+            _isMoving = isMoving;
         }
 
         private void Move()
         {
-            _currentChunkProgress += Time.deltaTime * movementSpeed / _currentChunk.Length;
+            _currentChunkProgress += Time.deltaTime * movementSpeed / CurrentChunk.Length;
             if (_currentChunkProgress > 1f)
             {
                 _currentChunkProgress--;
-                _currentChunk = _currentChunk.nextChunk;
+                CurrentChunk = CurrentChunk.nextChunk;
             }
 
-            var targetPosition = _currentChunk.GetPoint(_currentChunkProgress);
+            var targetPosition = CurrentChunk.GetPoint(_currentChunkProgress);
             
             var direction = transform.position - targetPosition;
             var rotateY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;

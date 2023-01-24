@@ -7,18 +7,17 @@ using _Scripts.Weapons;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
-using Random = UnityEngine.Random;
 
 namespace _Scripts.Train
 {
-    [RequireComponent(typeof(TrainMovement))]
+    [RequireComponent(typeof(ChunkMovement))]
     public class Train : MonoBehaviour, IAlive
     {
         #region Variables
-        [SerializeField] private Transform zombiePositionFrom;
-        [SerializeField] private Transform zombiePositionTo;
         [SerializeField] private float health;
 
+        private ChunkMovement _chunkMovement;
+        
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private SlotManager _slotManager;
         [Inject] private WeaponManager _weaponManager;
@@ -26,36 +25,30 @@ namespace _Scripts.Train
         [ShowInInspector, ReadOnly] public float MaxHealth { get; private set;}
         public float CurrentHealth { get; private set; }
         public bool IsDead { get; private set;}
+        public float TrainSpeed => _chunkMovement.MovementSpeed;
         
         public event Action HpChanged;
         #endregion
 
         #region Monobehaviour Callbacks
+        private void Awake()
+        {
+            _chunkMovement = GetComponent<ChunkMovement>();
+        }
+
         private void Start()
         {
             UpdateMaxHealth();
             _weaponManager.OnNewWeapon += UpdateMaxHealth;
-        }
-        #endregion
-
-        #region Zombie Position
-        public Vector3 GetTargetZombiePosition(float x)
-        {
-            var targetPosition = zombiePositionFrom.position;
-            targetPosition.x = x;
-            return targetPosition;
-        }
-
-        public float GetZombiePositionX()
-        {
-            return Random.Range(zombiePositionFrom.position.x,
-                zombiePositionTo.position.x);
+            
+            _gameStateManager.AttackStarted += () => { _chunkMovement.ChangeState(true);};
+            _gameStateManager.Fail += () => { _chunkMovement.ChangeState(false);};
         }
         #endregion
 
         public void InitMotion(Chunk firstChunk)
         {
-            GetComponent<TrainMovement>().Init(firstChunk);
+            _chunkMovement.Init(firstChunk);
         }
         
         private void UpdateMaxHealth()
