@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad40add42ecce646952aaa9475056c8, type: 3}
   m_Name: Muzzleflare Pool 6
   m_EditorClassIdentifier: 
-  _name: Muzzleflare Pool 3
+  _name: Muzzleflare Pool 6
   _template: {fileID: 1584403288528622, guid: 905d8799cde6a6c4182ccb33953bdc3f, type: 3}
   _defaultSize: 15
   _maxSize: -1

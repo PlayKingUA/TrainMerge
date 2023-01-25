@@ -5,6 +5,7 @@ using _Scripts.Money_Logic;
 using _Scripts.Slot_Logic;
 using _Scripts.UI;
 using _Scripts.UI.Upgrade;
+using _Scripts.UI.Windows;
 using _Scripts.Units;
 using _Scripts.Weapons;
 using UnityEngine;

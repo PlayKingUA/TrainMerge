@@ -1,5 +1,6 @@
 using System;
 using _Scripts.UI;
+using _Scripts.UI.Windows;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -48,11 +49,11 @@ namespace _Scripts.Game_States
                     break;
                 case GameState.Victory:
                     Victory?.Invoke();
-                    _windowsManager.SwapWindow(WindowType.Victory, victoryDelay);
+                    _windowsManager.SwapWindow(WindowType.Results, victoryDelay);
                     break;
                 case GameState.Fail:
                     Fail?.Invoke();
-                    _windowsManager.SwapWindow(WindowType.Fail, failDelay);
+                    _windowsManager.SwapWindow(WindowType.Results, failDelay);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

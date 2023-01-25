@@ -15,8 +15,10 @@ namespace _Scripts.Train
     {
         #region Variables
         [SerializeField] private float health;
+        [SerializeField] private float speedForDistance;
 
         private ChunkMovement _chunkMovement;
+        private float _startPlayTime;
         
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private SlotManager _slotManager;
@@ -28,6 +30,7 @@ namespace _Scripts.Train
         public float TrainSpeed => _chunkMovement.MovementSpeed;
         
         public event Action HpChanged;
+        public event Action<float> DistanceChanged;
         #endregion
 
         #region Monobehaviour Callbacks
@@ -43,6 +46,14 @@ namespace _Scripts.Train
             
             _gameStateManager.AttackStarted += () => { _chunkMovement.ChangeState(true);};
             _gameStateManager.Fail += () => { _chunkMovement.ChangeState(false);};
+        }
+
+        private void Update()
+        {
+            if (_gameStateManager.CurrentState == GameState.Battle)
+            {
+                DistanceChanged?.Invoke((Time.time - _startPlayTime) * speedForDistance);
+            }
         }
         #endregion
 

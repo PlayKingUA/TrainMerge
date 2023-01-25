@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace _Scripts.UI
+namespace _Scripts.UI.Windows
 {
     public class WindowsManager : MonoBehaviour
     {

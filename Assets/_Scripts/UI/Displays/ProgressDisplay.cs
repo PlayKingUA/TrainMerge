@@ -1,6 +1,6 @@
-using System;
 using _Scripts.Game_States;
 using _Scripts.Levels;
+using _Scripts.UI.Windows;
 using _Scripts.Units;
 using TMPro;
 using UnityEngine;
@@ -14,8 +14,6 @@ namespace _Scripts.UI.Displays
         #region Variables
 
         [SerializeField] private CanvasGroup distanceTextObject;
-        [SerializeField] private TextMeshProUGUI distanceText;
-        [SerializeField] private float speedForDistance;
         [SerializeField] private TextMeshProUGUI currentLevelText;
         [SerializeField] private TextMeshProUGUI nextLevelText;
         [SerializeField] private Slider progressSlider;
@@ -23,8 +21,6 @@ namespace _Scripts.UI.Displays
         [Inject] private ZombieManager _zombieManager;
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private LevelManager _levelManager;
-
-        private float _startPlayTime;
         #endregion
     
         #region Monobehaviour Callbacks
@@ -33,34 +29,20 @@ namespace _Scripts.UI.Displays
             _zombieManager.OnHpChanged += DisplayHp;
             
             _gameStateManager.PrepareToBattle += () => { EnableDistanceObject(false);};
-            _gameStateManager.AttackStarted += () =>
-            {
-                DisplayHp();
-                EnableDistanceObject(true);
-                _startPlayTime = Time.time;
-            };
+            _gameStateManager.AttackStarted += () => { EnableDistanceObject(true); };
 
             _levelManager.OnLevelLoaded += UpdateLevelText;
         }
 
-        private void Update()
+        private void Start()
         {
-            if (_gameStateManager.CurrentState == GameState.Battle)
-            {
-                DisplayDistance();
-            }
+            DisplayHp();
         }
-
         #endregion
 
         private void DisplayHp()
         {
             progressSlider.value = _zombieManager.LostHp / _zombieManager.WholeHpSum;
-        }
-
-        private void DisplayDistance()
-        {
-            distanceText.text = ((Time.time - _startPlayTime) * speedForDistance).ToString("F0");
         }
 
         private void UpdateLevelText(Level level)

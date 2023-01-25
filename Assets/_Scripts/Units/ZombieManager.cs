@@ -21,10 +21,8 @@ namespace _Scripts.Units
         [SerializeField] private Transform creatingPositionFrom;
         [SerializeField] private Transform creatingPositionTo;
         private readonly List<Zombie> _aliveZombies = new ();
-        private List<Zombie> _deadZombies = new ();
 
         private Queue<Zombie> _zombieToCreate;
-        [ShowInInspector, ReadOnly] private Vector2 _timeBetweenZombieCreation;
 
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private Train.Train _train;
@@ -32,7 +30,9 @@ namespace _Scripts.Units
 
         private ChunkMovement _chunkMovement;
         private Coroutine _creatingCoroutine;
+        private Vector2 _timeBetweenZombieCreation;
 
+        public List<Zombie> DeadZombies { get; } = new ();
         public float WholeHpSum { get; private set; }
         public float LostHp { get; private set; }
         
@@ -123,7 +123,7 @@ namespace _Scripts.Units
         private void RemoveZombie(Zombie zombie)
         {
             _aliveZombies.Remove(zombie);
-            _deadZombies.Add(zombie);
+            DeadZombies.Add(zombie);
             if (_zombieToCreate.IsEmpty() && _aliveZombies.Count == 0)
             {
                 _gameStateManager.ChangeState(GameState.Victory);

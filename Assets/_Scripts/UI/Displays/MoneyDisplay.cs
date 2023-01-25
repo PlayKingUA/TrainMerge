@@ -22,7 +22,12 @@ namespace _Scripts.UI.Displays
         
         private void Display(int value)
         {
-            moneyText.text = value.ToString();
+            moneyText.text = MoneyText(value);
+        }
+
+        public static string MoneyText(int value)
+        {
+            return value.ToString();
         }
     }
 }

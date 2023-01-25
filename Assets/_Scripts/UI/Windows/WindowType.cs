@@ -1,11 +1,10 @@
-﻿namespace _Scripts.UI
+﻿namespace _Scripts.UI.Windows
 {
     public enum WindowType
     {
         PrepareToLevel,
         Game,
-        Victory,
-        Fail,
+        Results,
         Loading
     }
 }

@@ -46,7 +46,7 @@ namespace _Scripts.Units
         #endregion
 
         #region Properties
-        private int Reward => (int) (reward * _upgradeMenu.IncomeCoefficient);
+        public int Reward => (int) (reward * _upgradeMenu.IncomeCoefficient);
 
         public Transform ShootPoint => shootPoint;
         public ZombieType ZombieType => zombieType;
