@@ -22,7 +22,7 @@ namespace _Scripts.Levels
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private LevelGeneration _levelGeneration;
 
-        public event Action<int> OnLevelLoaded;
+        public event Action<Level> OnLevelLoaded;
         #endregion
 
         #region Monobehaviour Callbacks
@@ -56,10 +56,11 @@ namespace _Scripts.Levels
         {
             var currentLevel = _currentLevelIndex % levels.Length;
             _currentLevel = levels[currentLevel];
+            _currentLevel.index = _currentLevelIndex + 1;
             _zombieManager.Init(_currentLevel.Zombies, _currentLevel.TimeBetweenZombie);
             _levelGeneration.SetLocation(_currentLevel.LevelLocation);
             
-            OnLevelLoaded?.Invoke(currentLevel + 1);
+            OnLevelLoaded?.Invoke(_currentLevel);
         }
         
         #region Save/Load

@@ -20,7 +20,8 @@ namespace _Scripts.Units
         #region Variables
         [SerializeField] private Transform creatingPositionFrom;
         [SerializeField] private Transform creatingPositionTo;
-        [ShowInInspector, ReadOnly] private List<Zombie> _aliveZombies = new ();
+        private readonly List<Zombie> _aliveZombies = new ();
+        private List<Zombie> _deadZombies = new ();
 
         private Queue<Zombie> _zombieToCreate;
         [ShowInInspector, ReadOnly] private Vector2 _timeBetweenZombieCreation;
@@ -122,6 +123,7 @@ namespace _Scripts.Units
         private void RemoveZombie(Zombie zombie)
         {
             _aliveZombies.Remove(zombie);
+            _deadZombies.Add(zombie);
             if (_zombieToCreate.IsEmpty() && _aliveZombies.Count == 0)
             {
                 _gameStateManager.ChangeState(GameState.Victory);

@@ -63,10 +63,10 @@ namespace _Scripts.UI.Displays
             distanceText.text = ((Time.time - _startPlayTime) * speedForDistance).ToString("F0");
         }
 
-        private void UpdateLevelText(int level)
+        private void UpdateLevelText(Level level)
         {
-            currentLevelText.text = level.ToString();
-            nextLevelText.text = (level + 1).ToString();
+            currentLevelText.text = level.index.ToString();
+            nextLevelText.text = (level.index + 1).ToString();
         }
         
         private void EnableDistanceObject(bool isEnabled)

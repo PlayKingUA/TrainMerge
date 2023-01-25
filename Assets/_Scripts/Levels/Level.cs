@@ -11,6 +11,7 @@ namespace _Scripts.Levels
         [SerializeField] private LevelLocation levelLocation;
         [SerializeField] private Vector2 timeBetweenZombie;
         [SerializeField] private List<Zombie> zombies;
+        [HideInInspector] public int index;
 
         public LevelLocation LevelLocation => levelLocation;
         public Vector2 TimeBetweenZombie => timeBetweenZombie;

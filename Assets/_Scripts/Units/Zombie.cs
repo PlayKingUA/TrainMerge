@@ -19,6 +19,7 @@ namespace _Scripts.Units
     {
         #region Variables
         [Space]
+        [SerializeField] private ZombieType zombieType;
         [SerializeField] private Transform shootPoint;
         [SerializeField] private int reward;
         [Space]
@@ -48,7 +49,7 @@ namespace _Scripts.Units
         private int Reward => (int) (reward * _upgradeMenu.IncomeCoefficient);
 
         public Transform ShootPoint => shootPoint;
-
+        public ZombieType ZombieType => zombieType;
         #endregion
 
         #region Monobehaviour Callbacks
