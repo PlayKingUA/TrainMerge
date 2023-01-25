@@ -1,21 +1,16 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1229460070047531980
+--- !u!1001 &1084354028169939005
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2393417720821213900}
+    m_TransformParent: {fileID: 4293328547931459604}
     m_Modifications:
     - target: {fileID: 249112779077528321, guid: 2a0540c70fb5e0a43b9e323449c3e36d,
         type: 3}
       propertyPath: m_Name
       value: Arid_Wastelands_Chunk_R_50_002
-      objectReference: {fileID: 0}
-    - target: {fileID: 249112779077528321, guid: 2a0540c70fb5e0a43b9e323449c3e36d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8163971096795660769, guid: 2a0540c70fb5e0a43b9e323449c3e36d,
         type: 3}
@@ -74,81 +69,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a0540c70fb5e0a43b9e323449c3e36d, type: 3}
---- !u!1001 &2803271646768792819
+--- !u!1001 &1814515015786611422
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2393417720821213900}
-    m_Modifications:
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939828397144085568, guid: 40093757406259749966aa562f3f48dd,
-        type: 3}
-      propertyPath: m_Name
-      value: Arid_Wastelands_Chunk_R_50_003 (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 40093757406259749966aa562f3f48dd, type: 3}
---- !u!1001 &5342915730457479845
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2393417720821213900}
+    m_TransformParent: {fileID: 4293328547931459604}
     m_Modifications:
     - target: {fileID: 229440467347851117, guid: 4057f96744a62df448f868ada691708a,
         type: 3}
@@ -210,140 +136,149 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arid_Wastelands_Chunk_R_50_001
       objectReference: {fileID: 0}
-    - target: {fileID: 8981376104824534737, guid: 4057f96744a62df448f868ada691708a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4057f96744a62df448f868ada691708a, type: 3}
---- !u!1001 &8263030510971813347
+--- !u!1001 &1919614455601429208
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3882213437314823122, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 3882213437314823122, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -29.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444560, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: m_Name
-      value: Turn Chunk 2 Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425162040444563, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960304, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6024425163289247926, guid: 741729c22fac481489883d8522fdd263,
+    - target: {fileID: 2393417720841960307, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 20.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024425163289247926, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -43.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024425163289247926, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9063079
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024425163289247926, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.42261827
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024425163289247926, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446742511912107415, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446742511912107415, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -40.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 7042197599677346957, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: length
-      value: 49.58332
-      objectReference: {fileID: 0}
-    - target: {fileID: 7042197599677346957, guid: 741729c22fac481489883d8522fdd263,
-        type: 3}
-      propertyPath: segmentsCount
-      value: 30
+      propertyPath: m_Name
+      value: Wastelands Turn Chunk
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 741729c22fac481489883d8522fdd263, type: 3}
---- !u!4 &2393417720821213900 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 5daadefafb8ec584ea3a6c1eacb2b46e, type: 3}
+--- !u!4 &4293328547931459604 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6024425162019706671, guid: 741729c22fac481489883d8522fdd263,
+  m_CorrespondingSourceObject: {fileID: 2393417720821213900, guid: 5daadefafb8ec584ea3a6c1eacb2b46e,
     type: 3}
-  m_PrefabInstance: {fileID: 8263030510971813347}
+  m_PrefabInstance: {fileID: 1919614455601429208}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4111744298848249962
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4293328547931459604}
+    m_Modifications:
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277155359106161572, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939828397144085568, guid: 40093757406259749966aa562f3f48dd,
+        type: 3}
+      propertyPath: m_Name
+      value: Arid_Wastelands_Chunk_R_50_003
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40093757406259749966aa562f3f48dd, type: 3}

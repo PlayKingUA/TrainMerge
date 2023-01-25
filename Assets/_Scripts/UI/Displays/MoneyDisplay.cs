@@ -11,6 +11,8 @@ namespace _Scripts.UI.Displays
         [SerializeField] private TextMeshProUGUI moneyText;
         
         [Inject] private MoneyWallet _moneyWallet;
+        
+        private const string Format = "F2";
         #endregion
         
         #region Monobehaviour Callbacks
@@ -27,7 +29,16 @@ namespace _Scripts.UI.Displays
 
         public static string MoneyText(int value)
         {
-            return value.ToString();
+            var result = value.ToString("F0");
+            if (value > 1e6)
+            {
+                result = (value / 1e6).ToString(Format) + 'M';
+            }
+            else if (value > 1e4)
+            {
+                result = (value / 1e3).ToString(Format) + 'k';
+            }
+            return result;
         }
     }
 }

@@ -10,6 +10,8 @@ namespace _Scripts.UI.Displays
         [SerializeField] private TextMeshProUGUI distanceText;
         
         [Inject] private Train.Train _train;
+
+        private const string Format = "F2";
         #endregion
 
         private void Start()
@@ -17,10 +19,14 @@ namespace _Scripts.UI.Displays
             _train.DistanceChanged += Display;
         }
 
-
-        private void Display(float meters)
+        private void Display(float value)
         {
-            distanceText.text = meters.ToString("F0");
+            var result = value.ToString("F0") + 'm';
+            if (value > 1e3)
+            {
+                result = (value / 1e3).ToString(Format) + "km";
+            }
+            distanceText.text = result;
         }
     }
 }

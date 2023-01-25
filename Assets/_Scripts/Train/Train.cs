@@ -44,7 +44,11 @@ namespace _Scripts.Train
             UpdateMaxHealth();
             _weaponManager.OnNewWeapon += UpdateMaxHealth;
             
-            _gameStateManager.AttackStarted += () => { _chunkMovement.ChangeState(true);};
+            _gameStateManager.AttackStarted += () =>
+            {
+                _startPlayTime = Time.time;
+                _chunkMovement.ChangeState(true);
+            };
             _gameStateManager.Fail += () => { _chunkMovement.ChangeState(false);};
         }
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7373698659641624910}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4775836231666797679}
   - component: {fileID: 2975052720700890534}
   - component: {fileID: 3617204200943151261}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BaseZombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +84,7 @@ MonoBehaviour:
   damage: 10
   attackSpeedPerSecond: 1
   attackRadius: 1
+  zombieType: 0
   shootPoint: {fileID: 0}
   reward: 30
   damageColor: {r: 0.7176101, g: 0.8018868, b: 0.71488965, a: 1}

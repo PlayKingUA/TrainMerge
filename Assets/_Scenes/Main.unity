@@ -2304,6 +2304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: b6b8c9b17dbac2841a171d4341d3ab70, type: 2}
+  - {fileID: 11400000, guid: 61bcf165015bbca4f9712d33e822d64e, type: 2}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2699,7 +2700,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845429543}
-  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3035,7 +3036,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3263,7 +3264,7 @@ GameObject:
   - component: {fileID: 993770733}
   - component: {fileID: 993770736}
   - component: {fileID: 993770737}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Train
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4911,7 +4912,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 149291303, guid: 9d690283b19fbeb4b88a2c8982a5386a, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 514733890000107351, guid: 9d690283b19fbeb4b88a2c8982a5386a,
         type: 3}
@@ -6850,11 +6851,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunks:
-  - straightChunk: {fileID: 3181416719907435980, guid: 02c8a13bf6079f04da6c2782a41bf698,
+  - straightChunk: {fileID: 8302338237409105090, guid: 8ae11406e9db57449b67d3f54b983abf,
       type: 3}
-    turnChunk: {fileID: 2393417720841960307, guid: a3c26c0c1ea7b92499b090bb60d35a8f,
+    turnChunk: {fileID: 4742751892908423673, guid: acb5de7cf7a447e40991c90bfe04afef,
       type: 3}
-    turnTwoChunk: {fileID: 3056431397152575615, guid: 65cb069cb26401a4c8fea54e89a7b5a1,
+    turnTwoChunk: {fileID: 4293328547910189483, guid: 8904ab1e766e04841be43a595a17f0cd,
+      type: 3}
+  - straightChunk: {fileID: 6243674349661251207, guid: c9ca83fe93cde244e8d540e5f6cb327b,
+      type: 3}
+    turnChunk: {fileID: 9115222695380577727, guid: 22ec1c90b77745846b728899a46e8bdf,
+      type: 3}
+    turnTwoChunk: {fileID: 3941983347645318254, guid: 25e691f2273ecfd43a9ca9f32487efe1,
       type: 3}
   positionOne: {fileID: 1685362302}
   positionTwo: {fileID: 1700900315}

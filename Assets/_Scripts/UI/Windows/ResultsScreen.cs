@@ -35,7 +35,7 @@ namespace _Scripts.UI.Windows
         }
         #endregion
 
-        public void UpdateResults(bool isWin)
+        private void UpdateResults(bool isWin)
         {
             winResults.SetActive(isWin);
             loseResults.SetActive(!isWin);
@@ -45,6 +45,7 @@ namespace _Scripts.UI.Windows
             var reward = _zombieManager.DeadZombies.Sum(zombie => zombie.Reward);
 
             rewardText.text = MoneyDisplay.MoneyText(reward);
+            multiplyButtonText.text = MoneyDisplay.MoneyText(reward);
             getOnlyButtonText.text = "Get only" + MoneyDisplay.MoneyText(reward);
         }
     }

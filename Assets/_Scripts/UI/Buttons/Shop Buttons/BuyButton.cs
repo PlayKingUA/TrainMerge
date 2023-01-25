@@ -1,5 +1,6 @@
 ﻿using System;
 using _Scripts.Money_Logic;
+using _Scripts.UI.Displays;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -31,8 +32,10 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         #region Properties
         private ButtonBuyState ButtonState => _buttonState;
 
-        private int CurrentPrise =>
-            (int) (startPrise + (maxPrise - startPrise) * ((float) CurrentLevel / levelsToMaxPrise));
+        private int CurrentPrise => (int) Mathf.Clamp( 
+            startPrise + (maxPrise - startPrise) * ((float) CurrentLevel / levelsToMaxPrise),
+            startPrise, 
+            max: maxPrise);
 
         protected virtual bool CanBeBought => true;
         #endregion
@@ -79,7 +82,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
 
         protected virtual void UpdateText()
         {
-            priseText.text = CurrentPrise.ToString();
+            priseText.text = MoneyDisplay.MoneyText(CurrentPrise);
         }
         #endregion
 
