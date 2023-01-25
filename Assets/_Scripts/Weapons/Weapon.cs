@@ -108,7 +108,7 @@ namespace _Scripts.Weapons
             
             if (TargetZombie != null)
             {
-                var direction = TargetZombie.transform.position - gunTransform.position;
+                var direction = TargetZombie.ShootPoint.position - gunTransform.position;
                 var rotateY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
                 targetRotation = Quaternion.Euler(0, rotateY, 0);
             }

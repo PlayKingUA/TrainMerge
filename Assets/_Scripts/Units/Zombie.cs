@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Game_States;
 using _Scripts.Interface;
 using _Scripts.Levels;
 using _Scripts.Money_Logic;
@@ -11,7 +12,9 @@ using Zenject;
 
 namespace _Scripts.Units
 {
-    [RequireComponent(typeof(ChunkMovement), typeof(ZombieAnimationManager))]
+    [RequireComponent(typeof(ChunkMovement), 
+        typeof(ZombieAnimationManager), 
+        typeof(RagdollController))]
     public sealed class Zombie : AttackingObject, IAlive
     {
         #region Variables
@@ -25,6 +28,8 @@ namespace _Scripts.Units
 
         private ZombieAnimationManager _zombieAnimationManager;
         private ChunkMovement _chunkMovement;
+        private RagdollController _ragdollController;
+        [Inject] private GameStateManager _gameStateManager;
         [Inject] private Train.Train _train;
         [Inject] private MoneyWallet _moneyWallet;
         [Inject] private UpgradeMenu _upgradeMenu;
@@ -50,6 +55,7 @@ namespace _Scripts.Units
         private void Awake()
         {
             _zombieAnimationManager = GetComponent<ZombieAnimationManager>();
+            _ragdollController = GetComponent<RagdollController>();
             _materials = GetComponentInChildren<SkinnedMeshRenderer>().materials;
             _damageTweens = new Tween[_materials.Length];
             
@@ -70,7 +76,8 @@ namespace _Scripts.Units
         
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.TryGetComponent(out Train.Train train)) return;
+            if (!other.TryGetComponent(out Train.Train train)
+                || _gameStateManager.CurrentState != GameState.Battle) return;
             
             ChangeState(UnitState.Attack);
             transform.parent = _train.transform;
@@ -89,6 +96,12 @@ namespace _Scripts.Units
             {
                 _zombieAnimationManager.SetAnimation(_currentState);
             }
+
+            if (_currentState == UnitState.Victory)
+            {
+                transform.parent = null;
+                _chunkMovement.ChangeState(false);
+            }
         }
 
         private void UpdateState()
@@ -96,17 +109,9 @@ namespace _Scripts.Units
             if (IsDead)
                 return;
 
-            switch (_currentState)
+            if (_currentState == UnitState.Attack)
             {
-                case UnitState.Attack:
-                    AttackState();
-                    break;
-                case UnitState.Idle:
-                case UnitState.Victory:
-                case UnitState.Run:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                AttackState();
             }
         }
 
@@ -167,8 +172,14 @@ namespace _Scripts.Units
             IsDead = true;
 
             DeadEvent?.Invoke(this);
+            
+            transform.parent = null;
+            _chunkMovement.ChangeState(false);
+            
+            _zombieAnimationManager.DisableAnimator();
+            _ragdollController.EnableRagdoll(true);
+
             _moneyWallet.Add(Reward);
-            gameObject.SetActive(false);
         }
         #endregion
     }
