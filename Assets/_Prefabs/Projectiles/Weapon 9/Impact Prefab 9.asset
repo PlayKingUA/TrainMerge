@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ad40add42ecce646952aaa9475056c8, type: 3}
-  m_Name: Muzzleflare Pool 10
+  m_Name: Impact Prefab 9
   m_EditorClassIdentifier: 
-  _name: Muzzleflare Pool 10
-  _template: {fileID: 1000012903210382, guid: b40860a7026dc0c42a528ec74a4aa5b5, type: 3}
+  _name: Impact Prefab 9
+  _template: {fileID: 1955566163644328152, guid: 0a1ada00be2b9f942b74f879d27be35a,
+    type: 3}
   _defaultSize: 15
   _maxSize: -1
   _incrementalInstanceNames: 0

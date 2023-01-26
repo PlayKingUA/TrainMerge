@@ -16,7 +16,8 @@ namespace _Scripts.Projectiles
         
         private Collider[] _colliders;
         
-        [ShowInInspector]private int _damage;
+        [ShowInInspector] private int _damage;
+        [SerializeField] private bool isSplash;
         private float _damageRadius;
 
         private protected MasterObjectPooler MasterObjectPooler;
@@ -68,9 +69,11 @@ namespace _Scripts.Projectiles
 
             for (var i = 0; i < _colliders.Length; i++)
             {
-                if (_colliders[i] != null && _colliders[i].TryGetComponent(out Zombie zombie))
+                if (_colliders[i] == null || !_colliders[i].TryGetComponent(out Zombie zombie)) continue;
+                zombie.GetDamage(_damage);
+                if (!isSplash)
                 {
-                    zombie.GetDamage(_damage);
+                    break;
                 }
             }
         }

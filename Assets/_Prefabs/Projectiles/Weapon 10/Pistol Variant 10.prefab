@@ -9,9 +9,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 588428771100745382, guid: e6d58459a1c059a4ca10f992b6497e93,
         type: 3}
+      propertyPath: isSplash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 588428771100745382, guid: e6d58459a1c059a4ca10f992b6497e93,
+        type: 3}
       propertyPath: hasShells
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 588428771100745382, guid: e6d58459a1c059a4ca10f992b6497e93,
+        type: 3}
+      propertyPath: impactPool
+      value: 
+      objectReference: {fileID: 11400000, guid: ebdf80dd3877bac4094f86fa1a6a856b,
+        type: 2}
     - target: {fileID: 588428771100745382, guid: e6d58459a1c059a4ca10f992b6497e93,
         type: 3}
       propertyPath: damageRadius

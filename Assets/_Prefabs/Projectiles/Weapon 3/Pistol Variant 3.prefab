@@ -9,6 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 588428771100745382, guid: e6d58459a1c059a4ca10f992b6497e93,
         type: 3}
+      propertyPath: impactPool
+      value: 
+      objectReference: {fileID: 11400000, guid: cc8632b94f5e2b54c8cc51cf55b290e9,
+        type: 2}
+    - target: {fileID: 588428771100745382, guid: e6d58459a1c059a4ca10f992b6497e93,
+        type: 3}
       propertyPath: muzzleflarePool
       value: 
       objectReference: {fileID: 11400000, guid: f9e0325ba44e3974fa78b411d9dac15f,

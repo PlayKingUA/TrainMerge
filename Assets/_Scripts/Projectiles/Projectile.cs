@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using _Scripts.Units;
 using QFSW.MOP2;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -10,11 +10,18 @@ namespace _Scripts.Projectiles
         #region Variables
         [Space(10)]
         [SerializeField] private float speed;
-        [SerializeField] private ObjectPool muzzleflarePool;
-        [SerializeField] private ObjectPool shellsPool;
+
         [SerializeField] private bool hasShells;
-        [SerializeField] private bool hasMuzzleflare = true;
+        [SerializeField, ShowIf(nameof(hasShells))] private ObjectPool shellsPool;
         
+        [SerializeField] private bool hasMuzzleflare = true;
+        [SerializeField, ShowIf(nameof(hasMuzzleflare))]
+        private ObjectPool muzzleflarePool;
+        
+        [SerializeField] private bool hasImpact = true;
+        [SerializeField, ShowIf(nameof(hasImpact))]
+        private ObjectPool impactPool;
+
         private const float LifeTime = 3.0f;
 
         private Coroutine _flyRoutine;
@@ -44,6 +51,10 @@ namespace _Scripts.Projectiles
 
         public override void HitZombie(Transform damagePoint = null)
         {
+            if (hasImpact)
+            {
+                MasterObjectPooler.GetObject(impactPool.PoolName, transform.position, transform.rotation);
+            }
             base.HitZombie(damagePoint);
             ReturnToPool();
         }

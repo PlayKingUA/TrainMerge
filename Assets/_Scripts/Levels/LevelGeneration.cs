@@ -11,6 +11,7 @@ namespace _Scripts.Levels
     {
         #region Variables
         [ShowInInspector] private LevelLocation _location;
+        [SerializeField] private Transform lightParent;
         [SerializeField] private LevelChunks[] chunks;
         [SerializeField] private Transform positionOne;
         [SerializeField] private Transform positionTwo;
@@ -30,6 +31,11 @@ namespace _Scripts.Levels
             
             CreateChunk(positionOne, true);
             CreateChunk(positionTwo, true);
+            
+            for (var i = 0; i < lightParent.childCount; i++)
+            {
+                lightParent.GetChild(i).gameObject.SetActive(i == (int) location);
+            }
             
             _zombieManager.InitMotion(_createdChunks[0]);
             _train.InitMotion(_createdChunks[1]);
