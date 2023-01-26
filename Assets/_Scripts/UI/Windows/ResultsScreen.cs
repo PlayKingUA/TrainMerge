@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using _Scripts.Game_States;
+using _Scripts.UI.Buttons;
 using _Scripts.UI.Displays;
 using _Scripts.Units;
 using TMPro;
@@ -19,7 +20,7 @@ namespace _Scripts.UI.Windows
         [SerializeField] private ZombieTable zombieTable;
 
         [SerializeField] private TextMeshProUGUI rewardText;
-        [SerializeField] private TextMeshProUGUI multiplyButtonText;
+        [SerializeField] private MultiplyButton multiplyButton;
         [SerializeField] private TextMeshProUGUI getOnlyButtonText;
 
 
@@ -44,8 +45,8 @@ namespace _Scripts.UI.Windows
 
             var reward = _zombieManager.DeadZombies.Sum(zombie => zombie.Reward);
 
+            multiplyButton.SetReward(reward);
             rewardText.text = MoneyDisplay.MoneyText(reward);
-            multiplyButtonText.text = MoneyDisplay.MoneyText(reward);
             getOnlyButtonText.text = "Get only" + MoneyDisplay.MoneyText(reward);
         }
     }

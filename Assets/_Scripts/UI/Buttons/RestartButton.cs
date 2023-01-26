@@ -1,7 +1,6 @@
 using _Scripts.Levels;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace _Scripts.UI.Buttons
 {
@@ -9,19 +8,17 @@ namespace _Scripts.UI.Buttons
     {
         #region Variables
         private Button _button;
-
-        [Inject] private LevelManager _levelManager;
         #endregion
         
         #region Monobehaviour Callbacks
         private void Start()
         {
             _button = GetComponent<Button>();
-            _button.onClick.AddListener(StartWave);
+            _button.onClick.AddListener(Restart);
         }
         #endregion
 
-        private void StartWave()
+        private void Restart()
         {
             LevelManager.RestartForce();
         }
