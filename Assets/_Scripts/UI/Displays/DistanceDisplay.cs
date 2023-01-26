@@ -11,7 +11,7 @@ namespace _Scripts.UI.Displays
         
         [Inject] private Train.Train _train;
 
-        private const string Format = "F2";
+        private const string Format = "F1";
         #endregion
 
         private void Start()

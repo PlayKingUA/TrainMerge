@@ -4994,7 +4994,7 @@ MonoBehaviour:
   appearFx: {fileID: 2842827359928896588}
   gunTransform: {fileID: 7206753402198427230}
   shootPoint: {fileID: 4674850418641642810}
-  projectilePool: {fileID: 11400000, guid: 797a62b4059d1554aa4eb49976a06758, type: 2}
+  projectilePool: {fileID: 11400000, guid: 1518c4a7a1638c345ac2f9bb789e76c0, type: 2}
 --- !u!1 &7647173795625094641
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ namespace _Scripts.UI.Displays
         
         [Inject] private MoneyWallet _moneyWallet;
         
-        private const string Format = "F2";
+        private const string Format = "F1";
         #endregion
         
         #region Monobehaviour Callbacks
