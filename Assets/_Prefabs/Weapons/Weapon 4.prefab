@@ -5166,6 +5166,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserProjectile 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4758393468631777775, guid: 648b63f418ed67e47904e32a2a645a78,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758613593569482491, guid: 648b63f418ed67e47904e32a2a645a78,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759347856407302873, guid: 648b63f418ed67e47904e32a2a645a78,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759889758329005009, guid: 648b63f418ed67e47904e32a2a645a78,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4760041185434420559, guid: 648b63f418ed67e47904e32a2a645a78,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4760107797381384877, guid: 648b63f418ed67e47904e32a2a645a78,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4760157304035773925, guid: 648b63f418ed67e47904e32a2a645a78,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 648b63f418ed67e47904e32a2a645a78, type: 3}
 --- !u!114 &6193086813858831318 stripped
@@ -5187,10 +5222,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2397241438283685776}
     m_Modifications:
+    - target: {fileID: 7054787921529839152, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054787921529839152, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054787921529839152, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7054787921529839152, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8169606003842127348, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8169606003842127348, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8169606003842127348, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8169606003842127348, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8169606003842127348, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
         type: 3}
