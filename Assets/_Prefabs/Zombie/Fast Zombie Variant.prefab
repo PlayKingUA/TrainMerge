@@ -109,6 +109,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8692823435732292196, guid: 624feb8c57101ad45a5aeb0533554b8c,
         type: 3}
+      propertyPath: hpPerLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692823435732292196, guid: 624feb8c57101ad45a5aeb0533554b8c,
+        type: 3}
       propertyPath: shootPoint
       value: 
       objectReference: {fileID: 5227709411352564684}

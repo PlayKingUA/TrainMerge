@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using _Scripts.Units;
+using DG.Tweening;
 using QFSW.MOP2;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -23,8 +24,9 @@ namespace _Scripts.Projectiles
         [SerializeField, ShowIf(nameof(hasImpact))]
         private ObjectPool impactPool;
 
+        private Tweener _motionTween;
+
         private const float LifeTime = 3.0f;
-        private Vector3 _direction;
 
         private Coroutine _flyRoutine;
         #endregion
@@ -64,15 +66,21 @@ namespace _Scripts.Projectiles
         private IEnumerator FlyToTarget()
         {
             float t = 0;
+            var _direction = (TargetZombie.ShootPoint.position - LaunchPosition).normalized;
             
             while (true)
             {
-                if (!TargetZombie.IsDead)
+                if (TargetZombie.IsDead)
                 {
-                    _direction = (TargetZombie.ShootPoint.position - LaunchPosition).normalized;
+                    transform.position += _direction * speed * Time.deltaTime;
+                }
+                else
+                {
+                    _motionTween.Kill();
+                    _motionTween = transform.DOMove(TargetZombie.ShootPoint.position, speed).SetSpeedBased();
                 }
 
-                transform.position += _direction * speed * Time.deltaTime;
+                
                 transform.rotation = Quaternion.LookRotation(_direction);
 
                 t += Time.deltaTime;

@@ -29,6 +29,7 @@ namespace _Scripts.Units
         private int _zombiesLeft;
 
         [Inject] private GameStateManager _gameStateManager;
+        [Inject] private LevelManager _levelManager;
         [Inject] private UpgradeMenu _upgradeMenu;
         [Inject] private MoneyWallet _moneyWallet;
         [Inject] private Train.Train _train;
@@ -68,9 +69,9 @@ namespace _Scripts.Units
                 _zombiesLeft += subWave.ZombieCount.FastZombieCount;
                 _zombiesLeft += subWave.ZombieCount.BigZombieCount;
 
-                WholeHpSum += subWave.ZombieCount.UsualZombieCount * usualZombie.Health;
-                WholeHpSum += subWave.ZombieCount.FastZombieCount * fastZombie.Health;
-                WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie.Health;
+                WholeHpSum += subWave.ZombieCount.UsualZombieCount * usualZombie.StartHp(_levelManager.CurrentLevel);
+                WholeHpSum += subWave.ZombieCount.FastZombieCount * fastZombie.StartHp(_levelManager.CurrentLevel);
+                WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie.StartHp(_levelManager.CurrentLevel);
             }
         }
 
@@ -109,7 +110,7 @@ namespace _Scripts.Units
                         ZombieType zombieType;
                         while (true)
                         {
-                            zombieType = (ZombieType) Random.Range(0, (int) ZombieType.CountTypes - 1);
+                            zombieType = (ZombieType) Random.Range(0, (int) ZombieType.CountTypes);
                             if (zombieType == ZombieType.Usual && usualZombieLeft > 0)
                             {
                                 usualZombieLeft--;
@@ -140,7 +141,7 @@ namespace _Scripts.Units
         {
             var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform);
             
-            zombie.InitMotion(_chunkMovement.CurrentChunk, ZombieDelta);
+            zombie.Init(_chunkMovement.CurrentChunk, ZombieDelta);
             
             zombie.DeadEvent += RemoveZombie;
             zombie.GetDamageEvent += UpdateLostHp;

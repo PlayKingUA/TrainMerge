@@ -25,6 +25,11 @@ namespace _Scripts.Levels
         public event Action<Level> OnLevelLoaded;
         #endregion
 
+        #region Properties
+        public int CurrentLevel => _currentLevel.index; 
+
+        #endregion
+
         #region Monobehaviour Callbacks
         private void Start()
         {
@@ -56,7 +61,7 @@ namespace _Scripts.Levels
         {
             var currentLevel = _currentLevelIndex % levels.Length;
             _currentLevel = levels[currentLevel];
-            _currentLevel.index = _currentLevelIndex + 1;
+            _currentLevel.index = currentLevel + 1;
             _zombieManager.Init(_currentLevel.ZombiesWaves);
             _levelGeneration.SetLocation(_currentLevel.LevelLocation);
             

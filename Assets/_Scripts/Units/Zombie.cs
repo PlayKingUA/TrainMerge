@@ -2,9 +2,7 @@ using System;
 using _Scripts.Game_States;
 using _Scripts.Interface;
 using _Scripts.Levels;
-using _Scripts.Money_Logic;
 using _Scripts.Train;
-using _Scripts.UI.Upgrade;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,10 +16,10 @@ namespace _Scripts.Units
     public sealed class Zombie : AttackingObject, IAlive
     {
         #region Variables
+        [SerializeField] private float hpPerLevel;
         [Space]
         [SerializeField] private ZombieType zombieType;
         [SerializeField] private Transform shootPoint;
-        [SerializeField] private int reward;
         [Space]
         [SerializeField] private Color damageColor;
         [Space]
@@ -31,8 +29,8 @@ namespace _Scripts.Units
         private ChunkMovement _chunkMovement;
         private RagdollController _ragdollController;
         [Inject] private GameStateManager _gameStateManager;
+        [Inject] private LevelManager _levelManager;
         [Inject] private Train.Train _train;
-        [Inject] private MoneyWallet _moneyWallet;
         
 
         private Material[] _materials;
@@ -48,6 +46,8 @@ namespace _Scripts.Units
         #region Properties
         public Transform ShootPoint => shootPoint;
         public ZombieType ZombieType => zombieType;
+        
+        public int StartHp(int currentLevel) => (int) (Health + (currentLevel - 1) * hpPerLevel);
         #endregion
 
         #region Monobehaviour Callbacks
@@ -124,7 +124,7 @@ namespace _Scripts.Units
         }
         #endregion
 
-        public void InitMotion(Chunk firstChunk, float deltaX)
+        public void Init(Chunk firstChunk, float deltaX)
         {
             _chunkMovement.Init(firstChunk);
             _chunkMovement.ChangeState(true);
@@ -134,6 +134,8 @@ namespace _Scripts.Units
             var targetCenter = boxCollider.center;
             targetCenter.x = deltaX;
             boxCollider.center = targetCenter;
+
+            Health = (int) (Health + (_levelManager.CurrentLevel - 1) * hpPerLevel);
         }
         
         public void Attack()
@@ -144,11 +146,11 @@ namespace _Scripts.Units
         #region Get Damage\Die
         public void GetDamage(int damagePoint)
         {
-            var healthBefore = health;
-            health = Mathf.Max(0, health -damagePoint);
-            GetDamageEvent?.Invoke(healthBefore - health);
+            var healthBefore = Health;
+            Health = Mathf.Max(0, Health - damagePoint);
+            GetDamageEvent?.Invoke(healthBefore - Health);
 
-            if (health <= 0 && !IsDead)
+            if (Health <= 0 && !IsDead)
                 Die();
             else
             {
