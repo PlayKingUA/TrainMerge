@@ -4,6 +4,7 @@
     {
         Usual,
         Fast,
-        Big
+        Big,
+        CountTypes
     }
 }

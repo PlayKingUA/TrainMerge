@@ -5,11 +5,8 @@ using System.Linq;
 using _Scripts.Game_States;
 using _Scripts.Levels;
 using _Scripts.Train;
-using ModestTree;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace _Scripts.Units
@@ -20,9 +17,14 @@ namespace _Scripts.Units
         #region Variables
         [SerializeField] private Transform creatingPositionFrom;
         [SerializeField] private Transform creatingPositionTo;
+        [SerializeField] private Zombie usualZombie;
+        [SerializeField] private Zombie fastZombie;
+        [SerializeField] private Zombie bigZombie;
+        
         private readonly List<Zombie> _aliveZombies = new ();
 
-        private Queue<Zombie> _zombieToCreate;
+        private List<Wave> _zombiesWaves;
+        private int _zombiesLeft;
 
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private Train.Train _train;
@@ -30,7 +32,6 @@ namespace _Scripts.Units
 
         private ChunkMovement _chunkMovement;
         private Coroutine _creatingCoroutine;
-        private Vector2 _timeBetweenZombieCreation;
 
         public List<Zombie> DeadZombies { get; } = new ();
         public float WholeHpSum { get; private set; }
@@ -52,12 +53,21 @@ namespace _Scripts.Units
         }
         #endregion
 
-        public void Init(Queue<Zombie> targetZombies, Vector2 timeBetweenZombieCreation)
+        #region Init
+        public void Init(List<Wave> zombiesWaves)
         {
-            _zombieToCreate = targetZombies;
-            _timeBetweenZombieCreation = timeBetweenZombieCreation;
+            _zombiesWaves = zombiesWaves;
 
-            WholeHpSum = _zombieToCreate.Sum(zombie => zombie.Health);
+            foreach (var subWave in _zombiesWaves.SelectMany(zombieWave => zombieWave.subWaves))
+            {
+                _zombiesLeft += subWave.ZombieCount.UsualZombieCount;
+                _zombiesLeft += subWave.ZombieCount.FastZombieCount;
+                _zombiesLeft += subWave.ZombieCount.BigZombieCount;
+
+                WholeHpSum += subWave.ZombieCount.UsualZombieCount * usualZombie.Health;
+                WholeHpSum += subWave.ZombieCount.FastZombieCount * fastZombie.Health;
+                WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie.Health;
+            }
         }
 
         public void InitMotion(Chunk firstChunk)
@@ -65,6 +75,7 @@ namespace _Scripts.Units
             _chunkMovement.Init(firstChunk);
             _chunkMovement.SetSpeed(_train.TrainSpeed);
         }
+        #endregion
 
         private void UpdateLostHp(int deltaHp)
         {
@@ -80,15 +91,48 @@ namespace _Scripts.Units
 
         private IEnumerator CreateZombies()
         {
-            while (!_zombieToCreate.IsEmpty())
+            foreach (var zombieWave in _zombiesWaves)
             {
-                var timeToWait = Random.Range(_timeBetweenZombieCreation.x, _timeBetweenZombieCreation.y);
-                yield return new WaitForSeconds(timeToWait);
-                CreateZombie(_zombieToCreate.Dequeue());
+                foreach (var subWave in zombieWave.subWaves)
+                {
+                    var usualZombieLeft = subWave.ZombieCount.UsualZombieCount;
+                    var fastZombieLeft = subWave.ZombieCount.FastZombieCount;
+                    var bigZombieLeft = subWave.ZombieCount.BigZombieCount;
+                    var zombiesLeft = usualZombieLeft + fastZombieLeft + bigZombieLeft;
+                    
+                    while (zombiesLeft-- > 0)
+                    {
+                        ZombieType zombieType;
+                        while (true)
+                        {
+                            zombieType = (ZombieType) Random.Range(0, (int) ZombieType.CountTypes - 1);
+                            if (zombieType == ZombieType.Usual && usualZombieLeft > 0)
+                            {
+                                usualZombieLeft--;
+                                break;
+                            }
+                            if (zombieType == ZombieType.Fast && fastZombieLeft > 0)
+                            {
+                                fastZombieLeft--;
+                                break;
+                            }
+                            if (zombieType == ZombieType.Big && bigZombieLeft > 0)
+                            {
+                                bigZombieLeft--;
+                                break;
+                            }
+                        }
+                        
+                        CreateZombie(GetTargetZombie(zombieType));
+                        yield return new WaitForSeconds(subWave.TimeBetweenZombie);
+                    }
+                    yield return new WaitForSeconds(subWave.TimeBetweenWaves);
+                }
+                yield return new WaitForSeconds(zombieWave.TimeBetweenWaves);
             }
         }
 
-        private void CreateZombie(Object targetZombie)
+        private void CreateZombie(Zombie targetZombie)
         {
             var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform);
             
@@ -98,6 +142,26 @@ namespace _Scripts.Units
             zombie.GetDamageEvent += UpdateLostHp;
             
             _aliveZombies.Add(zombie);
+        }
+
+        private Zombie GetTargetZombie(ZombieType zombieType)
+        {
+            var targetZombie = usualZombie;
+            switch (zombieType)
+            {
+                case ZombieType.Usual:
+                    break;
+                case ZombieType.Fast:
+                    targetZombie = fastZombie;
+                    break;
+                case ZombieType.Big:
+                    targetZombie = bigZombie;
+                    break;
+                case ZombieType.CountTypes:
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(zombieType), zombieType, null);
+            }
+            return targetZombie;
         }
 
         private float ZombieDelta => Random.Range(creatingPositionFrom.position.x,
@@ -124,7 +188,9 @@ namespace _Scripts.Units
         {
             _aliveZombies.Remove(zombie);
             DeadZombies.Add(zombie);
-            if (_zombieToCreate.IsEmpty() && _aliveZombies.Count == 0)
+            _zombiesLeft--;
+            
+            if (_zombiesLeft <= 0 && _aliveZombies.Count == 0)
             {
                 _gameStateManager.ChangeState(GameState.Victory);
             }

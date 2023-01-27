@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Scripts.Levels;
 using _Scripts.Units;
 using UnityEngine;
 
@@ -36,9 +37,15 @@ namespace _Scripts.UI.Displays
                         throw new ArgumentOutOfRangeException();
                 }
             }
-            usualZombieCount.UpdateCount(usualZombie);
-            fastZombieCount.UpdateCount(fastZombie);
-            bigZombieCount.UpdateCount(bigZombie);
+
+            UpdatePanel(new ZombieCount(usualZombie, fastZombie, bigZombie));
+        }
+
+        public void UpdatePanel(ZombieCount zombieCount)
+        {
+            usualZombieCount.UpdateCount(zombieCount.UsualZombieCount);
+            fastZombieCount.UpdateCount(zombieCount.FastZombieCount);
+            bigZombieCount.UpdateCount(zombieCount.BigZombieCount);
         }
     }
 }

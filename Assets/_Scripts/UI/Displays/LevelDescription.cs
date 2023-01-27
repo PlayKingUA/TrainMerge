@@ -7,7 +7,7 @@ namespace _Scripts.UI.Displays
 {
     public class LevelDescription : MonoBehaviour
     {
-        #region text
+        #region variables
         [SerializeField] private TextMeshProUGUI levelText;
         [SerializeField] private ZombieTable zombieTable;
 
@@ -22,7 +22,7 @@ namespace _Scripts.UI.Displays
         private void UpdateText(Level currentLevel)
         {
             levelText.text = "Level " + currentLevel.index;
-            zombieTable.UpdatePanel(currentLevel.Zombies);
+            zombieTable.UpdatePanel(currentLevel.ZombieCount);
         }
     }
 }

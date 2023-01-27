@@ -2921,7 +2921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: b6b8c9b17dbac2841a171d4341d3ab70, type: 2}
-  - {fileID: 11400000, guid: 61bcf165015bbca4f9712d33e822d64e, type: 2}
+  - {fileID: 11400000, guid: 58a2fa6936457634fb0dd1789c01d860, type: 2}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3317,7 +3317,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845429543}
-  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3653,7 +3653,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5608,8 +5608,8 @@ CanvasGroup:
   m_GameObject: {fileID: 1179729923}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &1179729928
 MonoBehaviour:
@@ -6346,6 +6346,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creatingPositionFrom: {fileID: 827538956}
   creatingPositionTo: {fileID: 788842154}
+  usualZombie: {fileID: 6325086252172432639, guid: 59a51384d1a05c44cb2ac2af9a367c5e,
+    type: 3}
+  fastZombie: {fileID: 6325086252172432639, guid: 4a715ab49f6b4244f96df21dae21c354,
+    type: 3}
+  bigZombie: {fileID: 6325086252172432639, guid: 39b564d0008b07b4d89ca5ab169bf57c,
+    type: 3}
 --- !u!114 &1363249010
 MonoBehaviour:
   m_ObjectHideFlags: 0
