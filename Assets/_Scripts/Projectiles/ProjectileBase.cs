@@ -9,10 +9,10 @@ namespace _Scripts.Projectiles
     {
         #region Variables
         [SerializeField] private protected float damageRadius;
+
+        protected Vector3 LaunchPosition;
+        protected Zombie TargetZombie;
         
-        private Vector3 _launchPosition;
-        private Vector3 _targetPosition;
-        private protected Vector3 Direction;
         
         private Collider[] _colliders;
         
@@ -34,13 +34,11 @@ namespace _Scripts.Projectiles
         protected virtual  void OnTriggerEnter(Collider other){}
         #endregion
         
-        public virtual void Init(Vector3 targetPosition, int damage, ObjectPool objectPool)
+        public virtual void Init(Zombie targetZombie, int damage, ObjectPool objectPool)
         {
             _projectilePool = objectPool;
-            _launchPosition = transform.position;
-            UpdateTargetPosition(targetPosition);
-
-            Direction = (_targetPosition - _launchPosition).normalized;
+            LaunchPosition = transform.position;
+            UpdateTargetZombie(targetZombie);
 
             _damageRadius = damageRadius;
             SetDamage(damage);
@@ -51,9 +49,9 @@ namespace _Scripts.Projectiles
             _damage = damage;
         }
 
-        public virtual void UpdateTargetPosition(Vector3 targetPosition)
+        public virtual void UpdateTargetZombie(Zombie targetZombie)
         {
-            _targetPosition = targetPosition;
+            TargetZombie = targetZombie;
         }
         
         protected  virtual void ReturnToPool()

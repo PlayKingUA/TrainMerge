@@ -1,4 +1,5 @@
 ﻿using _Scripts.Projectiles;
+using _Scripts.Units;
 using QFSW.MOP2;
 using UnityEngine;
 
@@ -29,18 +30,17 @@ namespace _Scripts.Weapons
             if (AttackTimer < CoolDown|| !CanAttack) 
                 return;
 
-            Fire(TargetZombie.ShootPoint);
+            Fire(TargetZombie);
             AttackTimer = 0f;
         }
         #endregion
         
-        private void Fire(Transform targetPosition)
+        private void Fire(Zombie targetZombie)
         {
             var bullet =
                 _masterObjectPooler.GetObjectComponent<Projectile>(projectilePool.PoolName, shootPoint.position, shootPoint.rotation);
 
-            bullet.Init(targetPosition.position,
-                Damage, projectilePool);
+            bullet.Init(targetZombie, Damage, projectilePool);
         }
     }
 }

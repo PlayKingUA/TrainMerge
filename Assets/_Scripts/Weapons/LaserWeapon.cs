@@ -32,7 +32,7 @@ namespace _Scripts.Weapons
             EnableLaser(CanAttack);
             if (!CanAttack)
                 return;
-            laser.UpdateTargetPosition(TargetZombie.ShootPoint.position);
+            laser.UpdateTargetZombie(TargetZombie);
 
             if (AttackTimer < CoolDown)
                 return;

@@ -2,6 +2,7 @@
 using _Scripts.Slot_Logic;
 using _Scripts.UI.Upgrade;
 using _Scripts.Units;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -14,10 +15,8 @@ namespace _Scripts.Weapons
         [Space] 
         [SerializeField] private GameObject appearFx;
         [SerializeField] private Transform gunTransform;
-
         [Space(10)]
-        [ShowInInspector, ReadOnly] 
-        private WeaponState _currentState;
+        [ShowInInspector, ReadOnly] private WeaponState _currentState;
         [ShowInInspector, ReadOnly] private int _level;
 
         [Inject] private ZombieManager _zombieManager;
@@ -25,8 +24,11 @@ namespace _Scripts.Weapons
         [Inject] private SpeedUpLogic _speedUpLogic;
 
         private Quaternion _startRotation;
-        [ShowInInspector, ReadOnly]private protected Zombie TargetZombie;
+        private Tweener _tween;
+
+        private float _maxShakeStrength = 0.05f;
         
+        [ShowInInspector, ReadOnly] private protected Zombie TargetZombie;
         #endregion
 
         #region Properties
@@ -50,6 +52,8 @@ namespace _Scripts.Weapons
             base.Start();
             ChangeState(WeaponState.Idle);
             _startRotation = gunTransform.rotation;
+
+            _speedUpLogic.OnTapCountChanged += Shake;
         }
 
         protected override void Update()
@@ -95,6 +99,7 @@ namespace _Scripts.Weapons
             _level = level;
         }
 
+        #region Motion
         public void ReturnToPreviousPos(Slot previousSlot)
         {
             previousSlot.Refresh(this, previousSlot);
@@ -117,6 +122,19 @@ namespace _Scripts.Weapons
             gunTransform.rotation = Quaternion.Lerp(gunTransform.rotation,
                 targetRotation, t);
         }
+
+        private void Shake()
+        {
+            _tween.Kill();
+            var coefficient = (_speedUpLogic.CoolDownSpeedUp - 1);
+            if (coefficient != 0)
+            {
+                _tween = transform.
+                    DOShakePosition(0.1f, coefficient * _maxShakeStrength)
+                    .SetLoops(-1, LoopType.Yoyo);
+            }
+        }
+        #endregion
 
         private void UpdateTargetZombie()
         {

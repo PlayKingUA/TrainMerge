@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using _Scripts.Game_States;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -16,13 +17,25 @@ namespace _Scripts.Weapons
         private WaitForSeconds _wait;
         private int _tapsCount;
 
+        private int TapsCount
+        {
+            get => _tapsCount;
+            set
+            {
+                OnTapCountChanged?.Invoke();
+                _tapsCount = value;
+            }
+        }
+
         [Inject] private GameStateManager _gameStateManager;
+
+        public event Action OnTapCountChanged;
         #endregion
 
         #region Properties
 
         [ShowInInspector, ReadOnly]
-        public float CoolDownSpeedUp => Mathf.Min(maxSpeedUp, 1f + (float) _tapsCount / tapsToMaxSpeedUp);
+        public float CoolDownSpeedUp => Mathf.Min(maxSpeedUp, 1f + (float) TapsCount / tapsToMaxSpeedUp);
         #endregion
 
         #region Monobehavior Callbacks
@@ -43,9 +56,9 @@ namespace _Scripts.Weapons
 
         private IEnumerator AddTap()
         {
-            _tapsCount++;
+            TapsCount++;
             yield return _wait;
-            _tapsCount--;
+            TapsCount--;
         }
     }
 }

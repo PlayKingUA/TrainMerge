@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _Scripts.Units;
+using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
@@ -8,9 +9,9 @@ namespace _Scripts.Projectiles
         [SerializeField] private Hovl_Laser laserScript;
         #endregion
 
-        public override void UpdateTargetPosition(Vector3 targetPosition)
+        public override void UpdateTargetZombie(Zombie targetZombie)
         {
-            laserScript.UpdateLaserTargetPosition(targetPosition);
+            laserScript.UpdateLaserTargetPosition(targetZombie.ShootPoint.position);
         }
     }
 }

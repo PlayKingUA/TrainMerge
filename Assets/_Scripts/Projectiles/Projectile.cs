@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using _Scripts.Units;
 using QFSW.MOP2;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace _Scripts.Projectiles
         private ObjectPool impactPool;
 
         private const float LifeTime = 3.0f;
+        private Vector3 _direction;
 
         private Coroutine _flyRoutine;
         #endregion
@@ -34,9 +36,9 @@ namespace _Scripts.Projectiles
         }
         #endregion
 
-        public override void Init(Vector3 targetPosition, int damage, ObjectPool objectPool)
+        public override void Init(Zombie targetZombie, int damage, ObjectPool objectPool)
         {
-            base.Init(targetPosition, damage, objectPool);
+            base.Init(targetZombie, damage, objectPool);
             _flyRoutine = StartCoroutine(FlyToTarget());
 
             if (hasMuzzleflare)
@@ -65,8 +67,13 @@ namespace _Scripts.Projectiles
             
             while (true)
             {
-                transform.position += Direction * speed * Time.deltaTime;
-                transform.rotation = Quaternion.LookRotation(Direction);
+                if (!TargetZombie.IsDead)
+                {
+                    _direction = (TargetZombie.ShootPoint.position - LaunchPosition).normalized;
+                }
+
+                transform.position += _direction * speed * Time.deltaTime;
+                transform.rotation = Quaternion.LookRotation(_direction);
 
                 t += Time.deltaTime;
                 yield return null;
