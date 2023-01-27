@@ -17,9 +17,8 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         [SerializeField] private GameObject[] states;
         [SerializeField] private string saveKey = "WeaponPrice";
         [Space(10)]
-        [SerializeField] protected int startPrise;
-        [SerializeField] protected int maxPrise;
-        [SerializeField] protected int levelsToMaxPrise;
+        [SerializeField] protected int baseAmount;
+        [SerializeField] protected float multiplier;
         [SerializeField] private TextMeshProUGUI priseText;
 
         private Button _button;
@@ -32,10 +31,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         #region Properties
         private ButtonBuyState ButtonState => _buttonState;
 
-        private int CurrentPrise => (int) Mathf.Clamp( 
-            startPrise + (maxPrise - startPrise) * ((float) CurrentLevel / levelsToMaxPrise),
-            startPrise, 
-            max: maxPrise);
+        private int CurrentPrise => GetPrise(CurrentLevel);
 
         protected virtual bool CanBeBought => true;
         #endregion
@@ -132,6 +128,16 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         private void CheckMoney(int moneyCount)
         {
             ChangeButtonState(moneyCount);
+        }
+
+        private int GetPrise(int level)
+        {
+            if (level == 0)
+            {
+                return baseAmount;
+            }
+
+            return GetPrise(level - 1) + (int) (baseAmount * (level + 1) * multiplier);
         }
     }
 }

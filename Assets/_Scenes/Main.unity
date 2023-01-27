@@ -877,8 +877,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
+      propertyPath: baseAmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: maxUpgrade
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: multiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: upgradeStep
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: startUpgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
       propertyPath: upgradeStats
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: levelsToMaxPrise
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4030392460292522711, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
@@ -3287,7 +3317,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845429543}
-  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3623,7 +3653,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5376,8 +5406,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
+      propertyPath: baseAmount
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: maxUpgrade
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: multiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: startPrise
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: upgradeStep
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: startUpgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
       propertyPath: upgradeStats
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: levelsToMaxPrise
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4030392460292522711, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
@@ -9383,6 +9448,36 @@ PrefabInstance:
       propertyPath: saveKey
       value: Damage Upgrade
       objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: baseAmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: maxUpgrade
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: multiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: upgradeStep
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: startUpgrade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
+        type: 3}
+      propertyPath: levelsToMaxPrise
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4030392460292522711, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
       propertyPath: m_Name
@@ -10000,9 +10095,8 @@ MonoBehaviour:
   - {fileID: 218620037}
   - {fileID: 1683324885}
   saveKey: Weapon Level
-  startPrise: 100
-  maxPrise: 1000
-  levelsToMaxPrise: 100
+  baseAmount: 50
+  multiplier: 1
   priseText: {fileID: 8513734415621073065}
   weaponLevel: 1
 --- !u!1001 &8720100810342116706

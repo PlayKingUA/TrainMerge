@@ -7,6 +7,8 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
     {
         #region Variables
         [SerializeField, Range(1f, 10f)] private float maxUpgrade;
+        [SerializeField] private float startUpgrade;
+        [SerializeField] private float upgradeStep;
         [Space(10)] [SerializeField] private TextMeshProUGUI valueBefore;
         [SerializeField] private TextMeshProUGUI moreText;
         [SerializeField] private TextMeshProUGUI valueAfter;
@@ -15,12 +17,12 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         #region Properties
         public float Coefficient => GetCoefficient(CurrentLevel);
 
-        protected override bool CanBeBought => CurrentLevel < levelsToMaxPrise;
+        protected override bool CanBeBought => Coefficient < maxUpgrade;
         #endregion
         
         private float GetCoefficient(int level)
         {
-            return 1f + (float) level / levelsToMaxPrise * (maxUpgrade - 1f);
+            return startUpgrade + upgradeStep * level;
         }
 
         protected override void UpdateText()
