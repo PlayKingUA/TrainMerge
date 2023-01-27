@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Game_States;
 using _Scripts.Levels;
+using _Scripts.Money_Logic;
 using _Scripts.Train;
+using _Scripts.UI.Upgrade;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -27,6 +29,8 @@ namespace _Scripts.Units
         private int _zombiesLeft;
 
         [Inject] private GameStateManager _gameStateManager;
+        [Inject] private UpgradeMenu _upgradeMenu;
+        [Inject] private MoneyWallet _moneyWallet;
         [Inject] private Train.Train _train;
         [Inject] private DiContainer _diContainer;
 
@@ -140,6 +144,11 @@ namespace _Scripts.Units
             
             zombie.DeadEvent += RemoveZombie;
             zombie.GetDamageEvent += UpdateLostHp;
+            zombie.GetDamageEvent += value =>
+            {
+                var reward = value * _upgradeMenu.IncomeCoefficient;
+                _moneyWallet.Add((int) reward);
+            };
             
             _aliveZombies.Add(zombie);
         }

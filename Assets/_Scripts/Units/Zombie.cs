@@ -33,7 +33,7 @@ namespace _Scripts.Units
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private Train.Train _train;
         [Inject] private MoneyWallet _moneyWallet;
-        [Inject] private UpgradeMenu _upgradeMenu;
+        
 
         private Material[] _materials;
         private Tween[] _damageTweens;
@@ -46,8 +46,6 @@ namespace _Scripts.Units
         #endregion
 
         #region Properties
-        public int Reward => (int) (reward * _upgradeMenu.IncomeCoefficient);
-
         public Transform ShootPoint => shootPoint;
         public ZombieType ZombieType => zombieType;
         #endregion
@@ -179,8 +177,6 @@ namespace _Scripts.Units
             
             _zombieAnimationManager.DisableAnimator();
             _ragdollController.EnableRagdoll(true);
-
-            _moneyWallet.Add(Reward);
         }
         #endregion
     }

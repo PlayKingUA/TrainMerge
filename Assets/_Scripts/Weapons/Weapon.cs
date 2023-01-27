@@ -61,6 +61,13 @@ namespace _Scripts.Weapons
             base.Update();
             UpdateState();
         }
+
+        private void OnDisable()
+        {
+            _speedUpLogic.OnTapCountChanged -= Shake;
+            _tween.Kill();
+        }
+
         #endregion
         
         #region States Logic

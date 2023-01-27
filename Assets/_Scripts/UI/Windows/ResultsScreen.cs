@@ -3,6 +3,7 @@ using System.Linq;
 using _Scripts.Game_States;
 using _Scripts.UI.Buttons;
 using _Scripts.UI.Displays;
+using _Scripts.UI.Upgrade;
 using _Scripts.Units;
 using TMPro;
 using UnityEngine;
@@ -25,7 +26,9 @@ namespace _Scripts.UI.Windows
 
 
         [Inject] private ZombieManager _zombieManager;
+        [Inject] private UpgradeMenu _upgradeMenu;
         [Inject] private GameStateManager _gameStateManager;
+
         #endregion
         
         #region Monobehavior callbacks
@@ -43,7 +46,7 @@ namespace _Scripts.UI.Windows
             
             zombieTable.UpdatePanel(_zombieManager.DeadZombies);
 
-            var reward = _zombieManager.DeadZombies.Sum(zombie => zombie.Reward);
+            var reward = (int)(_zombieManager.LostHp * _upgradeMenu.IncomeCoefficient);
 
             multiplyButton.SetReward(reward);
             rewardText.text = MoneyDisplay.MoneyText(reward);
