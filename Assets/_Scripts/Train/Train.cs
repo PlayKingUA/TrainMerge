@@ -16,11 +16,14 @@ namespace _Scripts.Train
         #region Variables
         [SerializeField] private float health;
         [SerializeField] private float speedForDistance;
+        [SerializeField] private float speedUp;
 
         private ChunkMovement _chunkMovement;
         private float _startPlayTime;
+        private float _startMotionSpeed;
         
         [Inject] private GameStateManager _gameStateManager;
+        [Inject] private SpeedUpLogic _speedUpLogic;
         [Inject] private SlotManager _slotManager;
         [Inject] private WeaponManager _weaponManager;
 
@@ -49,7 +52,17 @@ namespace _Scripts.Train
                 _startPlayTime = Time.time;
                 _chunkMovement.ChangeState(true);
             };
-            _gameStateManager.Fail += () => { _chunkMovement.ChangeState(false);};
+            _gameStateManager.Fail += () =>
+            {
+                _chunkMovement.ChangeState(false);
+            };
+
+            _startMotionSpeed = _chunkMovement.MovementSpeed;
+            _speedUpLogic.OnTapCountChanged += () =>
+            {
+                _chunkMovement.SetSpeed(_startMotionSpeed +
+                                        (_startMotionSpeed * speedUp - _startMotionSpeed) * _speedUpLogic.EffectPower);
+            };
         }
 
         private void Update()

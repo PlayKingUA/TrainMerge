@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using _Scripts.Game_States;
+using _Scripts.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -13,20 +14,13 @@ namespace _Scripts.Weapons
         [SerializeField] private int tapsToMaxSpeedUp = 10;
         [SerializeField] private float maxSpeedUp = 2f;
         [SerializeField] private float tapDuration = 3f;
+        [SerializeField] private GameObject notification;
 
         private WaitForSeconds _wait;
         private int _tapsCount;
-
-        private int TapsCount
-        {
-            get => _tapsCount;
-            set
-            {
-                OnTapCountChanged?.Invoke();
-                _tapsCount = value;
-            }
-        }
-
+        private bool _isEnabled;
+        
+        [Inject] private ZombieManager _zombieManager;
         [Inject] private GameStateManager _gameStateManager;
 
         public event Action OnTapCountChanged;
@@ -35,19 +29,26 @@ namespace _Scripts.Weapons
         #region Properties
 
         [ShowInInspector, ReadOnly]
-        public float CoolDownSpeedUp => Mathf.Min(maxSpeedUp, 1f + (float) TapsCount / tapsToMaxSpeedUp);
+        public float CoolDownSpeedUp =>  1f + EffectPower * (maxSpeedUp - 1f);
+        public float EffectPower => Mathf.Clamp((float) _tapsCount / tapsToMaxSpeedUp, 0f, 1f);
         #endregion
 
         #region Monobehavior Callbacks
         private void Start()
         {
             _wait = new WaitForSeconds(tapDuration);
+            _zombieManager.LastWaveStarted += ()=> { EnableTaps(true); };
+
+            _gameStateManager.Victory += () => { EnableTaps(false); };
+            _gameStateManager.Fail += () => { EnableTaps(false); };
         }
         
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0)
-            &&_gameStateManager.CurrentState == GameState.Battle)
+            if (!_isEnabled)
+                return;
+            
+            if (Input.GetMouseButtonDown(0))
             {
                 StartCoroutine(AddTap());
             }
@@ -56,9 +57,17 @@ namespace _Scripts.Weapons
 
         private IEnumerator AddTap()
         {
-            TapsCount++;
+            _tapsCount++;
+            OnTapCountChanged?.Invoke();
             yield return _wait;
-            TapsCount--;
+            _tapsCount--;
+            OnTapCountChanged?.Invoke();
+        }
+
+        private void EnableTaps(bool isEnabled)
+        {
+            _isEnabled = isEnabled;
+            notification.SetActive(isEnabled);
         }
     }
 }

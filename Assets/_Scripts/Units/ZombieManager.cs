@@ -7,6 +7,7 @@ using _Scripts.Levels;
 using _Scripts.Money_Logic;
 using _Scripts.Train;
 using _Scripts.UI.Upgrade;
+using _Scripts.Weapons;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -32,6 +33,7 @@ namespace _Scripts.Units
         [Inject] private LevelManager _levelManager;
         [Inject] private UpgradeMenu _upgradeMenu;
         [Inject] private MoneyWallet _moneyWallet;
+        [Inject] private SpeedUpLogic _speedUpLogic;
         [Inject] private Train.Train _train;
         [Inject] private DiContainer _diContainer;
 
@@ -43,6 +45,7 @@ namespace _Scripts.Units
         public float LostHp { get; private set; }
         
         public event Action OnHpChanged;
+        public event Action LastWaveStarted;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -55,6 +58,8 @@ namespace _Scripts.Units
             _gameStateManager.AttackStarted += StartCreatingZombies;
             _gameStateManager.AttackStarted += () => { _chunkMovement.ChangeState(true);};
             _gameStateManager.Fail += ZombieWin;
+
+            _speedUpLogic.OnTapCountChanged += () => { _chunkMovement.SetSpeed(_train.TrainSpeed); };
         }
         #endregion
 
@@ -98,6 +103,9 @@ namespace _Scripts.Units
         {
             foreach (var zombieWave in _zombiesWaves)
             {
+                if (zombieWave == _zombiesWaves[^1])
+                    LastWaveStarted?.Invoke();
+                
                 foreach (var subWave in zombieWave.subWaves)
                 {
                     var usualZombieLeft = subWave.ZombieCount.UsualZombieCount;
