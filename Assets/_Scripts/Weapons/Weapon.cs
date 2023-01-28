@@ -24,6 +24,7 @@ namespace _Scripts.Weapons
         [Inject] private SpeedUpLogic _speedUpLogic;
 
         private Quaternion _startRotation;
+        private Material _gunMaterial;
         private Tweener _tween;
 
         private float _maxShakeStrength = 0.05f;
@@ -52,6 +53,8 @@ namespace _Scripts.Weapons
             base.Start();
             ChangeState(WeaponState.Idle);
             _startRotation = gunTransform.rotation;
+
+            _gunMaterial = gunTransform.GetComponent<MeshRenderer>().material;
 
             _speedUpLogic.OnTapCountChanged += Shake;
         }
@@ -132,12 +135,15 @@ namespace _Scripts.Weapons
 
         private void Shake()
         {
+            var targetColor = new Color(_speedUpLogic.EffectPower, 0, 0);
+            _gunMaterial.SetColor("_EmissionColor", targetColor);
+            _gunMaterial.EnableKeyword("_EmissionColor");
+            
             _tween.Kill();
-            var coefficient = (_speedUpLogic.CoolDownSpeedUp - 1);
-            if (coefficient != 0)
+            if (_speedUpLogic.EffectPower != 0)
             {
                 _tween = transform.
-                    DOShakePosition(0.1f, coefficient * _maxShakeStrength)
+                    DOShakePosition(0.1f, _speedUpLogic.EffectPower * _maxShakeStrength)
                     .SetLoops(-1, LoopType.Yoyo);
             }
         }

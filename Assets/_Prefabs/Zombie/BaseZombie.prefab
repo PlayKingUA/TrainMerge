@@ -84,10 +84,10 @@ MonoBehaviour:
   damage: 10
   attackSpeedPerSecond: 1
   attackRadius: 1
+  hpPerLevel: 0
   zombieType: 0
   shootPoint: {fileID: 0}
-  reward: 30
-  damageColor: {r: 0.7176101, g: 0.8018868, b: 0.71488965, a: 1}
+  damageColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
 --- !u!114 &6774645047640472658
 MonoBehaviour:
   m_ObjectHideFlags: 0
