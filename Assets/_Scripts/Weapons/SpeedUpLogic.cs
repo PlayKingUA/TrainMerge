@@ -13,7 +13,7 @@ namespace _Scripts.Weapons
         #region Variables
         [SerializeField] private int tapsToMaxSpeedUp = 10;
         [SerializeField] private float maxSpeedUp = 2f;
-        [SerializeField] private float tapDuration = 3f;
+        [SerializeField] private float effectDuration = 3f;
         [SerializeField] private GameObject notification;
 
         private WaitForSeconds _wait;
@@ -22,6 +22,8 @@ namespace _Scripts.Weapons
         
         [Inject] private ZombieManager _zombieManager;
         [Inject] private GameStateManager _gameStateManager;
+
+        public float EffectDuration => effectDuration;
 
         public event Action OnTapCountChanged;
         #endregion
@@ -36,7 +38,7 @@ namespace _Scripts.Weapons
         #region Monobehavior Callbacks
         private void Start()
         {
-            _wait = new WaitForSeconds(tapDuration);
+            _wait = new WaitForSeconds(effectDuration);
             _zombieManager.LastWaveStarted += ()=> { EnableTaps(true); };
 
             _gameStateManager.Victory += () => { EnableTaps(false); };

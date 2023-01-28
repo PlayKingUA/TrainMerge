@@ -139,11 +139,12 @@ namespace _Scripts.Weapons
             _gunMaterial.SetColor("_EmissionColor", targetColor);
             _gunMaterial.EnableKeyword("_EmissionColor");
             
+            _tween.Rewind();
             _tween.Kill();
             if (_speedUpLogic.EffectPower != 0)
             {
                 _tween = transform.
-                    DOShakePosition(0.1f, _speedUpLogic.EffectPower * _maxShakeStrength)
+                    DOShakePosition(_speedUpLogic.EffectDuration, _speedUpLogic.EffectPower * _maxShakeStrength)
                     .SetLoops(-1, LoopType.Yoyo);
             }
         }
