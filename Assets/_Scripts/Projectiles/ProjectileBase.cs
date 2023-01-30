@@ -16,12 +16,12 @@ namespace _Scripts.Projectiles
         
         private Collider[] _colliders;
         
-        [ShowInInspector] private int _damage;
+        [ShowInInspector] protected int _damage;
         [SerializeField] private bool isSplash;
         private float _damageRadius;
 
         private protected MasterObjectPooler MasterObjectPooler;
-        private ObjectPool _projectilePool;
+        protected ObjectPool _projectilePool;
 
         #endregion
         
@@ -29,6 +29,7 @@ namespace _Scripts.Projectiles
         protected virtual void Awake()
         {
             MasterObjectPooler = MasterObjectPooler.Instance;
+            _damageRadius = damageRadius;
         }
         protected virtual void Start(){}
         protected virtual  void OnTriggerEnter(Collider other){}
@@ -39,8 +40,7 @@ namespace _Scripts.Projectiles
             _projectilePool = objectPool;
             LaunchPosition = transform.position;
             UpdateTargetZombie(targetZombie);
-
-            _damageRadius = damageRadius;
+            
             SetDamage(damage);
         }
 

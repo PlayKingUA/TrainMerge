@@ -19,7 +19,7 @@ namespace _Scripts.Weapons
         [ShowInInspector, ReadOnly] private WeaponState _currentState;
         [ShowInInspector, ReadOnly] private int _level;
 
-        [Inject] private ZombieManager _zombieManager;
+        [Inject] protected ZombieManager _zombieManager;
         [Inject] private UpgradeMenu _upgradeMenu;
         [Inject] private SpeedUpLogic _speedUpLogic;
 

@@ -25,7 +25,7 @@ namespace _Scripts.Units
         [SerializeField] private Zombie fastZombie;
         [SerializeField] private Zombie bigZombie;
         
-        private readonly List<Zombie> _aliveZombies = new ();
+        
 
         private List<Wave> _zombiesWaves;
         private int _zombiesLeft;
@@ -41,6 +41,7 @@ namespace _Scripts.Units
         private ChunkMovement _chunkMovement;
         private Coroutine _creatingCoroutine;
 
+        public readonly List<Zombie> AliveZombies = new ();
         public List<Zombie> DeadZombies { get; } = new ();
         public float WholeHpSum { get; private set; }
         public float LostHp { get; private set; }
@@ -160,7 +161,7 @@ namespace _Scripts.Units
                 _moneyWallet.Add((int) reward);
             };
             
-            _aliveZombies.Add(zombie);
+            AliveZombies.Add(zombie);
         }
 
         private Zombie GetTargetZombie(ZombieType zombieType)
@@ -192,7 +193,7 @@ namespace _Scripts.Units
             Zombie targetZombie = null;
             var minDistance = 1e9f;
             
-            foreach (var zombie in _aliveZombies)
+            foreach (var zombie in AliveZombies)
             {
                 var currentDistance = Vector3.Distance(fromTransform.position, zombie.ShootPoint.position);
                 if (!(currentDistance < minDistance)) continue;
@@ -205,11 +206,11 @@ namespace _Scripts.Units
         
         private void RemoveZombie(Zombie zombie)
         {
-            _aliveZombies.Remove(zombie);
+            AliveZombies.Remove(zombie);
             DeadZombies.Add(zombie);
             _zombiesLeft--;
             
-            if (_zombiesLeft <= 0 && _aliveZombies.Count == 0)
+            if (_zombiesLeft <= 0 && AliveZombies.Count == 0)
             {
                 _gameStateManager.ChangeState(GameState.Victory);
             }
@@ -222,7 +223,7 @@ namespace _Scripts.Units
             if (_creatingCoroutine != null) 
                 StopCoroutine(_creatingCoroutine);
             
-            foreach (var zombie in _aliveZombies)
+            foreach (var zombie in AliveZombies)
             {
                 zombie.ChangeState(UnitState.Victory);
             }

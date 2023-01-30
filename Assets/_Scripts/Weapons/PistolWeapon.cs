@@ -9,10 +9,11 @@ namespace _Scripts.Weapons
     {
         #region Variables
         [Space(10)]
-        [SerializeField] private Transform shootPoint;
-        [SerializeField] private ObjectPool projectilePool;
+        [SerializeField]
+        protected Transform shootPoint;
+        [SerializeField] protected ObjectPool projectilePool;
 
-        private MasterObjectPooler _masterObjectPooler;
+        protected MasterObjectPooler _masterObjectPooler;
         #endregion
 
         #region Monobehaviour Callbacks
@@ -30,17 +31,17 @@ namespace _Scripts.Weapons
             if (AttackTimer < CoolDown|| !CanAttack) 
                 return;
 
-            Fire(TargetZombie);
+            Fire();
             AttackTimer = 0f;
         }
         #endregion
         
-        private void Fire(Zombie targetZombie)
+        protected virtual void Fire()
         {
             var bullet =
                 _masterObjectPooler.GetObjectComponent<Projectile>(projectilePool.PoolName, shootPoint.position, shootPoint.rotation);
 
-            bullet.Init(targetZombie, Damage, projectilePool);
+            bullet.Init(TargetZombie, Damage, projectilePool);
         }
     }
 }

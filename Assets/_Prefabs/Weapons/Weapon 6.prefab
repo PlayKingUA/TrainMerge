@@ -4950,7 +4950,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5178245717416173992}
-  - component: {fileID: 7185278281823479843}
+  - component: {fileID: 5381795134768241031}
   m_Layer: 0
   m_Name: Weapon 6
   m_TagString: Untagged
@@ -4975,7 +4975,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7185278281823479843
+--- !u!114 &5381795134768241031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4984,7 +4984,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7587332231606577284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad967150a56041058481cea8256cb95f, type: 3}
+  m_Script: {fileID: 11500000, guid: 31071e557257427ead0934f8f9af0a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 70
@@ -4995,6 +4995,8 @@ MonoBehaviour:
   gunTransform: {fileID: 7772771454202036517}
   shootPoint: {fileID: 4674850418641642810}
   projectilePool: {fileID: 11400000, guid: 8069ab577477ce84995885005b2203dd, type: 2}
+  bulletCount: 3
+  damageCoefficient: 2
 --- !u!1 &7647173795625094641
 GameObject:
   m_ObjectHideFlags: 0

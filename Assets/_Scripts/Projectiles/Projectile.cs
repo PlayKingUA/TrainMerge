@@ -7,28 +7,29 @@ using UnityEngine;
 
 namespace _Scripts.Projectiles
 {
-    public sealed class Projectile : ProjectileBase
+    public class Projectile : ProjectileBase
     {
         #region Variables
         [Space(10)]
         [SerializeField] private float speed;
 
-        [SerializeField] private bool hasShells;
-        [SerializeField, ShowIf(nameof(hasShells))] private ObjectPool shellsPool;
+        [SerializeField] protected bool hasShells;
+        [SerializeField, ShowIf(nameof(hasShells))]
+        protected ObjectPool shellsPool;
         
-        [SerializeField] private bool hasMuzzleflare = true;
+        [SerializeField] protected bool hasMuzzleflare = true;
         [SerializeField, ShowIf(nameof(hasMuzzleflare))]
-        private ObjectPool muzzleflarePool;
+        protected ObjectPool muzzleflarePool;
         
-        [SerializeField] private bool hasImpact = true;
+        [SerializeField] protected bool hasImpact = true;
         [SerializeField, ShowIf(nameof(hasImpact))]
-        private ObjectPool impactPool;
+        protected ObjectPool impactPool;
 
         private Tweener _motionTween;
 
         private const float LifeTime = 3.0f;
 
-        private Coroutine _flyRoutine;
+        protected Coroutine _flyRoutine;
         #endregion
 
         #region Monobehavior Callbacks
@@ -63,7 +64,7 @@ namespace _Scripts.Projectiles
             ReturnToPool();
         }
 
-        private IEnumerator FlyToTarget()
+        protected IEnumerator FlyToTarget()
         {
             float t = 0;
             var _direction = (TargetZombie.ShootPoint.position - LaunchPosition).normalized;
@@ -80,7 +81,6 @@ namespace _Scripts.Projectiles
                     _motionTween = transform.DOMove(TargetZombie.ShootPoint.position, speed).SetSpeedBased();
                 }
 
-                
                 transform.rotation = Quaternion.LookRotation(_direction);
 
                 t += Time.deltaTime;
