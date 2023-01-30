@@ -11,7 +11,7 @@ namespace _Scripts.Projectiles
     {
         #region Variables
         [Space(10)]
-        [SerializeField] private float speed;
+        [SerializeField] protected float speed;
 
         [SerializeField] protected bool hasShells;
         [SerializeField, ShowIf(nameof(hasShells))]
@@ -27,7 +27,7 @@ namespace _Scripts.Projectiles
 
         private Tweener _motionTween;
 
-        private const float LifeTime = 3.0f;
+        protected const float LifeTime = 3.0f;
 
         protected Coroutine _flyRoutine;
         #endregion

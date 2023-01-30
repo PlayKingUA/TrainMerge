@@ -16,12 +16,12 @@ namespace _Scripts.Projectiles
         
         private Collider[] _colliders;
         
-        [ShowInInspector] protected int _damage;
+        [ShowInInspector] protected int Damage;
         [SerializeField] private bool isSplash;
         private float _damageRadius;
 
         private protected MasterObjectPooler MasterObjectPooler;
-        protected ObjectPool _projectilePool;
+        protected ObjectPool ProjectilePool;
 
         #endregion
         
@@ -37,7 +37,7 @@ namespace _Scripts.Projectiles
         
         public virtual void Init(Zombie targetZombie, int damage, ObjectPool objectPool)
         {
-            _projectilePool = objectPool;
+            ProjectilePool = objectPool;
             LaunchPosition = transform.position;
             UpdateTargetZombie(targetZombie);
             
@@ -46,7 +46,7 @@ namespace _Scripts.Projectiles
 
         public void SetDamage(int damage)
         {
-            _damage = damage;
+            Damage = damage;
         }
 
         public virtual void UpdateTargetZombie(Zombie targetZombie)
@@ -56,7 +56,7 @@ namespace _Scripts.Projectiles
         
         protected  virtual void ReturnToPool()
         {
-            MasterObjectPooler.Release(gameObject, _projectilePool.PoolName);
+            MasterObjectPooler.Release(gameObject, ProjectilePool.PoolName);
         }
         
         public virtual void HitZombie(Transform damagePoint = null)
@@ -68,7 +68,7 @@ namespace _Scripts.Projectiles
             for (var i = 0; i < _colliders.Length; i++)
             {
                 if (_colliders[i] == null || !_colliders[i].TryGetComponent(out Zombie zombie)) continue;
-                zombie.GetDamage(_damage);
+                zombie.GetDamage(Damage);
                 if (!isSplash)
                 {
                     break;
