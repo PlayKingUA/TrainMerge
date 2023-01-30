@@ -4995,7 +4995,7 @@ MonoBehaviour:
   gunTransform: {fileID: 267661315275237711}
   shootPoint: {fileID: 4674850418641642810}
   projectilePool: {fileID: 11400000, guid: 55e99204010fd9f45a7862a0e3ab693d, type: 2}
-  bulletCount: 6
+  bulletCount: 7
   damageCoefficient: 2
 --- !u!1 &7647173795625094641
 GameObject:
@@ -5120,6 +5120,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2397241438283685776}
     m_Modifications:
+    - target: {fileID: 2049607262389186972, guid: 0cb0b2abf9c542947973e0f90e7e5f89,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4117232554535227328, guid: 0cb0b2abf9c542947973e0f90e7e5f89,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5139,6 +5144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630792833523978301, guid: 0cb0b2abf9c542947973e0f90e7e5f89,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5947773322928186012, guid: 0cb0b2abf9c542947973e0f90e7e5f89,
         type: 3}

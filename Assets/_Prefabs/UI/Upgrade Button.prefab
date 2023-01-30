@@ -31,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 366985359738286125}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -109,7 +109,7 @@ RectTransform:
   - {fileID: 127331278546164686}
   - {fileID: 7669202957607023791}
   m_Father: {fileID: 366985359738286125}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -557,6 +557,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 257106686798201843, guid: bc84d657b3d2fd448a954565eed9a37f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 888024228550313655, guid: bc84d657b3d2fd448a954565eed9a37f,
         type: 3}
       propertyPath: m_text
@@ -565,7 +570,7 @@ PrefabInstance:
     - target: {fileID: 888024228550313655, guid: bc84d657b3d2fd448a954565eed9a37f,
         type: 3}
       propertyPath: m_fontSize
-      value: 50
+      value: 55.1
       objectReference: {fileID: 0}
     - target: {fileID: 888024228550313655, guid: bc84d657b3d2fd448a954565eed9a37f,
         type: 3}
@@ -631,6 +636,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2830636965969884548, guid: 8ecd17aeceaba4c10b42ac497ccbfcff,
         type: 2}
+    - target: {fileID: 2961575633970646034, guid: bc84d657b3d2fd448a954565eed9a37f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961575633970646034, guid: bc84d657b3d2fd448a954565eed9a37f,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961575633970646034, guid: bc84d657b3d2fd448a954565eed9a37f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961575633970646034, guid: bc84d657b3d2fd448a954565eed9a37f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -220.1335
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961575633970646034, guid: bc84d657b3d2fd448a954565eed9a37f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -94.46677
+      objectReference: {fileID: 0}
     - target: {fileID: 4933899556184600687, guid: bc84d657b3d2fd448a954565eed9a37f,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -655,6 +685,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020835684021237384, guid: bc84d657b3d2fd448a954565eed9a37f,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 61.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020835684021237384, guid: bc84d657b3d2fd448a954565eed9a37f,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5737273575528519308, guid: bc84d657b3d2fd448a954565eed9a37f,
         type: 3}
@@ -711,6 +751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474684040003245583, guid: bc84d657b3d2fd448a954565eed9a37f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7710742948962050874, guid: bc84d657b3d2fd448a954565eed9a37f,
         type: 3}
@@ -826,6 +871,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7932462812411138839}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &697685682317935896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7474684040003245583, guid: bc84d657b3d2fd448a954565eed9a37f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7932462812411138839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4030392460292522711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6483794165693223360, guid: bc84d657b3d2fd448a954565eed9a37f,
@@ -847,12 +898,14 @@ MonoBehaviour:
   states:
   - {fileID: 8855559180567484714}
   - {fileID: 8563112160617582994}
+  - {fileID: 697685682317935896}
   saveKey: WeaponPrice
-  startPrise: 100
-  maxPrise: 1000
-  levelsToMaxPrise: 10
+  baseAmount: 0
+  multiplier: 0
   priseText: {fileID: 7081665991367562656}
   maxUpgrade: 2
+  startUpgrade: 0
+  upgradeStep: 0
   valueBefore: {fileID: 8783128050853019845}
   moreText: {fileID: 8428877985627837092}
   valueAfter: {fileID: 429759256227626009}

@@ -72,8 +72,12 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             {
                 state.SetActive(false);
             }
-
-            states[(int)targetState].SetActive(true);
+            
+            //when we'll have ads
+            //states[(int)targetState].SetActive(true);
+            _button.interactable = targetState == ButtonBuyState.BuyWithMoney;
+            states[(int)ButtonBuyState.BuyWithMoney].SetActive(targetState != ButtonBuyState.MaxLevel);
+            states[(int)ButtonBuyState.MaxLevel].SetActive(targetState == ButtonBuyState.MaxLevel);
         }
 
         protected virtual void UpdateText()

@@ -1,6 +1,4 @@
-﻿using System;
-using _Scripts.Helpers;
-using QFSW.MOP2;
+﻿using QFSW.MOP2;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -12,6 +10,9 @@ namespace _Scripts.Projectiles
         private float _speed;
         
         private MasterObjectPooler _masterObjectPooler;
+
+        private const float LifeTime = 2f;
+
         #endregion
 
         #region Monobehaviour Callbacks
@@ -32,12 +33,12 @@ namespace _Scripts.Projectiles
         }
         #endregion
         
-        public void Init(string poolName, float lifeTime, float speed)
+        public void Init(string poolName, float speed)
         {
             _speed = speed;
             _poolName = poolName;
             
-            Invoke(nameof(ReleaseObject), lifeTime);
+            Invoke(nameof(ReleaseObject), LifeTime);
         }
 
         public void ReleaseObject()

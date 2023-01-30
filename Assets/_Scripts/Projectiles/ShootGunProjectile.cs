@@ -30,19 +30,20 @@ namespace _Scripts.Projectiles
             if (hasMuzzleflare)
                 MasterObjectPooler.GetObject(muzzleflarePool.PoolName, transform.position, transform.rotation);
 
+            var yDegrees = transform.rotation.eulerAngles.y;
+            
             // straight bullet
-            if (bulletCount % 2 > 0)
+            if (bulletCount % 2 == 1)
             {
-                CreateProjectile(transform.rotation);
+                CreateProjectile(Quaternion.Euler(0f, yDegrees, 0f));
                 bulletCount--;
             }
-            var yDegrees = transform.rotation.eulerAngles.y;
-                     
+
             var angleStep = fieldOfShooting / bulletCount;
-            for (var i = 1; i < bulletCount + 1; i++)
+            for (var i = 0; i < bulletCount; i++)
             {
                 var  direction = i % 2 == 0 ? 1 : - 1;
-                var degrees = direction * angleStep * (i - i % 2);
+                var degrees = direction * angleStep * (1 + i / 2);
                 CreateProjectile(Quaternion.Euler(0f, yDegrees + degrees, 0f));
             }
         }
@@ -54,7 +55,7 @@ namespace _Scripts.Projectiles
             
             var projectile = MasterObjectPooler.GetObjectComponent<ProjectileParticle>(projectileParticles.PoolName,
                 transform.position, targetRotation);
-            projectile.Init(projectileParticles.PoolName, LifeTime, speed);
+            projectile.Init(projectileParticles.PoolName, speed);
         }
 
         public override void HitZombie(Transform damagePoint = null)

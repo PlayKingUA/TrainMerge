@@ -27,7 +27,7 @@ namespace _Scripts.Projectiles
 
         private Tweener _motionTween;
 
-        protected const float LifeTime = 3.0f;
+        private const float LifeTime = 3.0f;
 
         protected Coroutine _flyRoutine;
         #endregion
