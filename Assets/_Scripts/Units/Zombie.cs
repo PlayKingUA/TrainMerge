@@ -131,9 +131,8 @@ namespace _Scripts.Units
             
             transform.GetChild(0).localPosition = new Vector3(deltaX, 0, 0);
             var boxCollider = GetComponent<BoxCollider>();
-            var targetCenter = boxCollider.center;
-            targetCenter.x = deltaX;
-            boxCollider.center = targetCenter;
+            var center = boxCollider.center;
+            boxCollider.center = new Vector3(deltaX, center.y, center.z);
 
             Health = (int) (Health + (_levelManager.CurrentLevel - 1) * hpPerLevel);
         }

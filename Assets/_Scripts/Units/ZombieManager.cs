@@ -20,6 +20,7 @@ namespace _Scripts.Units
         #region Variables
         [SerializeField] private Transform creatingPositionFrom;
         [SerializeField] private Transform creatingPositionTo;
+        [SerializeField] private Transform zombieTransform;
         [SerializeField] private Zombie usualZombie;
         [SerializeField] private Zombie fastZombie;
         [SerializeField] private Zombie bigZombie;
@@ -147,7 +148,7 @@ namespace _Scripts.Units
 
         private void CreateZombie(Zombie targetZombie)
         {
-            var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform);
+            var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform.position, transform.rotation, zombieTransform);
             
             zombie.Init(_chunkMovement.CurrentChunk, ZombieDelta);
             
@@ -182,8 +183,8 @@ namespace _Scripts.Units
             return targetZombie;
         }
 
-        private float ZombieDelta => Random.Range(creatingPositionFrom.position.x,
-            creatingPositionTo.position.x);
+        private float ZombieDelta => Random.Range(creatingPositionFrom.localPosition.x,
+            creatingPositionTo.localPosition.x);
         #endregion
 
         public Zombie GetNearestZombie(Transform fromTransform)

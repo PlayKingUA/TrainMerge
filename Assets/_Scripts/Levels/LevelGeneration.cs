@@ -80,7 +80,7 @@ namespace _Scripts.Levels
 
         public GameObject RandomChunk()
         {
-            var targetChunk = Random.Range(0, 4) switch
+            var targetChunk = Random.Range(0, 3) switch
             {
                 0 => turnChunk,
                 1 => turnTwoChunk,

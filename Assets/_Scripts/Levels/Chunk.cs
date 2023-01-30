@@ -1,7 +1,6 @@
 using _Scripts.Train;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Zenject;
 
 namespace _Scripts.Levels
 {
@@ -12,14 +11,10 @@ namespace _Scripts.Levels
         [SerializeField] private Transform bezierPoint2;
         [SerializeField] private Transform finishPosition;
 
-        [HideInInspector] public Chunk nextChunk; 
-        
-        [Inject] private LevelGeneration _levelGeneration;
+        [HideInInspector] public Chunk nextChunk;
 
         [SerializeField, ReadOnly] private float length;
         private const int SegmentsCount = 100;
-
-        private bool _isCreated;
 
         public float Length => length;
         #endregion
@@ -29,7 +24,7 @@ namespace _Scripts.Levels
             bezierPoint2.position,
             finishPosition.position, t);
         #endregion
-        
+
         public float GetCurrentProgress(Vector3 fromPoint)
         {
             var progress = 0f;
@@ -62,24 +57,13 @@ namespace _Scripts.Levels
             }
         }
         
-        private void OnTriggerEnter(Collider other)
-        {
-            if (_isCreated || !other.TryGetComponent(out Train.Train train)) return;
-            
-            _levelGeneration.CreateChunk(finishPosition);
-            _isCreated = true;
-        }
-        
         private void OnDrawGizmos() {
             const int segmentsCount = 30;
-            var previousPoint = startPosition.position;
 
             for (var i = 0; i < segmentsCount + 1; i++) {
                 var t = (float) i / segmentsCount;
                 var point = GetPoint(t);
-                var point2 = point + Vector3.up;
-                Gizmos.DrawLine(point, point2);
-                previousPoint = point;
+                Gizmos.DrawLine(point, point + Vector3.up);
             }
         }
     }
