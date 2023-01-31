@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _Scripts.Game_States;
 using _Scripts.Weapons;
 using DG.Tweening;
@@ -32,6 +33,8 @@ namespace _Scripts.Slot_Logic
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private WeaponManager _weaponManager;
         [Inject] private SlotManager _slotManager;
+        [Inject] private Train.Train _train;
+        
         public SlotState SlotState { get; private set; }
         private Weapon _weapon;
         
@@ -82,7 +85,7 @@ namespace _Scripts.Slot_Logic
         public void SetWeaponWithMotion(Weapon weapon)
         {
             SetWeaponToSlot(weapon);
-            MoveWeaponToPosition();
+            StartCoroutine(MoveWeaponToPosition());
             _slotManager.RefreshSlots(this);
             _weapon.transform.SetParent(weaponPosition);
         }
@@ -156,12 +159,21 @@ namespace _Scripts.Slot_Logic
             return _weapon;
         }
 
-        private void MoveWeaponToPosition()
+        private IEnumerator MoveWeaponToPosition()
         {
-            _motionTween.Kill();
-            _motionTween = _weapon.transform.DOMove(weaponPosition.position, motionTime);
+            var startPosition = _weapon.transform.position;
+            var currentMotionTime = 0f;
+            while (currentMotionTime < motionTime)
+            {
+                _weapon.transform.position =
+                    Vector3.Lerp(startPosition, weaponPosition.position, currentMotionTime / motionTime);
+                currentMotionTime += Time.deltaTime;
+                yield return null;
+            }
+
+            _weapon.transform.position = weaponPosition.position;
         }
-        
+
         public void ChangeColor(Weapon weapon = null)
         {
             var color = empty;

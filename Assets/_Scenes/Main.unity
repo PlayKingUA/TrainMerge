@@ -3575,7 +3575,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845429543}
-  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3917,7 +3917,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4319,6 +4319,8 @@ MonoBehaviour:
   health: 100
   speedForDistance: 25
   speedUp: 1.3
+  menuSpeed: 2
+  gameSpeed: 5
 --- !u!65 &993770736
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7016,6 +7018,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   yWeaponPosition: 1.75
+  zWeaponPosition: 0.3
   selectedWeapon: {fileID: 0}
   currentDragState: 0
   previousSlot: {fileID: 0}

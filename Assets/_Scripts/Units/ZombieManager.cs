@@ -58,10 +58,12 @@ namespace _Scripts.Units
         private void Start()
         {
             _gameStateManager.AttackStarted += StartCreatingZombies;
-            _gameStateManager.AttackStarted += () => { _chunkMovement.ChangeState(true);};
+            _gameStateManager.AttackStarted += () => {  _chunkMovement.SetSpeed(_train.TrainSpeed);};
             _gameStateManager.Fail += ZombieWin;
 
             _speedUpLogic.OnTapCountChanged += () => { _chunkMovement.SetSpeed(_train.TrainSpeed); };
+            
+            StartCoroutine(StartMotion());
         }
         #endregion
 
@@ -85,7 +87,14 @@ namespace _Scripts.Units
         public void InitMotion(Chunk firstChunk)
         {
             _chunkMovement.Init(firstChunk);
+        }
+        
+        private IEnumerator StartMotion()
+        {
+            // wait for init
+            yield return new WaitForSeconds(0.2f);
             _chunkMovement.SetSpeed(_train.TrainSpeed);
+            _chunkMovement.ChangeState(true);
         }
         #endregion
 

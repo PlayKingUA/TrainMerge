@@ -84,6 +84,9 @@ MonoBehaviour:
   attackRadius: 18
   appearFx: {fileID: 5523813123809721985}
   gunTransform: {fileID: 52878658045291540}
+  gunRenderer: {fileID: 2923461549152673773}
+  baseRenderer: {fileID: 8831798576669875946}
+  transparentMaterial: {fileID: 2100000, guid: fc45a6f54dcbbcd41ae6781746e2cf7c, type: 2}
   shootPoint: {fileID: 2270932255952045801}
   projectilePool: {fileID: 11400000, guid: 28fff9f60737d3d47bc12374324fba02, type: 2}
 --- !u!1 &5523813123809721985
@@ -5044,6 +5047,11 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 315976689812156491, guid: 9836b8faa286a504c8e75c384ab2955e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8cb6072e49e9d254a97f778d74604fb1, type: 2}
     - target: {fileID: 3191775816525644722, guid: 9836b8faa286a504c8e75c384ab2955e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5167,9 +5175,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3238277154635296678}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &2923461549152673773 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 315976689812156491, guid: 9836b8faa286a504c8e75c384ab2955e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3238277154635296678}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7700019428077512069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5056237491693423139, guid: 9836b8faa286a504c8e75c384ab2955e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3238277154635296678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8831798576669875946 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6224099930642444620, guid: 9836b8faa286a504c8e75c384ab2955e,
     type: 3}
   m_PrefabInstance: {fileID: 3238277154635296678}
   m_PrefabAsset: {fileID: 0}

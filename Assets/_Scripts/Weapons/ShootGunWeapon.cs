@@ -33,7 +33,7 @@ namespace _Scripts.Weapons
 
         private void GetAims()
         {
-            _zombieManager.AliveZombies.Sort((x, y) =>
+            ZombieManager.AliveZombies.Sort((x, y) =>
             {
                 var position = transform.position;
                 var distanceToA = Vector3.Distance(position, x.transform.position);
@@ -42,7 +42,7 @@ namespace _Scripts.Weapons
             });
 
             _targetZombies = new List<Zombie>();
-            foreach (var zombie in _zombieManager.AliveZombies)
+            foreach (var zombie in ZombieManager.AliveZombies)
             {
                 var distance = Vector3.Distance(transform.position, 
                     zombie.transform.position);

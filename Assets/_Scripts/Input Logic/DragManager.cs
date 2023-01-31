@@ -13,6 +13,7 @@ namespace _Scripts.Input_Logic
         #region Variables
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float yWeaponPosition;
+        [SerializeField] private float zWeaponPosition;
 
         [Space, SerializeField, ReadOnly] private Weapon selectedWeapon;
         [SerializeField, ReadOnly] private DragState currentDragState;
@@ -59,6 +60,7 @@ namespace _Scripts.Input_Logic
             }
 
             selectedWeapon = weaponSlot.GetWeaponFromSlot();
+            selectedWeapon.SetGreenColor(true);
             previousSlot = weaponSlot;
             weaponSlot.ClearSlot();
 
@@ -79,6 +81,11 @@ namespace _Scripts.Input_Logic
 
         private void EndDragging()
         {
+            if (selectedWeapon != null)
+            {
+                selectedWeapon.SetGreenColor(false);
+            }
+
             selectedWeapon = null;
             selectedSlot = null;
             currentDragState = DragState.Empty;
@@ -112,7 +119,7 @@ namespace _Scripts.Input_Logic
                 Camera.main.WorldToScreenPoint(selectedWeapon.transform.position).z);
 
             var worldPosition = Camera.main.ScreenToWorldPoint(currentPosition);
-            selectedWeapon.transform.position = new Vector3(worldPosition.x, yWeaponPosition, worldPosition.z);
+            selectedWeapon.transform.position = new Vector3(worldPosition.x, yWeaponPosition, worldPosition.z + zWeaponPosition);
         }
 
         private void SetWeapon()
