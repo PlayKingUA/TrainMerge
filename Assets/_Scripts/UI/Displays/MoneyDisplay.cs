@@ -30,7 +30,11 @@ namespace _Scripts.UI.Displays
         public static string MoneyText(int value)
         {
             var result = value.ToString("F0");
-            if (value > 1e6)
+            if (value > 1e9)
+            {
+                result = (value / 1e9).ToString(Format) + 'B';
+            }
+            else if (value > 1e6)
             {
                 result = (value / 1e6).ToString(Format) + 'M';
             }

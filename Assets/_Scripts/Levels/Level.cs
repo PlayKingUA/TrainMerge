@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Scripts.Levels
@@ -17,6 +18,7 @@ namespace _Scripts.Levels
         public List<Wave> ZombiesWaves => new List<Wave>(zombiesWaves);
         #endregion
 
+        [ShowInInspector, ReadOnly]
         public ZombieCount ZombieCount => new (
             zombiesWaves.SelectMany(wave => wave.subWaves).Sum(subWave => subWave.ZombieCount.UsualZombieCount),
             zombiesWaves.SelectMany(wave => wave.subWaves).Sum(subWave => subWave.ZombieCount.FastZombieCount),

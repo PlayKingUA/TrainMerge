@@ -17,7 +17,8 @@ namespace _Scripts.Units
     {
         #region Variables
         [SerializeField] private float hpPerLevel;
-        [Space]
+        [SerializeField] private float dmgPerLevel;
+        [Space(10)]
         [SerializeField] private ZombieType zombieType;
         [SerializeField] private Transform shootPoint;
         [Space]
@@ -48,6 +49,7 @@ namespace _Scripts.Units
         public ZombieType ZombieType => zombieType;
         
         public int StartHp(int currentLevel) => (int) (Health + (currentLevel - 1) * hpPerLevel);
+
         #endregion
 
         #region Monobehaviour Callbacks
@@ -135,6 +137,7 @@ namespace _Scripts.Units
             boxCollider.center = new Vector3(deltaX, center.y, center.z);
 
             Health = (int) (Health + (_levelManager.CurrentLevel - 1) * hpPerLevel);
+            Damage = (int) (Damage + (_levelManager.CurrentLevel - 1) * dmgPerLevel);
         }
         
         public void Attack()

@@ -900,12 +900,14 @@ MonoBehaviour:
   - {fileID: 8563112160617582994}
   - {fileID: 697685682317935896}
   saveKey: WeaponPrice
-  baseAmount: 0
-  multiplier: 0
+  startPrice: 100
+  baseAmount: 200
+  multiplier: 1
+  powMultiplier: 1
   priseText: {fileID: 7081665991367562656}
   maxUpgrade: 2
-  startUpgrade: 0
-  upgradeStep: 0
+  startUpgrade: 1
+  upgradeStep: 0.1
   valueBefore: {fileID: 8783128050853019845}
   moreText: {fileID: 8428877985627837092}
   valueAfter: {fileID: 429759256227626009}

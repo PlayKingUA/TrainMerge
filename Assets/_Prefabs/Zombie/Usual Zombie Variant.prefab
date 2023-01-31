@@ -95,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 8692823435732292196, guid: 624feb8c57101ad45a5aeb0533554b8c,
         type: 3}
       propertyPath: damage
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8692823435732292196, guid: 624feb8c57101ad45a5aeb0533554b8c,
         type: 3}
@@ -112,6 +112,11 @@ PrefabInstance:
       propertyPath: shootPoint
       value: 
       objectReference: {fileID: 841232063450421508}
+    - target: {fileID: 8692823435732292196, guid: 624feb8c57101ad45a5aeb0533554b8c,
+        type: 3}
+      propertyPath: dmgPerLevel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8692823435732292196, guid: 624feb8c57101ad45a5aeb0533554b8c,
         type: 3}
       propertyPath: movementSpeed
