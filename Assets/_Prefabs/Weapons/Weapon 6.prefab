@@ -4987,7 +4987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31071e557257427ead0934f8f9af0a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 70
+  health: 700
   damage: 150
   attackSpeedPerSecond: 3
   attackRadius: 14
@@ -5125,6 +5125,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_machinegun_blue_3
       objectReference: {fileID: 0}
+    - target: {fileID: 2855263639004993725, guid: 327ab2408842c51428ea722d0dcf8e58,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855263639004993725, guid: 327ab2408842c51428ea722d0dcf8e58,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3437983028024584377, guid: 327ab2408842c51428ea722d0dcf8e58,
         type: 3}
       propertyPath: m_RootOrder
@@ -5214,6 +5224,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610849865153762262, guid: 327ab2408842c51428ea722d0dcf8e58,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610849865153762262, guid: 327ab2408842c51428ea722d0dcf8e58,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6899580325282231573, guid: 327ab2408842c51428ea722d0dcf8e58,
         type: 3}

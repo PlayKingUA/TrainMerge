@@ -60,7 +60,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         #endregion
         
         #region Display
-        protected virtual void ChangeButtonState(int moneyCount)
+        protected virtual void ChangeButtonState(float moneyCount)
         {
             _buttonState = (moneyCount >= CurrentPrise)
                 ? ButtonBuyState.BuyWithMoney
@@ -97,8 +97,8 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             switch (ButtonState)
             {
                 case ButtonBuyState.BuyWithMoney:
-                    ClickEvent();
                     _moneyWallet.Get(CurrentPrise);
+                    ClickEvent();
                     break;
                 case ButtonBuyState.BuyWithADs:
                     //ToDo show add
@@ -131,7 +131,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         }
         #endregion
 
-        private void CheckMoney(int moneyCount)
+        private void CheckMoney(float moneyCount)
         {
             ChangeButtonState(moneyCount);
         }

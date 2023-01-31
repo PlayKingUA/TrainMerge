@@ -4987,7 +4987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad967150a56041058481cea8256cb95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10000
   damage: 450
   attackSpeedPerSecond: 3
   attackRadius: 13
@@ -5213,6 +5213,16 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1923477842536636117, guid: 218dd286e3dcb5e48ae929fbab1c3ce1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1923477842536636117, guid: 218dd286e3dcb5e48ae929fbab1c3ce1,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5491686916661363483, guid: 218dd286e3dcb5e48ae929fbab1c3ce1,
         type: 3}
       propertyPath: m_Enabled
@@ -5221,6 +5231,16 @@ PrefabInstance:
     - target: {fileID: 7974343192776480541, guid: 218dd286e3dcb5e48ae929fbab1c3ce1,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460349172790612251, guid: 218dd286e3dcb5e48ae929fbab1c3ce1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460349172790612251, guid: 218dd286e3dcb5e48ae929fbab1c3ce1,
+        type: 3}
+      propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

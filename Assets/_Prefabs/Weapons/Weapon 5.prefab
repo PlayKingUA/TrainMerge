@@ -4956,7 +4956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036984f945f64d21b5adb88e81194d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 130
+  health: 300
   damage: 25
   attackSpeedPerSecond: 20
   attackRadius: 18
@@ -5091,6 +5091,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3008647061072044549, guid: 2220a95c6592ba2438fc2b83d1f412c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3008647061072044549, guid: 2220a95c6592ba2438fc2b83d1f412c1,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3524209388454449606, guid: 2220a95c6592ba2438fc2b83d1f412c1,
         type: 3}
       propertyPath: m_Enabled
@@ -5169,6 +5179,16 @@ PrefabInstance:
     - target: {fileID: 4146672123037292906, guid: 2220a95c6592ba2438fc2b83d1f412c1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6038135065798975730, guid: 2220a95c6592ba2438fc2b83d1f412c1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6038135065798975730, guid: 2220a95c6592ba2438fc2b83d1f412c1,
+        type: 3}
+      propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9012150237503244836, guid: 2220a95c6592ba2438fc2b83d1f412c1,

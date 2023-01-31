@@ -4987,7 +4987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad967150a56041058481cea8256cb95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 80
+  health: 25000
   damage: 1000
   attackSpeedPerSecond: 1
   attackRadius: 20
@@ -5161,6 +5161,26 @@ PrefabInstance:
     - target: {fileID: 4427045230820919512, guid: 8029798d73fc9294e9d8825ab54d5f4f,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047610794079771001, guid: 8029798d73fc9294e9d8825ab54d5f4f,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047610794079771001, guid: 8029798d73fc9294e9d8825ab54d5f4f,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078947629884504585, guid: 8029798d73fc9294e9d8825ab54d5f4f,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078947629884504585, guid: 8029798d73fc9294e9d8825ab54d5f4f,
+        type: 3}
+      propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8179953582905926166, guid: 8029798d73fc9294e9d8825ab54d5f4f,

@@ -5118,6 +5118,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2397241438283685776}
     m_Modifications:
+    - target: {fileID: 405761398631426675, guid: ac8dc4f496d2c684bb9021f32ef62a89,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 405761398631426675, guid: ac8dc4f496d2c684bb9021f32ef62a89,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1579251688783614236, guid: ac8dc4f496d2c684bb9021f32ef62a89,
         type: 3}
       propertyPath: m_RootOrder
@@ -5192,6 +5202,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tower_gatling_blue_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769114972201698431, guid: ac8dc4f496d2c684bb9021f32ef62a89,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769114972201698431, guid: ac8dc4f496d2c684bb9021f32ef62a89,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6509975870637019232, guid: ac8dc4f496d2c684bb9021f32ef62a89,
         type: 3}

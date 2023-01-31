@@ -22,12 +22,12 @@ namespace _Scripts.UI.Displays
         }
         #endregion
         
-        private void Display(int value)
+        private void Display(float value)
         {
             moneyText.text = MoneyText(value);
         }
 
-        public static string MoneyText(int value)
+        public static string MoneyText(float value)
         {
             var result = value.ToString("F0");
             if (value > 1e9)
