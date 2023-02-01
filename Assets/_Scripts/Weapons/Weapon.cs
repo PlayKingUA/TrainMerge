@@ -26,6 +26,7 @@ namespace _Scripts.Weapons
         [Inject] protected ZombieManager ZombieManager;
         [Inject] private UpgradeMenu _upgradeMenu;
         [Inject] private SpeedUpLogic _speedUpLogic;
+        [Inject] private VibrationManager _vibrationManager;
 
         private Quaternion _startRotation;
         private Material _gunMaterial;

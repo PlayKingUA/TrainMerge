@@ -1604,6 +1604,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274370132}
   m_CullTransparentMesh: 1
+--- !u!1 &296699080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 296699081}
+  m_Layer: 0
+  m_Name: Vibration Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &296699081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296699080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 404311227}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &296891448
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,6 +2320,7 @@ Transform:
   - {fileID: 1736867194}
   - {fileID: 463774466}
   - {fileID: 67035770}
+  - {fileID: 296699081}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3826,7 +3858,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845429543}
-  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4304,7 +4336,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.33264688, y: 0.000000016226503, z: -0.0000000057236487, w: 0.94305146}
+  m_LocalRotation: {x: 0.33264688, y: -0.000000016226503, z: 0.0000000057236487, w: 0.94305146}
   m_LocalPosition: {x: 0.651905, y: 5.4932275, z: 0.907537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5354,6 +5386,7 @@ MonoBehaviour:
   levelGeneration: {fileID: 1757540401}
   tutorialManager: {fileID: 67035771}
   tutorialWindow: {fileID: 1890292088}
+  vibrationManager: {fileID: 0}
 --- !u!1 &1094674458
 GameObject:
   m_ObjectHideFlags: 0

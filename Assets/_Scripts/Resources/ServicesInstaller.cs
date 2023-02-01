@@ -32,6 +32,7 @@ namespace _Scripts.Resources
         [SerializeField] private LevelGeneration levelGeneration;
         [SerializeField] private TutorialManager tutorialManager;
         [SerializeField] private TutorialWindow tutorialWindow;
+        [SerializeField] private VibrationManager vibrationManager;
         
         public override void InstallBindings()
         {
@@ -50,6 +51,7 @@ namespace _Scripts.Resources
             Container.Bind<LevelGeneration>().FromInstance(levelGeneration).AsSingle().NonLazy();
             Container.Bind<TutorialManager>().FromInstance(tutorialManager).AsSingle().NonLazy();
             Container.Bind<TutorialWindow>().FromInstance(tutorialWindow).AsSingle().NonLazy();
+            Container.Bind<VibrationManager>().FromInstance(vibrationManager).AsSingle().NonLazy();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using _Scripts.Game_States;
 using _Scripts.Weapons;
 using DG.Tweening;
+using Lofelt.NiceVibrations;
 using UnityEngine;
 using Zenject;
 
@@ -34,6 +35,7 @@ namespace _Scripts.Slot_Logic
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private WeaponManager _weaponManager;
         [Inject] private SlotManager _slotManager;
+        [Inject] private VibrationManager _vibrationManager;
 
         public SlotState SlotState { get; private set; }
         private Weapon _weapon;
@@ -135,6 +137,8 @@ namespace _Scripts.Slot_Logic
 
             SpawnWeapon(targetLevel, true);
             BounceWeapon();
+            
+            _vibrationManager.Haptic(HapticPatterns.PresetType.MediumImpact);
         }
 
         private bool CanUpgrade(Weapon weapon)
