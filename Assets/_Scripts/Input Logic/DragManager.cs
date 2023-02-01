@@ -22,6 +22,8 @@ namespace _Scripts.Input_Logic
 
         [Inject] private InputHandler _inputHandler;
         [Inject] private GameStateManager _gameStateManager;
+        
+        public event Action OnMerge;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -126,7 +128,8 @@ namespace _Scripts.Input_Logic
         {
             if (selectedSlot)
             {
-                selectedSlot.Refresh(selectedWeapon, previousSlot);
+                if (selectedSlot.Refresh(selectedWeapon, previousSlot))
+                    OnMerge?.Invoke();
             }
             else
             {

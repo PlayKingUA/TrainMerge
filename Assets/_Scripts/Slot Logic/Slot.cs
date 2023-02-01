@@ -12,6 +12,7 @@ namespace _Scripts.Slot_Logic
     {
         #region Variables
         [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private GameObject pointer;
         [Space(10)]
         [SerializeField] private Color empty;
         [SerializeField] private Color freePlace;
@@ -27,14 +28,13 @@ namespace _Scripts.Slot_Logic
         private float scaleEffect;
         [SerializeField] private float scaleEffectDuration;
         
-        private Tween _motionTween;
         private Tween _scaleTween;
+        private Coroutine _motionCoroutine;
         
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private WeaponManager _weaponManager;
         [Inject] private SlotManager _slotManager;
-        [Inject] private Train.Train _train;
-        
+
         public SlotState SlotState { get; private set; }
         private Weapon _weapon;
         
@@ -49,6 +49,11 @@ namespace _Scripts.Slot_Logic
         #endregion
 
         #region Monobehavior Callbacks
+        private void Awake()
+        {
+            EnablePointer(false);
+        }
+
         private void Start()
         {
             _gameStateManager.AttackStarted += StartLevel;
@@ -74,6 +79,9 @@ namespace _Scripts.Slot_Logic
 
         public void ClearSlot()
         {
+            if (_motionCoroutine != null)
+                StopCoroutine(_motionCoroutine);
+            
             _weapon = null;
             SlotState = SlotState.Empty;
             ChangeColor();
@@ -85,30 +93,38 @@ namespace _Scripts.Slot_Logic
         public void SetWeaponWithMotion(Weapon weapon)
         {
             SetWeaponToSlot(weapon);
-            StartCoroutine(MoveWeaponToPosition());
+            _motionCoroutine = StartCoroutine(MoveWeaponToPosition());
             _slotManager.RefreshSlots(this);
             _weapon.transform.SetParent(weaponPosition);
         }
         
-        public void Refresh(Weapon weapon, Slot previousSlot)
+        /// <summary>
+        /// Returns true if upgrades weapon
+        /// </summary>
+        /// <param name="weapon"></param>
+        /// <param name="previousSlot"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public bool Refresh(Weapon weapon, Slot previousSlot)
         {
             switch (SlotState)
             {
                 case SlotState.Busy when CanUpgrade(weapon):
                     Upgrade(weapon);
-                    return;
+                    return true;
                 case SlotState.Busy when !CanUpgrade(weapon):
                     // swap
                     _weapon.ReturnToPreviousPos(previousSlot);
                     ClearSlot();
                     SetWeaponWithMotion(weapon);
-                    return;
+                    break;
                 case SlotState.Empty:
                     SetWeaponWithMotion(weapon);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            return false;
         }
         
         private void Upgrade(Weapon weapon)
@@ -201,6 +217,11 @@ namespace _Scripts.Slot_Logic
             _scaleTween = weaponPosition.
                 DOScale(weaponPosition.localScale * scaleEffect, scaleEffectDuration / 2)
                 .SetLoops(2, LoopType.Yoyo);
+        }
+
+        public void EnablePointer(bool isEnabled)
+        {
+            pointer.SetActive(isEnabled && _weapon != null);
         }
         
         #region Save/Load

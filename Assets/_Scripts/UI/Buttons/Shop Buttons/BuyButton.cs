@@ -28,6 +28,8 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         protected int CurrentLevel;
         
         [Inject] protected MoneyWallet MoneyWallet;
+
+        public event Action OnBought;
         #endregion
 
         #region Properties
@@ -115,6 +117,8 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             CurrentLevel++;
             UpdateText();
             Save();
+            
+            OnBought?.Invoke();
         }
         #endregion
         
@@ -136,6 +140,10 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             ChangeButtonState(moneyCount);
         }
 
+        public void SetInteractable(bool isInteractable)
+        {
+            _button.interactable = isInteractable;
+        }
         private int GetPrise(int level)
         {
             if (level == 0)

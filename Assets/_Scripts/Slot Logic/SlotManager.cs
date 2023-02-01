@@ -14,6 +14,8 @@ namespace _Scripts.Slot_Logic
         [Space]
         [SerializeField, ReadOnly] private List<Slot> emptySlots;
         [SerializeField, ReadOnly] private List<Slot> busySlots;
+
+        private bool _isTutorialArrows;
         #endregion
 
         #region Properties
@@ -49,6 +51,11 @@ namespace _Scripts.Slot_Logic
                         throw new ArgumentOutOfRangeException();
                 }
             }
+            
+            if (_isTutorialArrows)
+            {
+                ShowTutorialArrows();
+            }
         }
 
         public void CreateNewWeapon(int targetLevel = 0)
@@ -82,6 +89,21 @@ namespace _Scripts.Slot_Logic
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+
+            if (_isTutorialArrows)
+            {
+                ShowTutorialArrows();
+            }
+        }
+        
+        public void ShowTutorialArrows(bool isShown = true)
+        {
+            _isTutorialArrows = isShown;
+
+            foreach (var slot in slots)
+            {
+                slot.EnablePointer(_isTutorialArrows);
             }
         }
     }

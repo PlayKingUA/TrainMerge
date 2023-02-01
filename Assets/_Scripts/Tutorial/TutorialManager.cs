@@ -1,5 +1,7 @@
 using System;
 using _Scripts.Game_States;
+using _Scripts.Input_Logic;
+using _Scripts.Slot_Logic;
 using _Scripts.UI.Tutorial;
 using _Scripts.Units;
 using _Scripts.Weapons;
@@ -20,7 +22,8 @@ namespace _Scripts.Tutorial
         [Inject] private ZombieManager _zombieManager;
         [Inject] private SpeedUpLogic _speedUpLogic;
         [Inject] private GameStateManager _gameStateManager;
-        [Inject] private WeaponManager _weaponManager;
+        [Inject] private SlotManager _slotManager;
+        [Inject] private DragManager _dragManager;
         #endregion
 
         #region Monobehaviour Callbacks
@@ -67,6 +70,7 @@ namespace _Scripts.Tutorial
                     UpgradeDamage();
                     break;
                 case TutorialStates.Finished:
+                    FinishTutorial();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -77,7 +81,7 @@ namespace _Scripts.Tutorial
         {
             _tutorialWindow.SetState(TutorialWindowState.BuyWeapon);
 
-            _weaponManager.OnNewWeapon += () =>
+            _tutorialWindow.OnWeaponBuy += () =>
             {
                 _tutorialState++;
                 ChangeState();
@@ -101,7 +105,6 @@ namespace _Scripts.Tutorial
             _gameStateManager.Victory += () =>
             {
                 _tutorialState++;
-                
                 Save();
             };
         }
@@ -122,17 +125,42 @@ namespace _Scripts.Tutorial
 
         private void MergeTutorial()
         {
-            
+            _tutorialWindow.SetState(TutorialWindowState.MergeWeapons);
+            _slotManager.ShowTutorialArrows();
+
+            _dragManager.OnMerge += () =>
+            {
+                _slotManager.ShowTutorialArrows(false);
+                _tutorialState++;
+                ChangeState();
+                Save();
+            };
         }
         
         private void OpenUpgradeMenu()
         {
-            
+            _tutorialWindow.SetState(TutorialWindowState.UpgradePanel);
+
+            _tutorialWindow.OnUpgradeMenuOpen += () =>
+            {
+                _tutorialState++;
+                ChangeState();
+            };
         }
         
         private void UpgradeDamage()
         {
-            // on upgrade
+            _tutorialWindow.SetState(TutorialWindowState.UpgradeDamage);
+            _tutorialWindow.OnUpgradeDamage += () =>
+            {
+                _tutorialState++;
+                ChangeState();
+                Save();
+            };
+        }
+
+        private void FinishTutorial()
+        {
             _tutorialWindow.SetState(TutorialWindowState.Nothing);
         }
         #endregion
