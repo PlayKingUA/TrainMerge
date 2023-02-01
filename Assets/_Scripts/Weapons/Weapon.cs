@@ -148,7 +148,7 @@ namespace _Scripts.Weapons
             {
                 _tween = transform.
                     DOShakePosition(_speedUpLogic.EffectDuration, _speedUpLogic.EffectPower * _maxShakeStrength)
-                    .SetLoops(-1, LoopType.Yoyo);
+                    .SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
             }
         }
         #endregion

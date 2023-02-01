@@ -3,7 +3,9 @@ using _Scripts.Input_Logic;
 using _Scripts.Levels;
 using _Scripts.Money_Logic;
 using _Scripts.Slot_Logic;
+using _Scripts.Tutorial;
 using _Scripts.UI;
+using _Scripts.UI.Tutorial;
 using _Scripts.UI.Upgrade;
 using _Scripts.UI.Windows;
 using _Scripts.Units;
@@ -28,6 +30,8 @@ namespace _Scripts.Resources
         [SerializeField] private SpeedUpLogic speedUpLogic;
         [SerializeField] private UpgradeMenu upgradeMenu;
         [SerializeField] private LevelGeneration levelGeneration;
+        [SerializeField] private TutorialManager tutorialManager;
+        [SerializeField] private TutorialWindow tutorialWindow;
         
         public override void InstallBindings()
         {
@@ -44,6 +48,8 @@ namespace _Scripts.Resources
             Container.Bind<SpeedUpLogic>().FromInstance(speedUpLogic).AsSingle().NonLazy();
             Container.Bind<UpgradeMenu>().FromInstance(upgradeMenu).AsSingle().NonLazy();
             Container.Bind<LevelGeneration>().FromInstance(levelGeneration).AsSingle().NonLazy();
+            Container.Bind<TutorialManager>().FromInstance(tutorialManager).AsSingle().NonLazy();
+            Container.Bind<TutorialWindow>().FromInstance(tutorialWindow).AsSingle().NonLazy();
         }
     }
 }
