@@ -5126,6 +5126,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_napalm_blue_3
       objectReference: {fileID: 0}
+    - target: {fileID: 121998065393778432, guid: 218dd286e3dcb5e48ae929fbab1c3ce1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 791151618457658810, guid: 218dd286e3dcb5e48ae929fbab1c3ce1,
         type: 3}
       propertyPath: m_RootOrder

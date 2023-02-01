@@ -5248,6 +5248,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_rapid_yellow_3
       objectReference: {fileID: 0}
+    - target: {fileID: 6467570384754292774, guid: 0cb0b2abf9c542947973e0f90e7e5f89,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cb0b2abf9c542947973e0f90e7e5f89, type: 3}
 --- !u!4 &267661315275237711 stripped

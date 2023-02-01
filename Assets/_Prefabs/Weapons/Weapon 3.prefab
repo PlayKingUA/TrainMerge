@@ -5206,6 +5206,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_gatling_blue_3
       objectReference: {fileID: 0}
+    - target: {fileID: 2207170257319250854, guid: ac8dc4f496d2c684bb9021f32ef62a89,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3769114972201698431, guid: ac8dc4f496d2c684bb9021f32ef62a89,
         type: 3}
       propertyPath: m_CastShadows

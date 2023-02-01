@@ -5167,6 +5167,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_minigun_green_3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9049490423358501161, guid: 7466359914b3f49428f7024f0e869406,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7466359914b3f49428f7024f0e869406, type: 3}
 --- !u!23 &135165771605350785 stripped

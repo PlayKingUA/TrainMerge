@@ -36,6 +36,12 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             return startUpgrade + upgradeStep * level;
         }
 
+        protected override void ClickEvent()
+        {
+            base.ClickEvent();
+            ChangeButtonState(MoneyWallet.MoneyCount);
+        }
+
         protected override void UpdateText()
         {
             base.UpdateText();

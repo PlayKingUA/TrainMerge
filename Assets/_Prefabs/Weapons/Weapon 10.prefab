@@ -5261,6 +5261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_rocket_green_2
       objectReference: {fileID: 0}
+    - target: {fileID: 8849248763122481324, guid: 8029798d73fc9294e9d8825ab54d5f4f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8029798d73fc9294e9d8825ab54d5f4f, type: 3}
 --- !u!23 &904805618344034950 stripped

@@ -5350,6 +5350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_lethal_yellow_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8803294603778772814, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7e3ce3ad8613d4bb8d7896eaea234c, type: 3}
 --- !u!4 &2505985212587698051 stripped

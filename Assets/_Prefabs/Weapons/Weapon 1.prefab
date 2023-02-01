@@ -5152,6 +5152,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_antipersonnel_red_1
       objectReference: {fileID: 0}
+    - target: {fileID: 5575612027807092889, guid: 9836b8faa286a504c8e75c384ab2955e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6224099930642444620, guid: 9836b8faa286a504c8e75c384ab2955e,
         type: 3}
       propertyPath: m_CastShadows

@@ -27,7 +27,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         
         protected int CurrentLevel;
         
-        [Inject] private MoneyWallet _moneyWallet;
+        [Inject] protected MoneyWallet MoneyWallet;
         #endregion
 
         #region Properties
@@ -48,14 +48,14 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         protected virtual void Start()
         {
             Load();
-            CheckMoney(_moneyWallet.MoneyCount);
+            CheckMoney(MoneyWallet.MoneyCount);
             
-            _moneyWallet.MoneyCountChanged += CheckMoney;
+            MoneyWallet.MoneyCountChanged += CheckMoney;
         }
 
         protected virtual void OnDisable()
         {
-            _moneyWallet.MoneyCountChanged -= CheckMoney;
+            MoneyWallet.MoneyCountChanged -= CheckMoney;
         }
         #endregion
         
@@ -97,7 +97,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             switch (ButtonState)
             {
                 case ButtonBuyState.BuyWithMoney:
-                    _moneyWallet.Get(CurrentPrise);
+                    MoneyWallet.Get(CurrentPrise);
                     ClickEvent();
                     break;
                 case ButtonBuyState.BuyWithADs:

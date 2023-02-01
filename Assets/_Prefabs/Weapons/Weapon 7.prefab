@@ -5126,6 +5126,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower_plasma_yellow_3
       objectReference: {fileID: 0}
+    - target: {fileID: 481727852125356728, guid: 790a8866f0a19b248b926f77bc788602,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1001101220278458370, guid: 790a8866f0a19b248b926f77bc788602,
         type: 3}
       propertyPath: m_RootOrder
