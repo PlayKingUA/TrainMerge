@@ -1,15 +1,17 @@
 ﻿using System;
-using _Scripts.Tutorial;
 using _Scripts.UI.Buttons.Shop_Buttons;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace _Scripts.UI.Tutorial
 {
     public class TutorialWindow : MonoBehaviour
     {
         #region Variables
+        [SerializeField] private GameObject tutorialTextObject;
+        [SerializeField] private TextMeshProUGUI tutorialText;
+        [Space(10)]
         [SerializeField] private BuyWeaponButton buyWeapon;
         [SerializeField] private GameObject weaponPointer;
         [SerializeField] private Button startWave;
@@ -33,9 +35,10 @@ namespace _Scripts.UI.Tutorial
             };
         }
 
-        public void SetState(TutorialWindowState tutorialWindowState)
+        public void SetState(TutorialWindowState tutorialWindowState, string infoText)
         {
             EnableBaseButtons(false);
+            EnableTutorialText(infoText);
 
             switch (tutorialWindowState)
             {
@@ -114,6 +117,12 @@ namespace _Scripts.UI.Tutorial
             {
                 OnUpgradeDamage?.Invoke();
             };
+        }
+
+        private void EnableTutorialText(string text)
+        {
+            tutorialTextObject.SetActive(text.Length > 0);
+            tutorialText.text = text;
         }
     }
 }

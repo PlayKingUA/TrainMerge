@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _Scripts.Game_States;
 using _Scripts.Input_Logic;
 using _Scripts.Slot_Logic;
@@ -16,6 +17,8 @@ namespace _Scripts.Tutorial
         #region Variables
         [ShowInInspector, ReadOnly] private TutorialStates _tutorialState;
 
+        private string _infoText;
+        
         private const string TutorialProgressKey = "TutorialProgressKey";
 
         [Inject] private TutorialWindow _tutorialWindow;
@@ -49,27 +52,35 @@ namespace _Scripts.Tutorial
             switch (_tutorialState)
             {
                 case TutorialStates.BuyFirstWeapon:
+                    _infoText = "Buy a turret!";
                     BuyWeapon();
                     break;
                 case TutorialStates.StartFirstLevel:
+                    _infoText = "";
                     StartLevel();
                     break;
                 case TutorialStates.BuySecondWeapon:
+                    _infoText = "Tap to buy another turret";
                     BuyWeapon();
                     break;
                 case TutorialStates.MergeWeapons:
-                    MergeTutorial();
+                    _infoText = "Merge your turrets to level them up!";
+                    StartCoroutine(MergeTutorial());
                     break;
                 case TutorialStates.StartSecondLevel:
+                    _infoText = "";
                     StartLevel();
                     break;
                 case TutorialStates.OpenUpgradeMenu:
+                    _infoText = "Open upgrade menu";
                     OpenUpgradeMenu();
                     break;
                 case TutorialStates.UpgradeDamage:
+                    _infoText = "Tap to increase your turret's damage!";
                     UpgradeDamage();
                     break;
                 case TutorialStates.Finished:
+                    _infoText = "";
                     FinishTutorial();
                     break;
                 default:
@@ -79,7 +90,7 @@ namespace _Scripts.Tutorial
 
         private void BuyWeapon()
         {
-            _tutorialWindow.SetState(TutorialWindowState.BuyWeapon);
+            _tutorialWindow.SetState(TutorialWindowState.BuyWeapon, _infoText);
 
             _tutorialWindow.OnWeaponBuy += () =>
             {
@@ -92,7 +103,7 @@ namespace _Scripts.Tutorial
 
         private void StartLevel()
         {
-            _tutorialWindow.SetState(TutorialWindowState.StartWave);
+            _tutorialWindow.SetState(TutorialWindowState.StartWave, _infoText);
 
             _gameStateManager.AttackStarted += () =>
             {
@@ -111,57 +122,69 @@ namespace _Scripts.Tutorial
         
         private void TapTutorial()
         {
-            _tutorialWindow.SetState(TutorialWindowState.TapTutorial);
+            _infoText = "Tap to increase attack speed of your turrets!";
+            _tutorialWindow.SetState(TutorialWindowState.TapTutorial, _infoText);
             Time.timeScale = 0f;
 
-            _speedUpLogic.OnTapCountChanged += () =>
-            {
-                if (!(_speedUpLogic.EffectPower >= 0.6f)) return;
+            _speedUpLogic.OnTapCountChanged += TapDelegate;
+        }
+        private void TapDelegate()
+        {
+            if (!(_speedUpLogic.EffectPower >= 0.6f)) return;
                 
-                Time.timeScale = 1f;
-                _tutorialWindow.SetState(TutorialWindowState.Nothing);
-            };
+            Time.timeScale = 1f;
+            _infoText = "";
+            _tutorialWindow.SetState(TutorialWindowState.Nothing, _infoText);
+            _speedUpLogic.OnTapCountChanged -= TapDelegate;
         }
 
-        private void MergeTutorial()
+        private IEnumerator MergeTutorial()
         {
-            _tutorialWindow.SetState(TutorialWindowState.MergeWeapons);
+            // delay for enabling arrow on bought now weapon
+            yield return null;
+            _tutorialWindow.SetState(TutorialWindowState.MergeWeapons, _infoText);
             _slotManager.ShowTutorialArrows();
 
-            _dragManager.OnMerge += () =>
-            {
-                _slotManager.ShowTutorialArrows(false);
-                _tutorialState++;
-                ChangeState();
-                Save();
-            };
+            _dragManager.OnMerge += MergeDelegate;
+        }
+        private void MergeDelegate()
+        {
+            _slotManager.ShowTutorialArrows(false);
+            _tutorialState++;
+            ChangeState();
+            Save();
+            _dragManager.OnMerge -= MergeDelegate;
         }
         
         private void OpenUpgradeMenu()
         {
-            _tutorialWindow.SetState(TutorialWindowState.UpgradePanel);
+            _tutorialWindow.SetState(TutorialWindowState.UpgradePanel, _infoText);
 
-            _tutorialWindow.OnUpgradeMenuOpen += () =>
-            {
-                _tutorialState++;
-                ChangeState();
-            };
+            _tutorialWindow.OnUpgradeMenuOpen += UpgradeMenuOpenDelegate;
+        }
+        private void UpgradeMenuOpenDelegate()
+        {
+            _tutorialState++;
+            ChangeState();
+            _tutorialWindow.OnUpgradeMenuOpen -= UpgradeMenuOpenDelegate;
         }
         
         private void UpgradeDamage()
         {
-            _tutorialWindow.SetState(TutorialWindowState.UpgradeDamage);
-            _tutorialWindow.OnUpgradeDamage += () =>
-            {
-                _tutorialState++;
-                ChangeState();
-                Save();
-            };
+            _tutorialWindow.SetState(TutorialWindowState.UpgradeDamage, _infoText);
+            _tutorialWindow.OnUpgradeDamage += UpgradeDamageDelegate;
+        }
+        private void UpgradeDamageDelegate()
+        {
+            _tutorialState++;
+            ChangeState();
+            Save();
+            _tutorialWindow.OnUpgradeDamage -= UpgradeDamageDelegate;
         }
 
         private void FinishTutorial()
         {
-            _tutorialWindow.SetState(TutorialWindowState.Nothing);
+            _tutorialWindow.SetState(TutorialWindowState.Nothing, _infoText);
         }
         #endregion
         

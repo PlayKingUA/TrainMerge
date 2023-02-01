@@ -72,6 +72,11 @@ namespace _Scripts.Slot_Logic
                 emptySlots.Remove(slot);
                 return;
             }
+            
+            if (_isTutorialArrows)
+            {
+                ShowTutorialArrows();
+            }
         }
         
         public void RefreshSlots(Slot weaponSLot)
