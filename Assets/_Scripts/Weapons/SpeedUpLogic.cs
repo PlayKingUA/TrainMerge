@@ -17,7 +17,7 @@ namespace _Scripts.Weapons
         [SerializeField] private float effectDuration = 3f;
         [SerializeField] private GameObject notification;
 
-        private WaitForSeconds _wait;
+        private WaitForSecondsRealtime _wait;
         private int _tapsCount;
         private bool _isEnabled;
         
@@ -40,7 +40,7 @@ namespace _Scripts.Weapons
         #region Monobehavior Callbacks
         private void Start()
         {
-            _wait = new WaitForSeconds(effectDuration);
+            _wait = new WaitForSecondsRealtime(effectDuration);
             _zombieManager.LastWaveStarted += ()=> { EnableTaps(true); };
 
             _gameStateManager.Victory += () => { EnableTaps(false); };

@@ -12,8 +12,6 @@ namespace _Scripts.Units
         private readonly int _runHash = Animator.StringToHash("Run");
         private readonly int _attackHash = Animator.StringToHash("Attack");
         private readonly int _victoryHash = Animator.StringToHash("Victory");
-
-        private UnitState _previousAnimState;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -23,7 +21,6 @@ namespace _Scripts.Units
         
         public void SetAnimation(UnitState state)
         {
-            _previousAnimState = state;
             animator.CrossFade(GetHash(state), 0.3f, 0);
         }
 
