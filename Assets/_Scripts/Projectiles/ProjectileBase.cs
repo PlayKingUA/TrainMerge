@@ -12,12 +12,11 @@ namespace _Scripts.Projectiles
 
         protected Vector3 LaunchPosition;
         protected Zombie TargetZombie;
-        
-        
+
         private Collider[] _colliders;
         
         [ShowInInspector] protected int Damage;
-        [SerializeField] private bool isSplash;
+        [SerializeField] protected bool isSplash;
         private float _damageRadius;
 
         private protected MasterObjectPooler MasterObjectPooler;
@@ -69,10 +68,6 @@ namespace _Scripts.Projectiles
             {
                 if (_colliders[i] == null || !_colliders[i].TryGetComponent(out Zombie zombie)) continue;
                 zombie.GetDamage(Damage);
-                if (!isSplash)
-                {
-                    break;
-                }
             }
         }
         

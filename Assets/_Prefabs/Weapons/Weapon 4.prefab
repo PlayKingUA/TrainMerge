@@ -4956,9 +4956,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036984f945f64d21b5adb88e81194d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 130
-  damage: 10
-  attackSpeedPerSecond: 20
+  health: 15
+  damage: 2
+  attackSpeedPerSecond: 15
   attackRadius: 17
   appearFx: {fileID: 2842827359928896588}
   gunTransform: {fileID: 3621154799850089543}

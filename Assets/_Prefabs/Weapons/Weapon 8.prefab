@@ -4987,9 +4987,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31071e557257427ead0934f8f9af0a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4500
-  damage: 350
-  attackSpeedPerSecond: 3
+  health: 700
+  damage: 70
+  attackSpeedPerSecond: 1.2
   attackRadius: 15
   appearFx: {fileID: 2842827359928896588}
   gunTransform: {fileID: 267661315275237711}

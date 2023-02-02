@@ -35,7 +35,20 @@ namespace _Scripts.Projectiles
         #region Monobehavior Callbacks
         protected override void OnTriggerEnter(Collider other)
         {
-            HitZombie();
+            if (hasImpact)
+            {
+                MasterObjectPooler.GetObject(impactPool.PoolName, transform.position, transform.rotation);
+            }
+
+            if (isSplash)
+            {
+                HitZombie();
+            }
+            else if (other.TryGetComponent(out Zombie zombie))
+            {
+                zombie.GetDamage(Damage);
+                ReturnToPool();
+            }
         }
         #endregion
 
@@ -56,10 +69,6 @@ namespace _Scripts.Projectiles
 
         public override void HitZombie(Transform damagePoint = null)
         {
-            if (hasImpact)
-            {
-                MasterObjectPooler.GetObject(impactPool.PoolName, transform.position, transform.rotation);
-            }
             base.HitZombie(damagePoint);
             ReturnToPool();
         }

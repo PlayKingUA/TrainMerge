@@ -23,11 +23,13 @@ namespace _Scripts.Weapons
 
         protected override void Fire()
         {
+            GetAims();
+            if (_targetZombies.Count == 0)
+                return;
+            
             var bullet =
                 _masterObjectPooler.GetObjectComponent<ShootGunProjectile>(projectilePool.PoolName, shootPoint.position, shootPoint.rotation);
 
-            GetAims();
-            
             bullet.Init(_targetZombies, bulletCount, (int) (Damage * TargetCoefficient), projectilePool);
         }
 
@@ -46,9 +48,8 @@ namespace _Scripts.Weapons
             {
                 var distance = Vector3.Distance(transform.position, 
                     zombie.transform.position);
-                if (distance > attackRadius)
-                    break;
-                _targetZombies.Add(zombie);
+                if (distance < attackRadius)
+                    _targetZombies.Add(zombie);
             }
         }
     }

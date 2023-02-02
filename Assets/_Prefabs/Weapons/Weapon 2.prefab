@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad967150a56041058481cea8256cb95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 25
-  damage: 15
+  health: 3
+  damage: 12
   attackSpeedPerSecond: 2
   attackRadius: 18
   appearFx: {fileID: 8034273326623195886}
