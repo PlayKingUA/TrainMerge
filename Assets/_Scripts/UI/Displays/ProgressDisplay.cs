@@ -1,7 +1,9 @@
+using System;
 using _Scripts.Game_States;
 using _Scripts.Levels;
 using _Scripts.UI.Windows;
 using _Scripts.Units;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,11 +14,14 @@ namespace _Scripts.UI.Displays
     public class ProgressDisplay : MonoBehaviour
     {
         #region Variables
-
         [SerializeField] private CanvasGroup distanceTextObject;
         [SerializeField] private TextMeshProUGUI currentLevelText;
         [SerializeField] private TextMeshProUGUI nextLevelText;
         [SerializeField] private Slider progressSlider;
+        [Space(10)]
+        [SerializeField] private RectTransform bossPointer;
+        [SerializeField] private Transform leftPosition;
+        [SerializeField] private Transform rightPosition;
 
         [Inject] private ZombieManager _zombieManager;
         [Inject] private GameStateManager _gameStateManager;
@@ -29,7 +34,11 @@ namespace _Scripts.UI.Displays
             _zombieManager.OnHpChanged += DisplayHp;
             
             _gameStateManager.PrepareToBattle += () => { EnableDistanceObject(false);};
-            _gameStateManager.AttackStarted += () => { EnableDistanceObject(true); };
+            _gameStateManager.AttackStarted += () =>
+            {
+                EnableDistanceObject(true);
+                UpdateBossPosition();
+            };
 
             _levelManager.OnLevelLoaded += UpdateLevelText;
         }
@@ -42,7 +51,7 @@ namespace _Scripts.UI.Displays
 
         private void DisplayHp()
         {
-            progressSlider.value = _zombieManager.LostHp / _zombieManager.WholeHpSum;
+            progressSlider.DOValue(_zombieManager.LostHp / _zombieManager.WholeHpSum, 0.1f).SetSpeedBased();
         }
 
         private void UpdateLevelText(Level level)
@@ -54,6 +63,15 @@ namespace _Scripts.UI.Displays
         private void EnableDistanceObject(bool isEnabled)
         {
             WindowsManager.CanvasGroupSwap(distanceTextObject, isEnabled);
+        }
+
+        private void UpdateBossPosition()
+        {
+            var targetBossPosition = bossPointer.localPosition;
+            targetBossPosition.x = bossPointer.sizeDelta.x / 2
+                                   + (rightPosition.position.x - leftPosition.position.x) 
+                                   * (_zombieManager.HpToLastWave / _zombieManager.WholeHpSum);
+            bossPointer.localPosition = targetBossPosition;
         }
     }
 }

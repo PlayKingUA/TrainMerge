@@ -34,7 +34,7 @@ namespace _Scripts
 
         private void Load()
         {
-            _isEnabled = PlayerPrefs.GetInt(Key) > 0;
+            _isEnabled = PlayerPrefs.GetInt(Key, 1) > 0;
         }
         #endregion
     }
