@@ -21,7 +21,7 @@ namespace _Scripts.Units
         
         public void SetAnimation(UnitState state)
         {
-            animator.CrossFade(GetHash(state), 0.3f, 0);
+            animator.CrossFade(GetHash(state), 0.3f);
         }
 
         private int GetHash(UnitState state)
