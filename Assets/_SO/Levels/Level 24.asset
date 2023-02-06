@@ -26,7 +26,7 @@ MonoBehaviour:
     - timeBetweenZombie: 0.5
       timeBetweenWaves: 0
       zombieCount:
-        usualZombieCount: 20
+        usualZombieCount: 15
         fastZombieCount: 5
         bigZombieCount: 0
     timeBetweenWaves: 4
@@ -34,8 +34,8 @@ MonoBehaviour:
     - timeBetweenZombie: 0.5
       timeBetweenWaves: 0
       zombieCount:
-        usualZombieCount: 30
+        usualZombieCount: 35
         fastZombieCount: 9
         bigZombieCount: 0
     timeBetweenWaves: 0
-  index: 1
+  index: 24

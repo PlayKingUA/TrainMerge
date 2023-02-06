@@ -9439,7 +9439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d63b45d50d430799c971778d87907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyCount: 1e+10
+  moneyCount: 150
 --- !u!114 &1755915060 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2498147909930217114, guid: bf759de9ed0839b47909cd6c38a0ec51,

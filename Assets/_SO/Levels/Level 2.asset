@@ -15,27 +15,27 @@ MonoBehaviour:
   levelLocation: 0
   zombiesWaves:
   - subWaves:
-    - timeBetweenZombie: 0.5
+    - timeBetweenZombie: 2
       timeBetweenWaves: 0
       zombieCount:
-        usualZombieCount: 6
+        usualZombieCount: 2
         fastZombieCount: 0
         bigZombieCount: 0
     timeBetweenWaves: 4
   - subWaves:
-    - timeBetweenZombie: 0.5
+    - timeBetweenZombie: 2
       timeBetweenWaves: 0
       zombieCount:
-        usualZombieCount: 7
+        usualZombieCount: 2
         fastZombieCount: 0
         bigZombieCount: 0
     timeBetweenWaves: 4
   - subWaves:
-    - timeBetweenZombie: 0.5
+    - timeBetweenZombie: 2
       timeBetweenWaves: 0
       zombieCount:
-        usualZombieCount: 7
+        usualZombieCount: 4
         fastZombieCount: 2
         bigZombieCount: 0
     timeBetweenWaves: 0
-  index: 1
+  index: 2

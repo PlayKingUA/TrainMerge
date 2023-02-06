@@ -4988,8 +4988,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 700
-  damage: 70
-  attackSpeedPerSecond: 1.2
+  damage: 90
+  attackSpeedPerSecond: 3
   attackRadius: 15
   appearFx: {fileID: 2842827359928896588}
   gunTransform: {fileID: 267661315275237711}
@@ -4998,7 +4998,7 @@ MonoBehaviour:
   transparentMaterial: {fileID: 2100000, guid: fc45a6f54dcbbcd41ae6781746e2cf7c, type: 2}
   shootPoint: {fileID: 4674850418641642810}
   projectilePool: {fileID: 11400000, guid: 55e99204010fd9f45a7862a0e3ab693d, type: 2}
-  bulletCount: 7
+  bulletCount: 6
   damageCoefficient: 2
 --- !u!1 &7647173795625094641
 GameObject:
