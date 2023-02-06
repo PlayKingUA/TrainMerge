@@ -14,6 +14,7 @@ namespace _Scripts.Weapons
         #region Variables
         [Space] 
         [SerializeField] private GameObject appearFx;
+        [SerializeField] private GameObject destroyFx;
         [SerializeField] private Transform gunTransform;
         [Space(10)]
         [ShowInInspector, ReadOnly] private WeaponState _currentState;
@@ -22,6 +23,7 @@ namespace _Scripts.Weapons
         [SerializeField] private MeshRenderer gunRenderer;
         [SerializeField] private MeshRenderer baseRenderer;
         [SerializeField] private Material transparentMaterial;
+        [SerializeField] private Color DestoyredColor;
 
         [Inject] protected ZombieManager ZombieManager;
         [Inject] private UpgradeMenu _upgradeMenu;
@@ -32,6 +34,7 @@ namespace _Scripts.Weapons
         private Tweener _tween;
 
         private float _maxShakeStrength = 0.05f;
+        private float _destoryColorChangeDuration = 0.35f;
         
         [ShowInInspector, ReadOnly] private protected Zombie TargetZombie;
         #endregion
@@ -157,6 +160,13 @@ namespace _Scripts.Weapons
         {
             gunRenderer.material = isGreen ? transparentMaterial : _gunMaterial;
             baseRenderer.material = isGreen ? transparentMaterial : _gunMaterial;
+        }
+
+        public void DestroyWeapon()
+        {
+            destroyFx.SetActive(true);
+            gunRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);
+            baseRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);
         }
         
         private void UpdateTargetZombie()
