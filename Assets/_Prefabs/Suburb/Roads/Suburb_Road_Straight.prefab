@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6303199626813793126}
   - component: {fileID: 6977955160741080259}
   - component: {fileID: 5130262391006926857}
+  - component: {fileID: 8571359769116330849}
   m_Layer: 0
   m_Name: Suburb_Road_Straight
   m_TagString: Untagged
@@ -87,6 +88,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8571359769116330849
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6643554947879942620}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 70, y: 0.20000404, z: 50}
+  m_Center: {x: 0, y: 0.09999998, z: -24.999996}
 --- !u!1 &8263700150210515020
 GameObject:
   m_ObjectHideFlags: 0

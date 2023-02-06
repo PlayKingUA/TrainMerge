@@ -45,6 +45,7 @@ namespace _Scripts.Units
         public List<Zombie> DeadZombies { get; } = new ();
         public float WholeHpSum { get; private set; }
         public float LostHp { get; private set; }
+        public float HpToLastWave { get; private set;}
         
         public event Action OnHpChanged;
         public event Action LastWaveStarted;
@@ -58,10 +59,12 @@ namespace _Scripts.Units
         private void Start()
         {
             _gameStateManager.AttackStarted += StartCreatingZombies;
-            _gameStateManager.AttackStarted += () => { _chunkMovement.ChangeState(true);};
+            _gameStateManager.AttackStarted += () => {  _chunkMovement.SetSpeed(_train.TrainSpeed);};
             _gameStateManager.Fail += ZombieWin;
 
             _speedUpLogic.OnTapCountChanged += () => { _chunkMovement.SetSpeed(_train.TrainSpeed); };
+            
+            StartCoroutine(StartMotion());
         }
         #endregion
 
@@ -70,22 +73,36 @@ namespace _Scripts.Units
         {
             _zombiesWaves = zombiesWaves;
 
-            foreach (var subWave in _zombiesWaves.SelectMany(zombieWave => zombieWave.subWaves))
+            foreach (var zombieWave in _zombiesWaves)
             {
-                _zombiesLeft += subWave.ZombieCount.UsualZombieCount;
-                _zombiesLeft += subWave.ZombieCount.FastZombieCount;
-                _zombiesLeft += subWave.ZombieCount.BigZombieCount;
+                if (zombieWave == zombiesWaves[^1])
+                    HpToLastWave = WholeHpSum;
 
-                WholeHpSum += subWave.ZombieCount.UsualZombieCount * usualZombie.StartHp(_levelManager.CurrentLevel);
-                WholeHpSum += subWave.ZombieCount.FastZombieCount * fastZombie.StartHp(_levelManager.CurrentLevel);
-                WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie.StartHp(_levelManager.CurrentLevel);
+                foreach (var subWave in zombieWave.subWaves)
+                {
+                    _zombiesLeft += subWave.ZombieCount.UsualZombieCount;
+                    _zombiesLeft += subWave.ZombieCount.FastZombieCount;
+                    _zombiesLeft += subWave.ZombieCount.BigZombieCount;
+
+                    WholeHpSum += subWave.ZombieCount.UsualZombieCount *
+                                  usualZombie.StartHp(_levelManager.CurrentLevel);
+                    WholeHpSum += subWave.ZombieCount.FastZombieCount * fastZombie.StartHp(_levelManager.CurrentLevel);
+                    WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie.StartHp(_levelManager.CurrentLevel);
+                }
             }
         }
 
         public void InitMotion(Chunk firstChunk)
         {
             _chunkMovement.Init(firstChunk);
+        }
+        
+        private IEnumerator StartMotion()
+        {
+            // wait for init
+            yield return new WaitForSeconds(0.2f);
             _chunkMovement.SetSpeed(_train.TrainSpeed);
+            _chunkMovement.ChangeState(true);
         }
         #endregion
 

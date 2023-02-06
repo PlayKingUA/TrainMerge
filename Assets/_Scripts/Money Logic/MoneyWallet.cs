@@ -6,12 +6,12 @@ namespace _Scripts.Money_Logic
     public class MoneyWallet : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private int moneyCount;
+        [SerializeField] private float moneyCount;
         private const string SaveKey = "Money";
 
-        public int MoneyCount => moneyCount;
+        public float MoneyCount => moneyCount;
         
-        public event Action<int> MoneyCountChanged;
+        public event Action<float> MoneyCountChanged;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -22,7 +22,7 @@ namespace _Scripts.Money_Logic
         #endregion
 
         #region Add/Get
-        public void Add(int addAmount)
+        public void Add(float addAmount)
         {
             moneyCount += addAmount;
             MoneyCountChanged?.Invoke(moneyCount);
@@ -42,12 +42,12 @@ namespace _Scripts.Money_Logic
         #region Save/Load
         private void Save()
         {
-            PlayerPrefs.SetInt(SaveKey, moneyCount);
+            PlayerPrefs.SetFloat(SaveKey, moneyCount);
         }
 
         private void Load()
         {
-            moneyCount = PlayerPrefs.GetInt(SaveKey, moneyCount);
+            moneyCount = PlayerPrefs.GetFloat(SaveKey, moneyCount);
             
             MoneyCountChanged?.Invoke(moneyCount);
         }

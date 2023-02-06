@@ -20,9 +20,26 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         protected override bool CanBeBought => Coefficient < maxUpgrade;
         #endregion
         
+        protected override void ChangeButtonState(float moneyCount)
+        {
+            if (Coefficient >= maxUpgrade)
+            {
+                _buttonState = ButtonBuyState.MaxLevel;
+                SetUIState(_buttonState);
+                return;
+            }
+            base.ChangeButtonState(moneyCount);
+        }
+        
         private float GetCoefficient(int level)
         {
             return startUpgrade + upgradeStep * level;
+        }
+
+        protected override void ClickEvent()
+        {
+            base.ClickEvent();
+            ChangeButtonState(MoneyWallet.MoneyCount);
         }
 
         protected override void UpdateText()

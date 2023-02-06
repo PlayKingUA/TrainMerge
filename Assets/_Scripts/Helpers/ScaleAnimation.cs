@@ -1,4 +1,4 @@
-using DG.Tweening;
+    using DG.Tweening;
 using UnityEngine;
 
 namespace _Scripts.Helpers
@@ -11,7 +11,7 @@ namespace _Scripts.Helpers
         private void Start()
         {
             var maxSize = transform.localScale * maxScale;
-            transform.DOScale(maxSize, animationSpeed / 2f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+            transform.DOScale(maxSize, animationSpeed / 2f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetUpdate(true);
         }
     }
 }

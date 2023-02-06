@@ -23,17 +23,19 @@ namespace _Scripts.Weapons
 
         protected override void Fire()
         {
+            GetAims();
+            if (_targetZombies.Count == 0)
+                return;
+            
             var bullet =
                 _masterObjectPooler.GetObjectComponent<ShootGunProjectile>(projectilePool.PoolName, shootPoint.position, shootPoint.rotation);
 
-            GetAims();
-            
             bullet.Init(_targetZombies, bulletCount, (int) (Damage * TargetCoefficient), projectilePool);
         }
 
         private void GetAims()
         {
-            _zombieManager.AliveZombies.Sort((x, y) =>
+            ZombieManager.AliveZombies.Sort((x, y) =>
             {
                 var position = transform.position;
                 var distanceToA = Vector3.Distance(position, x.transform.position);
@@ -42,13 +44,12 @@ namespace _Scripts.Weapons
             });
 
             _targetZombies = new List<Zombie>();
-            foreach (var zombie in _zombieManager.AliveZombies)
+            foreach (var zombie in ZombieManager.AliveZombies)
             {
                 var distance = Vector3.Distance(transform.position, 
                     zombie.transform.position);
-                if (distance > attackRadius)
-                    break;
-                _targetZombies.Add(zombie);
+                if (distance < attackRadius)
+                    _targetZombies.Add(zombie);
             }
         }
     }

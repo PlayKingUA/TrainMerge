@@ -18,7 +18,15 @@ MonoBehaviour:
     - timeBetweenZombie: 0.5
       timeBetweenWaves: 0
       zombieCount:
-        usualZombieCount: 6
+        usualZombieCount: 7
+        fastZombieCount: 0
+        bigZombieCount: 0
+    timeBetweenWaves: 4
+  - subWaves:
+    - timeBetweenZombie: 0.5
+      timeBetweenWaves: 0
+      zombieCount:
+        usualZombieCount: 7
         fastZombieCount: 0
         bigZombieCount: 0
     timeBetweenWaves: 4
@@ -27,15 +35,7 @@ MonoBehaviour:
       timeBetweenWaves: 0
       zombieCount:
         usualZombieCount: 8
-        fastZombieCount: 0
-        bigZombieCount: 0
-    timeBetweenWaves: 4
-  - subWaves:
-    - timeBetweenZombie: 0.5
-      timeBetweenWaves: 0
-      zombieCount:
-        usualZombieCount: 14
-        fastZombieCount: 0
+        fastZombieCount: 2
         bigZombieCount: 0
     timeBetweenWaves: 0
   index: 1

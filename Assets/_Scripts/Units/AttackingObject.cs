@@ -22,7 +22,11 @@ namespace _Scripts.Units
 
         protected virtual float CoolDown => 1f / attackSpeedPerSecond;
 
-        protected virtual int Damage => damage; 
+        protected virtual int Damage
+        {
+            set => damage = value;
+            get => damage;
+        }
         #endregion
         
         #region Monobehaviour Callbacks

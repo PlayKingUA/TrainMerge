@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using _Scripts.Game_States;
 using _Scripts.Interface;
 using _Scripts.Levels;
@@ -17,10 +18,12 @@ namespace _Scripts.Train
         [SerializeField] private float health;
         [SerializeField] private float speedForDistance;
         [SerializeField] private float speedUp;
+        [Space(10)] 
+        [SerializeField] private float menuSpeed;
+        [SerializeField] private float gameSpeed;
 
         private ChunkMovement _chunkMovement;
         private float _startPlayTime;
-        private float _startMotionSpeed;
         
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private SpeedUpLogic _speedUpLogic;
@@ -50,19 +53,21 @@ namespace _Scripts.Train
             _gameStateManager.AttackStarted += () =>
             {
                 _startPlayTime = Time.time;
-                _chunkMovement.ChangeState(true);
+                _chunkMovement.SetSpeed(gameSpeed);
             };
             _gameStateManager.Fail += () =>
             {
                 _chunkMovement.ChangeState(false);
             };
 
-            _startMotionSpeed = _chunkMovement.MovementSpeed;
+            var startMotionSpeed = gameSpeed;
             _speedUpLogic.OnTapCountChanged += () =>
             {
-                _chunkMovement.SetSpeed(_startMotionSpeed +
-                                        (_startMotionSpeed * speedUp - _startMotionSpeed) * _speedUpLogic.EffectPower);
+                _chunkMovement.SetSpeed(startMotionSpeed +
+                                        (startMotionSpeed * speedUp - startMotionSpeed) * _speedUpLogic.EffectPower);
             };
+
+            StartCoroutine(StartMotion());
         }
 
         private void Update()
@@ -74,6 +79,14 @@ namespace _Scripts.Train
         }
         #endregion
 
+        private IEnumerator StartMotion()
+        {
+            // wait for init
+            yield return new WaitForSeconds(0.1f);
+            _chunkMovement.SetSpeed(menuSpeed);
+            _chunkMovement.ChangeState(true);
+        }
+        
         public void InitMotion(Chunk firstChunk)
         {
             _chunkMovement.Init(firstChunk);

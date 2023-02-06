@@ -14,12 +14,18 @@ namespace _Scripts.Weapons
         #region Variables
         [Space] 
         [SerializeField] private GameObject appearFx;
+        [SerializeField] private GameObject destroyFx;
         [SerializeField] private Transform gunTransform;
         [Space(10)]
         [ShowInInspector, ReadOnly] private WeaponState _currentState;
         [ShowInInspector, ReadOnly] private int _level;
+        [Space(10)]
+        [SerializeField] private MeshRenderer gunRenderer;
+        [SerializeField] private MeshRenderer baseRenderer;
+        [SerializeField] private Material transparentMaterial;
+        [SerializeField] private Color DestoyredColor;
 
-        [Inject] protected ZombieManager _zombieManager;
+        [Inject] protected ZombieManager ZombieManager;
         [Inject] private UpgradeMenu _upgradeMenu;
         [Inject] private SpeedUpLogic _speedUpLogic;
 
@@ -28,6 +34,7 @@ namespace _Scripts.Weapons
         private Tweener _tween;
 
         private float _maxShakeStrength = 0.05f;
+        private float _destoryColorChangeDuration = 0.35f;
         
         [ShowInInspector, ReadOnly] private protected Zombie TargetZombie;
         #endregion
@@ -54,7 +61,7 @@ namespace _Scripts.Weapons
             ChangeState(WeaponState.Idle);
             _startRotation = gunTransform.rotation;
 
-            _gunMaterial = gunTransform.GetComponent<MeshRenderer>().material;
+            _gunMaterial = gunRenderer.material;
 
             _speedUpLogic.OnTapCountChanged += Shake;
         }
@@ -118,14 +125,13 @@ namespace _Scripts.Weapons
         private void Rotate()
         {
             UpdateTargetZombie();
-            var targetRotation = _startRotation;
             
-            if (TargetZombie != null)
-            {
-                var direction = TargetZombie.ShootPoint.position - gunTransform.position;
-                var rotateY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-                targetRotation = Quaternion.Euler(0, rotateY, 0);
-            }
+            if (TargetZombie == null)
+                return;
+            
+            var direction = TargetZombie.ShootPoint.position - gunTransform.position;
+            var rotateY = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            var targetRotation = Quaternion.Euler(0, rotateY, 0);
 
             if (Quaternion.Angle(gunTransform.rotation, targetRotation) == 0) return;
             var t =  Mathf.Clamp(Time.deltaTime * 10, 0f, 0.99f);
@@ -145,14 +151,27 @@ namespace _Scripts.Weapons
             {
                 _tween = transform.
                     DOShakePosition(_speedUpLogic.EffectDuration, _speedUpLogic.EffectPower * _maxShakeStrength)
-                    .SetLoops(-1, LoopType.Yoyo);
+                    .SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
             }
         }
         #endregion
 
+        public void SetGreenColor(bool isGreen)
+        {
+            gunRenderer.material = isGreen ? transparentMaterial : _gunMaterial;
+            baseRenderer.material = isGreen ? transparentMaterial : _gunMaterial;
+        }
+
+        public void DestroyWeapon()
+        {
+            destroyFx.SetActive(true);
+            gunRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);
+            baseRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);
+        }
+        
         private void UpdateTargetZombie()
         {
-            TargetZombie = _zombieManager.GetNearestZombie(transform);
+            TargetZombie = ZombieManager.GetNearestZombie(transform);
         }
         
         protected virtual void OnDrawGizmos()

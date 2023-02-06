@@ -17,7 +17,8 @@ namespace _Scripts.Units
     {
         #region Variables
         [SerializeField] private float hpPerLevel;
-        [Space]
+        [SerializeField] private float dmgPerLevel;
+        [Space(10)]
         [SerializeField] private ZombieType zombieType;
         [SerializeField] private Transform shootPoint;
         [Space]
@@ -35,7 +36,7 @@ namespace _Scripts.Units
 
         private Material[] _materials;
         private Tween[] _damageTweens;
-        private const float DamageAnimationDuration = 0.1f;
+        private const float DamageAnimationDuration = 0.15f;
 
         public bool IsDead { get; private set; }
 
@@ -48,6 +49,7 @@ namespace _Scripts.Units
         public ZombieType ZombieType => zombieType;
         
         public int StartHp(int currentLevel) => (int) (Health + (currentLevel - 1) * hpPerLevel);
+
         #endregion
 
         #region Monobehaviour Callbacks
@@ -135,6 +137,7 @@ namespace _Scripts.Units
             boxCollider.center = new Vector3(deltaX, center.y, center.z);
 
             Health = (int) (Health + (_levelManager.CurrentLevel - 1) * hpPerLevel);
+            Damage = (int) (Damage + (_levelManager.CurrentLevel - 1) * dmgPerLevel);
         }
         
         public void Attack()
@@ -145,22 +148,21 @@ namespace _Scripts.Units
         #region Get Damage\Die
         public void GetDamage(int damagePoint)
         {
+            if (IsDead)
+                return;
+            
             var healthBefore = Health;
             Health = Mathf.Max(0, Health - damagePoint);
             GetDamageEvent?.Invoke(healthBefore - Health);
-
-            if (Health <= 0 && !IsDead)
+            
+            if (Health <= 0)
                 Die();
-            else
+            
+            for (var i = 0; i < _materials.Length; i++)
             {
-                if (_damageTweens[0] != null && _damageTweens[0].active)
-                    return;
-                for (var i = 0; i < _materials.Length; i++)
-                {
-                    _damageTweens[i].Kill();
-                    _damageTweens[i] = _materials[i].DOColor(damageColor, "_Color", DamageAnimationDuration)
-                        .SetLoops(2, LoopType.Yoyo);
-                }
+                _damageTweens[i].Rewind();
+                _damageTweens[i] = _materials[i].DOColor(damageColor, "_Color", DamageAnimationDuration)
+                    .SetLoops(2, LoopType.Yoyo);
             }
         }
 

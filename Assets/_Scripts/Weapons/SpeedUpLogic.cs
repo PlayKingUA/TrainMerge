@@ -2,6 +2,7 @@
 using System.Collections;
 using _Scripts.Game_States;
 using _Scripts.Units;
+using Lofelt.NiceVibrations;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -16,12 +17,13 @@ namespace _Scripts.Weapons
         [SerializeField] private float effectDuration = 3f;
         [SerializeField] private GameObject notification;
 
-        private WaitForSeconds _wait;
+        private WaitForSecondsRealtime _wait;
         private int _tapsCount;
         private bool _isEnabled;
         
         [Inject] private ZombieManager _zombieManager;
         [Inject] private GameStateManager _gameStateManager;
+        [Inject] private VibrationManager _vibrationManager;
 
         public float EffectDuration => effectDuration;
 
@@ -38,7 +40,7 @@ namespace _Scripts.Weapons
         #region Monobehavior Callbacks
         private void Start()
         {
-            _wait = new WaitForSeconds(effectDuration);
+            _wait = new WaitForSecondsRealtime(effectDuration);
             _zombieManager.LastWaveStarted += ()=> { EnableTaps(true); };
 
             _gameStateManager.Victory += () => { EnableTaps(false); };
@@ -59,6 +61,7 @@ namespace _Scripts.Weapons
 
         private IEnumerator AddTap()
         {
+            _vibrationManager.Haptic(HapticPatterns.PresetType.LightImpact);
             _tapsCount++;
             OnTapCountChanged?.Invoke();
             yield return _wait;

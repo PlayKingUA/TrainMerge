@@ -13,25 +13,29 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
     public class BuyButton : MonoBehaviour
     {
         #region Variables
-        [ShowInInspector] private ButtonBuyState _buttonState;
+        [ShowInInspector] protected ButtonBuyState _buttonState;
         [SerializeField] private GameObject[] states;
         [SerializeField] private string saveKey = "WeaponPrice";
         [Space(10)]
+        [SerializeField] protected int startPrice;
         [SerializeField] protected int baseAmount;
         [SerializeField] protected float multiplier;
+        [SerializeField] protected float powMultiplier;
         [SerializeField] private TextMeshProUGUI priseText;
 
         private Button _button;
         
         protected int CurrentLevel;
         
-        [Inject] private MoneyWallet _moneyWallet;
+        [Inject] protected MoneyWallet MoneyWallet;
+
+        public event Action OnBought;
         #endregion
 
         #region Properties
         private ButtonBuyState ButtonState => _buttonState;
 
-        private int CurrentPrise => GetPrise(CurrentLevel);
+        protected int CurrentPrise => GetPrise(CurrentLevel);
 
         protected virtual bool CanBeBought => true;
         #endregion
@@ -46,19 +50,19 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         protected virtual void Start()
         {
             Load();
-            CheckMoney(_moneyWallet.MoneyCount);
+            CheckMoney(MoneyWallet.MoneyCount);
             
-            _moneyWallet.MoneyCountChanged += CheckMoney;
+            MoneyWallet.MoneyCountChanged += CheckMoney;
         }
 
         protected virtual void OnDisable()
         {
-            _moneyWallet.MoneyCountChanged -= CheckMoney;
+            MoneyWallet.MoneyCountChanged -= CheckMoney;
         }
         #endregion
         
         #region Display
-        private void ChangeButtonState(int moneyCount)
+        protected virtual void ChangeButtonState(float moneyCount)
         {
             _buttonState = (moneyCount >= CurrentPrise)
                 ? ButtonBuyState.BuyWithMoney
@@ -66,7 +70,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             SetUIState(_buttonState);
         }
 
-        private void SetUIState(ButtonBuyState targetState)
+        protected void SetUIState(ButtonBuyState targetState)
         {
             foreach (var state in states)
             {
@@ -75,7 +79,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             
             //when we'll have ads
             //states[(int)targetState].SetActive(true);
-            _button.interactable = targetState == ButtonBuyState.BuyWithMoney;
+            _button.interactable = targetState != ButtonBuyState.BuyWithADs;
             states[(int)ButtonBuyState.BuyWithMoney].SetActive(targetState != ButtonBuyState.MaxLevel);
             states[(int)ButtonBuyState.MaxLevel].SetActive(targetState == ButtonBuyState.MaxLevel);
         }
@@ -95,8 +99,8 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             switch (ButtonState)
             {
                 case ButtonBuyState.BuyWithMoney:
+                    MoneyWallet.Get(CurrentPrise);
                     ClickEvent();
-                    _moneyWallet.Get(CurrentPrise);
                     break;
                 case ButtonBuyState.BuyWithADs:
                     //ToDo show add
@@ -113,6 +117,8 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
             CurrentLevel++;
             UpdateText();
             Save();
+            
+            OnBought?.Invoke();
         }
         #endregion
         
@@ -129,19 +135,24 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         }
         #endregion
 
-        private void CheckMoney(int moneyCount)
+        private void CheckMoney(float moneyCount)
         {
             ChangeButtonState(moneyCount);
         }
 
+        public void SetInteractable(bool isInteractable)
+        {
+            _button.interactable = isInteractable;
+        }
         private int GetPrise(int level)
         {
             if (level == 0)
             {
-                return baseAmount;
+                return startPrice;
             }
 
-            return GetPrise(level - 1) + (int) (baseAmount * (level + 1) * multiplier);
+            return GetPrise(level - 1) + 
+                   (int) (multiplier * baseAmount * Mathf.Pow(level + 1,powMultiplier));
         }
     }
 }
