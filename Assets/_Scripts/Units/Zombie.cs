@@ -1,9 +1,11 @@
 using System;
 using _Scripts.Game_States;
+using _Scripts.Helpers;
 using _Scripts.Interface;
 using _Scripts.Levels;
 using _Scripts.Train;
 using DG.Tweening;
+using QFSW.MOP2;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -23,12 +25,14 @@ namespace _Scripts.Units
         [SerializeField] private Transform shootPoint;
         [Space]
         [SerializeField] private Color damageColor;
+        [SerializeField] private ObjectPool damageText;
         [Space]
         [ShowInInspector, ReadOnly] private UnitState _currentState;
 
         private ZombieAnimationManager _zombieAnimationManager;
         private ChunkMovement _chunkMovement;
         private RagdollController _ragdollController;
+        private MasterObjectPooler _masterObjectPooler;
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private LevelManager _levelManager;
         [Inject] private Train.Train _train;
@@ -55,6 +59,7 @@ namespace _Scripts.Units
         #region Monobehaviour Callbacks
         private void Awake()
         {
+            _masterObjectPooler = MasterObjectPooler.Instance;
             _zombieAnimationManager = GetComponent<ZombieAnimationManager>();
             _ragdollController = GetComponent<RagdollController>();
             _materials = GetComponentInChildren<SkinnedMeshRenderer>().materials;
@@ -153,8 +158,10 @@ namespace _Scripts.Units
             
             var healthBefore = Health;
             Health = Mathf.Max(0, Health - damagePoint);
-            GetDamageEvent?.Invoke(healthBefore - Health);
-            
+            var damage = healthBefore - Health;
+            GetDamageEvent?.Invoke(damage);
+            CreateDamageText(damage);
+
             if (Health <= 0)
                 Die();
             
@@ -180,6 +187,13 @@ namespace _Scripts.Units
             
             _zombieAnimationManager.DisableAnimator();
             _ragdollController.EnableRagdoll(true);
+        }
+
+        private void CreateDamageText(int damage)
+        {
+            var text =
+                _masterObjectPooler.GetObjectComponent<DamageText>(damageText.PoolName, shootPoint.position, transform.rotation);
+            text.SetText(damage.ToString());
         }
         #endregion
     }

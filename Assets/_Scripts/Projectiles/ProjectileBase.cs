@@ -68,6 +68,8 @@ namespace _Scripts.Projectiles
             {
                 if (_colliders[i] == null || !_colliders[i].TryGetComponent(out Zombie zombie)) continue;
                 zombie.GetDamage(Damage);
+                if (!isSplash)
+                    break;
             }
         }
         
