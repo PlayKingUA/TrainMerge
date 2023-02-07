@@ -36,6 +36,7 @@ namespace _Scripts.Units
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private LevelManager _levelManager;
         [Inject] private Train.Train _train;
+        [Inject] private CoinsAnimation _coinsAnimation;
         
 
         private Material[] _materials;
@@ -162,6 +163,7 @@ namespace _Scripts.Units
             var damage = healthBefore - Health;
             GetDamageEvent?.Invoke(damage);
             CreateDamageText(damage);
+            _coinsAnimation.CollectCoins(shootPoint, damage);
 
             if (Health <= 0)
                 Die();
