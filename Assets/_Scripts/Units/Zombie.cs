@@ -131,10 +131,11 @@ namespace _Scripts.Units
         }
         #endregion
 
-        public void Init(Chunk firstChunk, float deltaX)
+        public void Init(Chunk firstChunk, float deltaX, float speedMultiplier)
         {
             _chunkMovement.Init(firstChunk);
             _chunkMovement.ChangeState(true);
+            _chunkMovement.SetSpeed(_chunkMovement.MovementSpeed * speedMultiplier);
             
             transform.GetChild(0).localPosition = new Vector3(deltaX, 0, 0);
             var boxCollider = GetComponent<BoxCollider>();

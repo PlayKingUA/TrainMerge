@@ -22,6 +22,7 @@ MonoBehaviour:
         fastZombieCount: 0
         bigZombieCount: 0
     timeBetweenWaves: 4
+    speedMultiplier: 1
   - subWaves:
     - timeBetweenZombie: 0.4
       timeBetweenWaves: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
         fastZombieCount: 0
         bigZombieCount: 0
     timeBetweenWaves: 4
+    speedMultiplier: 1
   - subWaves:
     - timeBetweenZombie: 0.4
       timeBetweenWaves: 0
@@ -38,4 +40,5 @@ MonoBehaviour:
         fastZombieCount: 0
         bigZombieCount: 0
     timeBetweenWaves: 0
+    speedMultiplier: 1.4
   index: 1

@@ -30,9 +30,11 @@ namespace _Scripts.Levels
     {
         public List<SubWave> subWaves;
         [SerializeField] private float timeBetweenWaves = 4f;
+        [SerializeField] private float speedMultiplier = 1f;
 
         public float TimeBetweenWaves => timeBetweenWaves;
-        
+        public float SpeedMultiplier => speedMultiplier;
+
         [Serializable]
         public class SubWave
         {

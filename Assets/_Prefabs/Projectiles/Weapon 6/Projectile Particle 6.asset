@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Projectile Particle Pool 6
   _template: {fileID: 7524865643810496354, guid: 8e0b2fc9f6c4ed44aa3e1298145c3bad,
     type: 3}
-  _defaultSize: 15
+  _defaultSize: 0
   _maxSize: -1
   _incrementalInstanceNames: 0
   _autoInitialize: 0

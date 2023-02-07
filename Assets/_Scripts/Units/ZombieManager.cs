@@ -155,7 +155,7 @@ namespace _Scripts.Units
                             }
                         }
                         
-                        CreateZombie(GetTargetZombie(zombieType));
+                        CreateZombie(GetTargetZombie(zombieType), zombieWave.SpeedMultiplier);
                         yield return new WaitForSeconds(subWave.TimeBetweenZombie);
                     }
                     yield return new WaitForSeconds(subWave.TimeBetweenWaves);
@@ -164,11 +164,11 @@ namespace _Scripts.Units
             }
         }
 
-        private void CreateZombie(Zombie targetZombie)
+        private void CreateZombie(Zombie targetZombie, float speedMultiplier)
         {
             var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform.position, transform.rotation, zombieTransform);
             
-            zombie.Init(_chunkMovement.CurrentChunk, ZombieDelta);
+            zombie.Init(_chunkMovement.CurrentChunk, ZombieDelta, speedMultiplier);
             
             zombie.DeadEvent += RemoveZombie;
             zombie.GetDamageEvent += UpdateLostHp;

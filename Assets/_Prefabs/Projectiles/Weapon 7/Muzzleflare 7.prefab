@@ -4760,7 +4760,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1d4efe2e7e01f2a408fa16199f23230d, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4824,7 +4823,7 @@ GameObject:
   - component: {fileID: 199000010420214726}
   - component: {fileID: 114832502614786928}
   - component: {fileID: 114545763400830548}
-  - component: {fileID: 4195095699645609880}
+  - component: {fileID: 7669645750527600924}
   m_Layer: 0
   m_Name: Muzzleflare 7
   m_TagString: FX
@@ -9592,7 +9591,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9800,7 +9798,7 @@ MonoBehaviour:
       m_NumAlphaKeys: 2
   applyChanges: 0
   Keep_applyChanges: 0
---- !u!114 &4195095699645609880
+--- !u!114 &7669645750527600924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9809,10 +9807,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012903210382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8510a2f18fef47ada2f59b6f27d83a1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a74a2569b533ef428d80f59a131284a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Muzzleflare Pool 7
+  pool: {fileID: 11400000, guid: b8f6f3278afd8d64d854220fc9814a54, type: 2}
+  lifeTime: 2
 --- !u!1 &1156719465025688
 GameObject:
   m_ObjectHideFlags: 0
@@ -14572,7 +14571,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5761576d2d8b55549bb01953b3d2a60c, type: 2}
   - {fileID: 2100000, guid: 5761576d2d8b55549bb01953b3d2a60c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -19383,7 +19381,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60ea728fc8cfa2b4086e62deb4dde0cf, type: 2}
   - {fileID: 2100000, guid: 60ea728fc8cfa2b4086e62deb4dde0cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -24267,7 +24264,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: bf20ca5bee7976b4780d4d6dde41964b, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -33372,10 +33372,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4541196389373984}
   - component: {fileID: 114442657134609654}
-  - component: {fileID: 114355610240550960}
   - component: {fileID: 199670649110357256}
   - component: {fileID: 198063466146349274}
-  - component: {fileID: -3975919091141753377}
+  - component: {fileID: 2480007415064163669}
   m_Layer: 0
   m_Name: Impact 6
   m_TagString: Untagged
@@ -33611,19 +33610,6 @@ MonoBehaviour:
       m_NumAlphaKeys: 4
   applyChanges: 0
   Keep_applyChanges: 0
---- !u!114 &114355610240550960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879272669879180}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a895231490da6545890b1e1794f8704, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathtimer: 5
 --- !u!199 &199670649110357256
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -38415,7 +38401,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &-3975919091141753377
+--- !u!114 &2480007415064163669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38424,10 +38410,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879272669879180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8510a2f18fef47ada2f59b6f27d83a1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a74a2569b533ef428d80f59a131284a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Impact Prefab 6
+  pool: {fileID: 11400000, guid: de0d5180b43421c40bf14a25242e2d72, type: 2}
+  lifeTime: 1.5
 --- !u!1 &1947723841646622
 GameObject:
   m_ObjectHideFlags: 0

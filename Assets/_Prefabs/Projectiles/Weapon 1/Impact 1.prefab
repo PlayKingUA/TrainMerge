@@ -38425,10 +38425,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1879272669879180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8510a2f18fef47ada2f59b6f27d83a1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a74a2569b533ef428d80f59a131284a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Impact Prefab 1
+  pool: {fileID: 11400000, guid: b78c2b59c4381654fae5247ab4abccde, type: 2}
+  lifeTime: 1.5
 --- !u!1 &1947723841646622
 GameObject:
   m_ObjectHideFlags: 0

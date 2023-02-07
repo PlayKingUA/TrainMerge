@@ -6,15 +6,15 @@ namespace _Scripts.Helpers
 {
     public class PoolElement : MonoBehaviour
     {
-        [SerializeField] private ObjectPool pool;
+        [SerializeField] protected ObjectPool pool;
         [SerializeField] private float lifeTime;
-        
-        private MasterObjectPooler _masterObjectPooler;
+
+        protected MasterObjectPooler MasterObjectPooler;
         private WaitForSeconds _wait;
 
         private void Awake()
         {
-            _masterObjectPooler = MasterObjectPooler.Instance;
+            MasterObjectPooler = MasterObjectPooler.Instance;
             _wait = new WaitForSeconds(lifeTime);
         }
 
@@ -26,7 +26,7 @@ namespace _Scripts.Helpers
         private IEnumerator ReturnToPool()
         {
             yield return _wait;
-            _masterObjectPooler.Release(gameObject, pool.PoolName);
+            MasterObjectPooler.Release(gameObject, pool.PoolName);
         }
     }
 }

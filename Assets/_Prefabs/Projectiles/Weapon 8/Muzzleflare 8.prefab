@@ -4760,7 +4760,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1d4efe2e7e01f2a408fa16199f23230d, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4822,9 +4821,8 @@ GameObject:
   - component: {fileID: 4000010921236120}
   - component: {fileID: 198000011976894484}
   - component: {fileID: 199000010420214726}
-  - component: {fileID: 114823956978527516}
   - component: {fileID: 114774806102074648}
-  - component: {fileID: 8123524971517603070}
+  - component: {fileID: 3808637561088488322}
   m_Layer: 0
   m_Name: Muzzleflare 8
   m_TagString: FX
@@ -9591,7 +9589,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9642,19 +9639,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &114823956978527516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000012903210382}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a895231490da6545890b1e1794f8704, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathtimer: 5
 --- !u!114 &114774806102074648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9767,7 +9751,7 @@ MonoBehaviour:
       m_NumAlphaKeys: 4
   applyChanges: 0
   Keep_applyChanges: 0
---- !u!114 &8123524971517603070
+--- !u!114 &3808637561088488322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9776,10 +9760,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012903210382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8510a2f18fef47ada2f59b6f27d83a1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a74a2569b533ef428d80f59a131284a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Muzzleflare Pool 8
+  pool: {fileID: 11400000, guid: 0e8ec95360b959e488f0c46677918c2b, type: 2}
+  lifeTime: 2
 --- !u!1 &1156719465025688
 GameObject:
   m_ObjectHideFlags: 0
@@ -14539,7 +14524,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5761576d2d8b55549bb01953b3d2a60c, type: 2}
   - {fileID: 2100000, guid: 5761576d2d8b55549bb01953b3d2a60c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -19350,7 +19334,6 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60ea728fc8cfa2b4086e62deb4dde0cf, type: 2}
   - {fileID: 2100000, guid: 60ea728fc8cfa2b4086e62deb4dde0cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

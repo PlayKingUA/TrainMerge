@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Muzzleflare Pool 7
   _template: {fileID: 1000012903210382, guid: dc35573aaae4e014a9f94e5d2ebaf5cb, type: 3}
-  _defaultSize: 15
+  _defaultSize: 0
   _maxSize: -1
   _incrementalInstanceNames: 0
   _autoInitialize: 0
