@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using _Scripts.Game_States;
 using _Scripts.Levels;
 using _Scripts.Money_Logic;
@@ -27,7 +26,8 @@ namespace _Scripts.Units
         [SerializeField] private Zombie bigZombie;
         [Space]
         [SerializeField] private ZombieTable zombieTable;
-
+        [SerializeField] private float messageTimeBeforeLastWave = 2f;
+        [SerializeField] private float tapMessageDelayAfterLastWave = 0.5f;
 
         private List<Wave> _zombiesWaves;
         private int _zombiesLeft;
@@ -51,6 +51,7 @@ namespace _Scripts.Units
         
         public event Action OnHpChanged;
         public event Action LastWaveStarted;
+        public event Action HugeWaveMessage;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -127,7 +128,7 @@ namespace _Scripts.Units
             foreach (var zombieWave in _zombiesWaves)
             {
                 if (zombieWave == _zombiesWaves[^1])
-                    LastWaveStarted?.Invoke();
+                    StartCoroutine(LasWaveStartedEvent());
                 
                 foreach (var subWave in zombieWave.subWaves)
                 {
@@ -164,8 +165,18 @@ namespace _Scripts.Units
                     }
                     yield return new WaitForSeconds(subWave.TimeBetweenWaves);
                 }
-                yield return new WaitForSeconds(zombieWave.TimeBetweenWaves);
+                yield return new WaitForSeconds(zombieWave.TimeBetweenWaves - messageTimeBeforeLastWave);
+                if (zombieWave == _zombiesWaves[^2])
+                    HugeWaveMessage?.Invoke();
+                yield return new WaitForSeconds(messageTimeBeforeLastWave);
+
             }
+        }
+
+        private IEnumerator LasWaveStartedEvent()
+        {
+            yield return new WaitForSeconds(tapMessageDelayAfterLastWave);
+            LastWaveStarted?.Invoke();
         }
 
         private void CreateZombie(Zombie targetZombie, float speedMultiplier)
