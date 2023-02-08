@@ -53,11 +53,13 @@ public class CoinsAnimation : MonoBehaviour
     {
         coin.localScale = Vector3.one * startScale;
         yield return _motionWait;
-        var scaleTween = coin.DOScale(Vector3.one, scaleAnimationDuration).SetEase(Ease.InQuint);
-        var moveTween = coin.DOMove(coinsPosition.position, motionDuration).SetEase(Ease.InQuint);
+        var scaleTween = coin.DOScale(Vector3.one, scaleAnimationDuration);
+        var moveTween = coin.DOMove(coinsPosition.position, motionDuration);
         yield return _effectWait;
+
+        scaleTween.Kill();
+        moveTween.Kill();
         Destroy(coin.gameObject);
-        
         //TryAnimateIcon();
         
         /*var reward = amount * _upgradeMenu.IncomeCoefficient;
@@ -71,6 +73,7 @@ public class CoinsAnimation : MonoBehaviour
         var localPosition = coin.transform.localPosition;
         
         coin.SetParent(screenCanvas);
+        coin.SetSiblingIndex(0);
         coin.localPosition = localPosition;
         coin.localScale = Vector3.one;
     }
