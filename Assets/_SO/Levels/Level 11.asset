@@ -40,5 +40,5 @@ MonoBehaviour:
         fastZombieCount: 5
         bigZombieCount: 1
     timeBetweenWaves: 0
-    speedMultiplier: 1.4
-  index: 1
+    speedMultiplier: 1.8
+  index: 11

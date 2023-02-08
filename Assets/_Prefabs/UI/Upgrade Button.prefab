@@ -907,7 +907,7 @@ MonoBehaviour:
   priseText: {fileID: 7081665991367562656}
   maxUpgrade: 2
   startUpgrade: 1
-  upgradeStep: 0.1
+  upgradeStep: 0.05
   valueBefore: {fileID: 8783128050853019845}
   moreText: {fileID: 8428877985627837092}
   valueAfter: {fileID: 429759256227626009}

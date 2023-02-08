@@ -1033,7 +1033,7 @@ PrefabInstance:
     - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
       propertyPath: upgradeStep
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
@@ -2435,7 +2435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tapsToMaxSpeedUp: 5
-  maxSpeedUp: 2
+  maxSpeedUp: 1.5
   effectDuration: 1
   notification: {fileID: 537791782}
 --- !u!1 &492884381
@@ -4740,9 +4740,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   speedForDistance: 25
-  speedUp: 1.3
-  menuSpeed: 2
-  gameSpeed: 6
+  speedUp: 1.7
+  menuSpeed: 3
+  gameSpeed: 9
 --- !u!65 &993770736
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6456,7 +6456,7 @@ PrefabInstance:
     - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
       propertyPath: upgradeStep
-      value: 0.02
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
@@ -9814,7 +9814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d63b45d50d430799c971778d87907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyCount: 150
+  moneyCount: 300
 --- !u!114 &1755915060 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2498147909930217114, guid: bf759de9ed0839b47909cd6c38a0ec51,
@@ -11605,7 +11605,7 @@ PrefabInstance:
     - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
       propertyPath: upgradeStep
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2446454604672163114, guid: b663bd94b13197547ba4357249e33c31,
         type: 3}
