@@ -8,6 +8,7 @@
         MergeWeapons,
         UpgradePanel,
         UpgradeDamage,
+        CLoseUpgradeWindow,
         Nothing
     }
 }

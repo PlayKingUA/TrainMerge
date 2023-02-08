@@ -11,7 +11,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         [Inject] private SlotManager _slotManager;
         #endregion
 
-        protected override bool CanBeBought => _slotManager.HasFreePlace();
+        protected override bool CanBeBought => base.CanBeBought && _slotManager.HasFreePlace();
 
         protected override void ClickEvent()
         {

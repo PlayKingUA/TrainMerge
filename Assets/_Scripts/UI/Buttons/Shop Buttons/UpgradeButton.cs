@@ -17,7 +17,7 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         #region Properties
         public float Coefficient => GetCoefficient(CurrentLevel);
 
-        protected override bool CanBeBought => Coefficient < maxUpgrade;
+        protected override bool CanBeBought => base.CanBeBought && Coefficient < maxUpgrade;
         #endregion
         
         protected override void ChangeButtonState(float moneyCount)
