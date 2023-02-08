@@ -6,6 +6,7 @@ using _Scripts.Game_States;
 using _Scripts.Levels;
 using _Scripts.Money_Logic;
 using _Scripts.Train;
+using _Scripts.UI.Displays;
 using _Scripts.UI.Upgrade;
 using _Scripts.Weapons;
 using UnityEngine;
@@ -24,8 +25,9 @@ namespace _Scripts.Units
         [SerializeField] private Zombie usualZombie;
         [SerializeField] private Zombie fastZombie;
         [SerializeField] private Zombie bigZombie;
-        
-        
+        [Space]
+        [SerializeField] private ZombieTable zombieTable;
+
 
         private List<Wave> _zombiesWaves;
         private int _zombiesLeft;
@@ -69,13 +71,13 @@ namespace _Scripts.Units
         #endregion
 
         #region Init
-        public void Init(List<Wave> zombiesWaves)
+        public void Init(Level currentLevel)
         {
-            _zombiesWaves = zombiesWaves;
+            _zombiesWaves = currentLevel.ZombiesWaves;
 
             foreach (var zombieWave in _zombiesWaves)
             {
-                if (zombieWave == zombiesWaves[^1])
+                if (zombieWave == _zombiesWaves[^1])
                     HpToLastWave = WholeHpSum;
 
                 foreach (var subWave in zombieWave.subWaves)
@@ -90,6 +92,8 @@ namespace _Scripts.Units
                     WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie.StartHp(_levelManager.CurrentLevel);
                 }
             }
+            
+            zombieTable.UpdatePanel(currentLevel.ZombieCount);
         }
 
         public void InitMotion(Chunk firstChunk)
@@ -225,6 +229,7 @@ namespace _Scripts.Units
         {
             AliveZombies.Remove(zombie);
             DeadZombies.Add(zombie);
+            zombieTable.RemoveZombie(zombie.ZombieType);
             _zombiesLeft--;
             
             if (_zombiesLeft <= 0 && AliveZombies.Count == 0)

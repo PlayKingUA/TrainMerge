@@ -62,7 +62,7 @@ namespace _Scripts.Levels
             var currentLevel = _currentLevelIndex % levels.Length;
             _currentLevel = levels[currentLevel];
             _currentLevel.index = currentLevel + 1;
-            _zombieManager.Init(_currentLevel.ZombiesWaves);
+            _zombieManager.Init(_currentLevel);
             _levelGeneration.SetLocation(_currentLevel.LevelLocation);
             
             OnLevelLoaded?.Invoke(_currentLevel);
