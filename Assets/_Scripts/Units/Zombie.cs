@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using _Scripts.Game_States;
 using _Scripts.Helpers;
 using _Scripts.Interface;
@@ -26,6 +27,8 @@ namespace _Scripts.Units
         [Space]
         [SerializeField] private Color damageColor;
         [SerializeField] private ObjectPool damageText;
+        [Space] 
+        [SerializeField] private float climbDuration = 0.7f;
         [Space]
         [ShowInInspector, ReadOnly] private UnitState _currentState;
 
@@ -106,8 +109,8 @@ namespace _Scripts.Units
 
             if (_currentState == UnitState.Victory)
             {
-                transform.parent = null;
                 _chunkMovement.ChangeState(false);
+                //StartCoroutine(DestroyWeapons());
             }
         }
 
@@ -124,11 +127,29 @@ namespace _Scripts.Units
 
         private void AttackState()
         {
+            if (_gameStateManager.CurrentState == GameState.Fail)
+            {
+                ChangeState(UnitState.Victory);
+            }
+            
             if (AttackTimer < CoolDown) 
                 return;
 
             _zombieAnimationManager.SetAnimation(_currentState);
             AttackTimer = 0f;
+        }
+
+        private IEnumerator DestroyWeapons()
+        {
+            _zombieAnimationManager.SetAnimation(_currentState);
+            var targetPosition = transform.position;
+            targetPosition.y = _train.ClimbingHeight.position.y;
+            var tween = transform.DOMove(targetPosition, climbDuration).SetEase(Ease.Linear);
+            yield return new WaitForSeconds(climbDuration);
+            tween.Kill();
+            _zombieAnimationManager.SetAnimation(UnitState.Run);
+            targetPosition += transform.forward * 10f;
+            transform.DOMove(targetPosition, _train.TrainSpeed).SetSpeedBased();
         }
         #endregion
 
@@ -171,6 +192,7 @@ namespace _Scripts.Units
             for (var i = 0; i < _materials.Length; i++)
             {
                 _damageTweens[i].Rewind();
+                _damageTweens[i].Kill();
                 _damageTweens[i] = _materials[i].DOColor(damageColor, "_Color", DamageAnimationDuration)
                     .SetLoops(2, LoopType.Yoyo);
             }

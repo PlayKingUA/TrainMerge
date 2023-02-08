@@ -4709,6 +4709,7 @@ Transform:
   - {fileID: 791771659}
   - {fileID: 537791783}
   - {fileID: 1260115451}
+  - {fileID: 1403409371}
   m_Father: {fileID: 1555794359}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4743,6 +4744,7 @@ MonoBehaviour:
   speedUp: 1.3
   menuSpeed: 2
   gameSpeed: 6
+  climbingHeight: {fileID: 1403409371}
 --- !u!65 &993770736
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4754,8 +4756,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.3856058, y: 2.4223037, z: 6.1865454}
-  m_Center: {x: 0, y: 0.71115184, z: 0.077898026}
+  m_Size: {x: 8, y: 2.4223037, z: 5.1087866}
+  m_Center: {x: 0, y: 0.71115184, z: 0.06727421}
 --- !u!54 &993770737
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7733,16 +7735,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc45d47fafaa1f40a5b5603cbda7d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisabled: 1
   mainCamera: {fileID: 963194227}
   overlayCanvas: {fileID: 1968183038}
   screenCanvas: {fileID: 1398988234}
   coinsPosition: {fileID: 1565415075}
   coinPrefab: {fileID: 714079403418779811, guid: cc6ea2e81c117e746991a44b18f4d8e8,
     type: 3}
-  motionDuration: 1
+  motionDuration: 0.6
   waitDuration: 0
   scaleAnimationDuration: 0.3
   startScale: 0.2
+--- !u!1 &1403409370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403409371}
+  m_Layer: 9
+  m_Name: Climp Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403409371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403409370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.275, z: 2.222}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 993770732}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422215699
 GameObject:
   m_ObjectHideFlags: 0
@@ -10189,7 +10223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c6df79410eabc40b11aaeae443ff7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  failDelay: 1500
+  failDelay: 3500
   victoryDelay: 2000
 --- !u!1 &1873700278
 GameObject:
@@ -11301,6 +11335,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slots
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067838002639376071, guid: bf759de9ed0839b47909cd6c38a0ec51,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf759de9ed0839b47909cd6c38a0ec51, type: 3}

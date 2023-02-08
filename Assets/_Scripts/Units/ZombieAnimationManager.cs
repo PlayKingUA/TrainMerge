@@ -11,7 +11,7 @@ namespace _Scripts.Units
         private readonly int _idleHash = Animator.StringToHash("Idle");
         private readonly int _runHash = Animator.StringToHash("Run");
         private readonly int _attackHash = Animator.StringToHash("Attack");
-        private readonly int _victoryHash = Animator.StringToHash("Victory");
+        private readonly int _victoryHash = Animator.StringToHash("Climb");
         #endregion
         
         #region Monobehaviour Callbacks

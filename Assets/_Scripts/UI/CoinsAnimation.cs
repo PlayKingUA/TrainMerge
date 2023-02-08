@@ -9,6 +9,7 @@ using Zenject;
 public class CoinsAnimation : MonoBehaviour
 {
     #region Variables
+    [SerializeField] private bool isDisabled;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform overlayCanvas;
     [SerializeField] private Transform screenCanvas;
@@ -44,6 +45,9 @@ public class CoinsAnimation : MonoBehaviour
     
     public void CollectCoins(Transform worldPosition, int amount)
     {
+        if (isDisabled)
+            return;
+        
         var coin = Instantiate(coinPrefab, overlayCanvas);
         LocateCoin(coin.transform, worldPosition.position);
         StartCoroutine(CoinLife(coin.transform, amount));

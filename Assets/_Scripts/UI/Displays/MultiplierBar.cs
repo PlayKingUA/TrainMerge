@@ -23,7 +23,7 @@ namespace _Scripts.UI.Displays
         #region Monobehaviour Callbacks
         private void Start()
         {
-            _tween = slider.DOValue(1f, oneSideDuration).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+            _tween = slider.DOValue(1f, oneSideDuration).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
             slider.onValueChanged.AddListener(delegate { SliderValueChanged(); });
         }
 
@@ -54,7 +54,7 @@ namespace _Scripts.UI.Displays
             OnValueChanged?.Invoke();
         }
         
-        private int CurrentIndex => (int) (slider.value / 1f * multipliers.Length);
+        private int CurrentIndex => (int) Mathf.Min(multipliers.Length - 1, slider.value / 1f * multipliers.Length);
     }
 
     [Serializable]
