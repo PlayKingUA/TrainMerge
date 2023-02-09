@@ -103,10 +103,9 @@ namespace _Scripts.Train
         }
         
         #region Get Damage\Die
-        public void GetDamage(int damagePoint)
+        public void GetDamage(int damageAmount)
         {
-            CurrentHealth -= damagePoint;
-            CurrentHealth = Mathf.Max(0, CurrentHealth - damagePoint);
+            CurrentHealth = Mathf.Max(0, CurrentHealth - damageAmount);
             HpChanged?.Invoke();
 
             if (CurrentHealth <= 0 && !IsDead)
