@@ -29,6 +29,7 @@ namespace _Scripts.Units
         [SerializeField] private ObjectPool damageText;
         [Space] 
         [SerializeField] private float climbDuration = 0.7f;
+        [SerializeField] private float speedOnTrain = 3f;
         [Space]
         [ShowInInspector, ReadOnly] private UnitState _currentState;
 
@@ -86,8 +87,7 @@ namespace _Scripts.Units
         
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.TryGetComponent(out Train.Train train)
-                || _gameStateManager.CurrentState != GameState.Battle) return;
+            if (!other.TryGetComponent(out Train.Train train)) return;
             
             ChangeState(UnitState.Attack);
             transform.parent = _train.transform;
@@ -109,8 +109,7 @@ namespace _Scripts.Units
 
             if (_currentState == UnitState.Victory)
             {
-                _chunkMovement.ChangeState(false);
-                //StartCoroutine(DestroyWeapons());
+                StartCoroutine(ClimbTrain());
             }
         }
 
@@ -139,9 +138,10 @@ namespace _Scripts.Units
             AttackTimer = 0f;
         }
 
-        private IEnumerator DestroyWeapons()
+        private IEnumerator ClimbTrain()
         {
-            _zombieAnimationManager.SetAnimation(_currentState);
+            _chunkMovement.ChangeState(false);
+            
             var targetPosition = transform.position;
             targetPosition.y = _train.ClimbingHeight.position.y;
             var tween = transform.DOMove(targetPosition, climbDuration).SetEase(Ease.Linear);
@@ -149,7 +149,7 @@ namespace _Scripts.Units
             tween.Kill();
             _zombieAnimationManager.SetAnimation(UnitState.Run);
             targetPosition += transform.forward * 10f;
-            transform.DOMove(targetPosition, _train.TrainSpeed).SetSpeedBased();
+            transform.DOMove(targetPosition, speedOnTrain).SetSpeedBased();
         }
         #endregion
 

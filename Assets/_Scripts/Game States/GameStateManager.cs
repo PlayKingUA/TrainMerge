@@ -10,8 +10,8 @@ namespace _Scripts.Game_States
     public class GameStateManager : MonoBehaviour
     {
         #region Variables
-        [SerializeField] private int failDelay;
-        [SerializeField] private int victoryDelay;
+        [SerializeField] private float failDelay;
+        [SerializeField] private float victoryDelay;
         
         [ShowInInspector, ReadOnly] private GameState _currentState;
         

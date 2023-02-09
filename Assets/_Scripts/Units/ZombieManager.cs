@@ -258,7 +258,7 @@ namespace _Scripts.Units
             
             foreach (var zombie in AliveZombies)
             {
-                zombie.ChangeState(UnitState.Victory);
+                //zombie.ChangeState(UnitState.Victory);
             }
         }
     }

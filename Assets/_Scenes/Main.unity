@@ -10628,8 +10628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c6df79410eabc40b11aaeae443ff7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  failDelay: 3500
-  victoryDelay: 2000
+  failDelay: 2
+  victoryDelay: 2
 --- !u!1 &1873700278
 GameObject:
   m_ObjectHideFlags: 0
