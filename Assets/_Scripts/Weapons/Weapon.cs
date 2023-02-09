@@ -166,8 +166,10 @@ namespace _Scripts.Weapons
             baseRenderer.material = isGreen ? transparentMaterial : _gunMaterial;
         }
 
-        public void DestroyWeapon()
+        private void DestroyWeapon()
         {
+            if (destroyFx == null)
+                return;
             destroyFx.SetActive(true);
             gunRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);
             baseRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);
