@@ -170,7 +170,7 @@ namespace _Scripts.Units
         
         public void Attack()
         {
-            Debug.Log("Attack with damage " + Damage);
+            //Debug.Log("Attack with damage " + Damage);
             _train.GetDamage(Damage);
         }
         

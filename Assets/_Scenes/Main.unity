@@ -2666,8 +2666,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tapsToMaxSpeedUp: 5
   maxSpeedUp: 1.5
-  effectDuration: 1
+  effectDuration: 1.5
   notification: {fileID: 537791782}
+  _tapsCount: 0
 --- !u!1 &492884381
 GameObject:
   m_ObjectHideFlags: 0

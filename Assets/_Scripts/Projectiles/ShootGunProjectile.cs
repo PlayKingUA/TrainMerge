@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Scripts.Units;
 using QFSW.MOP2;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Scripts.Projectiles
@@ -10,7 +11,7 @@ namespace _Scripts.Projectiles
         [SerializeField] private ObjectPool projectileParticles;
         [SerializeField] private float fieldOfShooting = 20f;
         
-        private List<Zombie> _targetZombies;
+        [SerializeField, ReadOnly] private List<Zombie> _targetZombies;
         
         public void Init(List<Zombie> targetZombies, int bulletCount, int damage, ObjectPool objectPool)
         {
