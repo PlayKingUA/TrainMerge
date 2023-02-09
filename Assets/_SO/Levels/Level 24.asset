@@ -33,7 +33,7 @@ MonoBehaviour:
     timeBetweenWaves: 4
     speedMultiplier: 1
   - subWaves:
-    - timeBetweenZombie: 0.4
+    - timeBetweenZombie: 0.3
       timeBetweenWaves: 0
       zombieCount:
         usualZombieCount: 35
