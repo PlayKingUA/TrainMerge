@@ -12,6 +12,7 @@ namespace _Scripts.UI.Displays
         [SerializeField] private TextInt[] multipliers;
         [SerializeField] private float oneSideDuration;
         [SerializeField] private Slider slider;
+        [SerializeField] private Ease ease;
 
         private Tweener _tween;
 
@@ -23,7 +24,7 @@ namespace _Scripts.UI.Displays
         #region Monobehaviour Callbacks
         private void Start()
         {
-            _tween = slider.DOValue(1f, oneSideDuration).SetEase(Ease.InOutQuad).SetLoops(-1, LoopType.Yoyo);
+            _tween = slider.DOValue(1f, oneSideDuration).SetEase(ease).SetLoops(-1, LoopType.Yoyo);
             slider.onValueChanged.AddListener(delegate { SliderValueChanged(); });
         }
 
