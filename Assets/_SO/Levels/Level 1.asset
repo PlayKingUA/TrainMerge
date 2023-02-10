@@ -30,7 +30,7 @@ MonoBehaviour:
         usualZombieCount: 2
         fastZombieCount: 0
         bigZombieCount: 0
-    timeBetweenWaves: 4
+    timeBetweenWaves: 2
     speedMultiplier: 1
   - subWaves:
     - timeBetweenZombie: 0.5
