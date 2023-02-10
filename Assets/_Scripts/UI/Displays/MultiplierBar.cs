@@ -1,8 +1,10 @@
 ﻿using System;
+using _Scripts.Game_States;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace _Scripts.UI.Displays
 {
@@ -14,6 +16,8 @@ namespace _Scripts.UI.Displays
         [SerializeField] private Slider slider;
         [SerializeField] private Ease ease;
 
+        [Inject] private GameStateManager _gameStateManager;
+
         private Tweener _tween;
 
         private int _previousIndex = -1;
@@ -24,7 +28,9 @@ namespace _Scripts.UI.Displays
         #region Monobehaviour Callbacks
         private void Start()
         {
-            _tween = slider.DOValue(1f, oneSideDuration).SetEase(ease).SetLoops(-1, LoopType.Yoyo);
+            _gameStateManager.Fail += MovePointer;
+            _gameStateManager.Victory += MovePointer;
+            
             slider.onValueChanged.AddListener(delegate { SliderValueChanged(); });
         }
 
@@ -36,6 +42,11 @@ namespace _Scripts.UI.Displays
             }
         }
         #endregion
+
+        private void MovePointer()
+        {
+            _tween = slider.DOValue(1f, oneSideDuration).SetEase(ease).SetLoops(-1, LoopType.Yoyo);
+        }
         
         public void StopPointer()
         {

@@ -213,6 +213,8 @@ namespace _Scripts.Units
             
             _zombieAnimationManager.DisableAnimator();
             _ragdollController.EnableRagdoll(true);
+
+            StartCoroutine(DestroyObject());
         }
 
         private void CreateDamageText(int damage)
@@ -222,5 +224,11 @@ namespace _Scripts.Units
             text.SetText(damage.ToString());
         }
         #endregion
+
+        private IEnumerator DestroyObject()
+        {
+            yield return new WaitForSeconds(10f);
+            Destroy(gameObject);
+        }
     }
 }
