@@ -33,6 +33,7 @@ namespace _Scripts.Levels
         #region Monobehaviour Callbacks
         private void Start()
         {
+            Application.targetFrameRate = 60;
             Load();
             _gameStateManager.Victory += IncreaseLevel;
         }

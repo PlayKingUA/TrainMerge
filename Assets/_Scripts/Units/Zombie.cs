@@ -24,6 +24,7 @@ namespace _Scripts.Units
         [Space(10)]
         [SerializeField] private ZombieType zombieType;
         [SerializeField] private Transform shootPoint;
+        [SerializeField] private GameObject dustObject;
         [Space]
         [SerializeField] private Color damageColor;
         [SerializeField] private ObjectPool damageText;
@@ -141,6 +142,7 @@ namespace _Scripts.Units
         private IEnumerator ClimbTrain()
         {
             _chunkMovement.ChangeState(false);
+            DisableDust();
             
             var targetPosition = transform.position;
             targetPosition.y = _train.ClimbingHeight.position.y;
@@ -210,6 +212,7 @@ namespace _Scripts.Units
             
             transform.parent = null;
             _chunkMovement.ChangeState(false);
+            DisableDust();
             
             _zombieAnimationManager.DisableAnimator();
             _ragdollController.EnableRagdoll(true);
@@ -229,6 +232,11 @@ namespace _Scripts.Units
         {
             yield return new WaitForSeconds(10f);
             Destroy(gameObject);
+        }
+
+        private void DisableDust()
+        {
+            dustObject.SetActive(false);
         }
     }
 }

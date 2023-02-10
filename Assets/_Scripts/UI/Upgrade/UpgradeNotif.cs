@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Money_Logic;
 using _Scripts.UI.Buttons.Shop_Buttons;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -16,11 +14,19 @@ public class UpgradeNotif : MonoBehaviour
     
     private void Start()
     {
-        _moneyWallet.MoneyCountChanged += UpdateNotifState;
-        UpdateNotifState();
+        _moneyWallet.MoneyCountChanged += f =>
+        {
+            UpdateNotifState();
+        };
+        foreach (var button in upgradeButtons)
+        {
+            button.OnBought += UpdateNotifState;
+        }
+        Invoke(nameof(UpdateNotifState), 0.1f);
     }
     
-    private void UpdateNotifState(float moneyCount = 0)
+    [Button("Update")]
+    private void UpdateNotifState()
     {
         var isEnabled = upgradeButtons.Any(button => button.IsEnoughMoney);
         notifButton.SetActive(isEnabled);
