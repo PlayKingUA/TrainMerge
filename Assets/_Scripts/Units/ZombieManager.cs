@@ -21,7 +21,7 @@ namespace _Scripts.Units
         [SerializeField] private Transform creatingPositionFrom;
         [SerializeField] private Transform creatingPositionTo;
         [SerializeField] private Transform zombieTransform;
-        [SerializeField] private Zombie usualZombie;
+        [SerializeField] private Zombie[] usualZombie;
         [SerializeField] private Zombie fastZombie;
         [SerializeField] private Zombie bigZombie;
         [Space]
@@ -88,7 +88,7 @@ namespace _Scripts.Units
                     _zombiesLeft += subWave.ZombieCount.BigZombieCount;
 
                     WholeHpSum += subWave.ZombieCount.UsualZombieCount *
-                                  usualZombie.StartHp(_levelManager.CurrentLevel);
+                                  usualZombie[0].StartHp(_levelManager.CurrentLevel);
                     WholeHpSum += subWave.ZombieCount.FastZombieCount * fastZombie.StartHp(_levelManager.CurrentLevel);
                     WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie.StartHp(_levelManager.CurrentLevel);
                 }
@@ -198,10 +198,11 @@ namespace _Scripts.Units
 
         private Zombie GetTargetZombie(ZombieType zombieType)
         {
-            var targetZombie = usualZombie;
+            Zombie targetZombie;
             switch (zombieType)
             {
                 case ZombieType.Usual:
+                    targetZombie = usualZombie[Random.Range(0, usualZombie.Length)];
                     break;
                 case ZombieType.Fast:
                     targetZombie = fastZombie;
@@ -255,11 +256,6 @@ namespace _Scripts.Units
             
             if (_creatingCoroutine != null) 
                 StopCoroutine(_creatingCoroutine);
-            
-            foreach (var zombie in AliveZombies)
-            {
-                //zombie.ChangeState(UnitState.Victory);
-            }
         }
     }
 }

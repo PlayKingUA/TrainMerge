@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using _Scripts.Game_States;
 using _Scripts.Input_Logic;
+using _Scripts.Levels;
 using _Scripts.Slot_Logic;
 using _Scripts.UI.Tutorial;
 using _Scripts.Units;
@@ -22,6 +23,7 @@ namespace _Scripts.Tutorial
         private const string TutorialProgressKey = "TutorialProgressKey";
 
         [Inject] private TutorialWindow _tutorialWindow;
+        [Inject] private LevelManager _levelManager;
         [Inject] private ZombieManager _zombieManager;
         [Inject] private SpeedUpLogic _speedUpLogic;
         [Inject] private GameStateManager _gameStateManager;
@@ -41,8 +43,8 @@ namespace _Scripts.Tutorial
             {
                 return;
             }
-            
-            ChangeState();
+
+            Invoke(nameof(ChangeState), 0.1f);
         }
         #endregion
 

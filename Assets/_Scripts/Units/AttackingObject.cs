@@ -32,9 +32,10 @@ namespace _Scripts.Units
         #region Monobehaviour Callbacks
         protected virtual void Start(){}
 
-        protected virtual void Update()
+        protected virtual void Update(){}
+        protected virtual void FixedUpdate()
         {
-            AttackTimer += Time.deltaTime;
+            AttackTimer += Time.fixedDeltaTime;
         }
         #endregion
     }
