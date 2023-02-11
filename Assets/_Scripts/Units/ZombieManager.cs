@@ -48,6 +48,7 @@ namespace _Scripts.Units
         public float WholeHpSum { get; private set; }
         public float LostHp { get; private set; }
         public float HpToLastWave { get; private set;}
+        public float Progress => LostHp / WholeHpSum;
         
         public event Action OnHpChanged;
         public event Action LastWaveStarted;

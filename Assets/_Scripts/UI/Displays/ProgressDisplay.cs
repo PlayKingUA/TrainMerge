@@ -51,7 +51,7 @@ namespace _Scripts.UI.Displays
 
         private void DisplayHp()
         {
-            progressSlider.DOValue(_zombieManager.LostHp / _zombieManager.WholeHpSum, 0.1f).SetSpeedBased();
+            progressSlider.DOValue(_zombieManager.Progress, 0.1f).SetSpeedBased();
         }
 
         private void UpdateLevelText(Level level)

@@ -16,11 +16,11 @@ namespace _Scripts.Levels
         
         private const string SaveKey = "Level";
 
-        private int _currentLevelIndex;
-
         [Inject] private ZombieManager _zombieManager;
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private LevelGeneration _levelGeneration;
+
+        public int LevelNumber { get; private set; }
 
         public event Action<Level> OnLevelLoaded;
         #endregion
@@ -41,7 +41,7 @@ namespace _Scripts.Levels
 
         private void IncreaseLevel()
         {
-            _currentLevelIndex++;
+            LevelNumber++;
 
             Save();
         }
@@ -60,7 +60,7 @@ namespace _Scripts.Levels
         
         private void LoadLevel()
         {
-            var currentLevel = _currentLevelIndex % levels.Length;
+            var currentLevel = LevelNumber % levels.Length;
             _currentLevel = levels[currentLevel];
             _currentLevel.index = currentLevel + 1;
             _zombieManager.Init(_currentLevel);
@@ -72,12 +72,12 @@ namespace _Scripts.Levels
         #region Save/Load
         private void Save()
         {
-            PlayerPrefs.SetInt(SaveKey, _currentLevelIndex);
+            PlayerPrefs.SetInt(SaveKey, LevelNumber);
         }
 
         private void Load()
         {
-            _currentLevelIndex = PlayerPrefs.GetInt(SaveKey, 0);
+            LevelNumber = PlayerPrefs.GetInt(SaveKey, 0);
             LoadLevel();
         }
         #endregion
