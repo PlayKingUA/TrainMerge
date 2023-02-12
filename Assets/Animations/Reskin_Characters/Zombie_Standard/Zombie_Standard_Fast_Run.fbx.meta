@@ -1,44 +1,9 @@
 fileFormatVersion: 2
-guid: 113d9d2ca53cc7e4eb7fb78e6890e5d3
+guid: a908ba1427a0ade4e983134ccde5285a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Police_Accessory
-    second: {fileID: 2100000, guid: c1f9ec1c22bb17946b43ac804b6ad95c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Police_Cloth
-    second: {fileID: 2100000, guid: 2ec55867aa68fcc49a30113017d487fa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Police_Dark
-    second: {fileID: 2100000, guid: dbf2218bce2ac2b48bf81b8cd89591eb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Police_Skin
-    second: {fileID: 2100000, guid: 3bb458cebf424e54696158ecef93e6b0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Police_White
-    second: {fileID: 2100000, guid: d6d1906aac8b405488c15d7167c8c2fd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Police_Yellow
-    second: {fileID: 2100000, guid: 18b02d2e3ab86c6459130d73eb31aef9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Police_blood
-    second: {fileID: 2100000, guid: 1157bac537e0f5c4ba37258ab84596b0, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -59,7 +24,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -126,13 +91,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
