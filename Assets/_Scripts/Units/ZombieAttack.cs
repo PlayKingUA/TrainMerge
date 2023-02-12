@@ -11,9 +11,5 @@ namespace _Scripts.Units
             _zombie = GetComponentInParent<Zombie>();
         }
         
-        public void Attack()
-        {
-            _zombie.Attack();
-        }
     }
 }

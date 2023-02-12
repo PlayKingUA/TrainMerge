@@ -34,8 +34,10 @@ namespace _Scripts.Levels
             
             for (var i = 0; i < lightParent.childCount; i++)
             {
+                lightParent.GetChild(i).gameObject.SetActive(false);
                 lightParent.GetChild(i).gameObject.SetActive(i == (int) location);
             }
+            
             
             _zombieManager.InitMotion(_createdChunks[0]);
             _train.InitMotion(_createdChunks[1]);

@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 199000010420214726}
   - component: {fileID: 114832502614786928}
   - component: {fileID: 114545763400830548}
-  - component: {fileID: 4195095699645609880}
+  - component: {fileID: 2032017853503221722}
   m_Layer: 0
   m_Name: Muzzleflare 10
   m_TagString: FX
@@ -9798,7 +9798,7 @@ MonoBehaviour:
       m_NumAlphaKeys: 2
   applyChanges: 0
   Keep_applyChanges: 0
---- !u!114 &4195095699645609880
+--- !u!114 &2032017853503221722
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9807,10 +9807,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012903210382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8510a2f18fef47ada2f59b6f27d83a1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a74a2569b533ef428d80f59a131284a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Impact Prefab 8
+  pool: {fileID: 11400000, guid: f98d0551f07af2a46b283e6c7d01ccc6, type: 2}
+  lifeTime: 2
 --- !u!1 &1156719465025688
 GameObject:
   m_ObjectHideFlags: 0

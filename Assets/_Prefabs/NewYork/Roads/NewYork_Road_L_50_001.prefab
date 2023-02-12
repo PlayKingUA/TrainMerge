@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3948223581721984425}
   - component: {fileID: 100543709419205132}
   - component: {fileID: 2774715112043579078}
+  - component: {fileID: 7247029856952975324}
   m_Layer: 0
   m_Name: NewYork_Road_L_50_001
   m_TagString: Untagged
@@ -86,6 +87,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7247029856952975324
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4431885911112525587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 77.76407, y: 0.2000075, z: 70.27322}
+  m_Center: {x: -3.8820343, y: 0.09999968, z: -35.1366}
 --- !u!1 &6364381028233869805
 GameObject:
   m_ObjectHideFlags: 0

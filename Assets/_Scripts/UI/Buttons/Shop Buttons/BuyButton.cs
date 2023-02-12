@@ -35,9 +35,10 @@ namespace _Scripts.UI.Buttons.Shop_Buttons
         #region Properties
         private ButtonBuyState ButtonState => _buttonState;
 
-        protected int CurrentPrise => GetPrise(CurrentLevel);
+        private int CurrentPrise => GetPrise(CurrentLevel);
+        public bool IsEnoughMoney => MoneyWallet.MoneyCount >= CurrentPrise;
 
-        protected virtual bool CanBeBought => true;
+        protected virtual bool CanBeBought => IsEnoughMoney;
         #endregion
     
         #region Monobehaviour Callbacks

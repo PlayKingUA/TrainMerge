@@ -121,7 +121,8 @@ namespace _Scripts.Input_Logic
                 Camera.main.WorldToScreenPoint(selectedWeapon.transform.position).z);
 
             var worldPosition = Camera.main.ScreenToWorldPoint(currentPosition);
-            selectedWeapon.transform.position = new Vector3(worldPosition.x, yWeaponPosition, worldPosition.z + zWeaponPosition);
+            selectedWeapon.transform.position = new Vector3(worldPosition.x, yWeaponPosition, worldPosition.z);
+            selectedWeapon.transform.localPosition += new Vector3(0, 0, zWeaponPosition);
         }
 
         private void SetWeapon()

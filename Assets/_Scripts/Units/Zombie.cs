@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using _Scripts.Game_States;
+using _Scripts.Helpers;
 using _Scripts.Interface;
 using _Scripts.Levels;
 using _Scripts.Train;
 using DG.Tweening;
+using QFSW.MOP2;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -21,17 +24,24 @@ namespace _Scripts.Units
         [Space(10)]
         [SerializeField] private ZombieType zombieType;
         [SerializeField] private Transform shootPoint;
+        [SerializeField] private GameObject dustObject;
         [Space]
         [SerializeField] private Color damageColor;
+        [SerializeField] private ObjectPool damageText;
+        [Space] 
+        [SerializeField] private float climbDuration = 0.7f;
+        [SerializeField] private float speedOnTrain = 3f;
         [Space]
         [ShowInInspector, ReadOnly] private UnitState _currentState;
 
         private ZombieAnimationManager _zombieAnimationManager;
         private ChunkMovement _chunkMovement;
         private RagdollController _ragdollController;
+        private MasterObjectPooler _masterObjectPooler;
         [Inject] private GameStateManager _gameStateManager;
         [Inject] private LevelManager _levelManager;
         [Inject] private Train.Train _train;
+        [Inject] private CoinsAnimation _coinsAnimation;
         
 
         private Material[] _materials;
@@ -55,6 +65,7 @@ namespace _Scripts.Units
         #region Monobehaviour Callbacks
         private void Awake()
         {
+            _masterObjectPooler = MasterObjectPooler.Instance;
             _zombieAnimationManager = GetComponent<ZombieAnimationManager>();
             _ragdollController = GetComponent<RagdollController>();
             _materials = GetComponentInChildren<SkinnedMeshRenderer>().materials;
@@ -77,8 +88,7 @@ namespace _Scripts.Units
         
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.TryGetComponent(out Train.Train train)
-                || _gameStateManager.CurrentState != GameState.Battle) return;
+            if (!other.TryGetComponent(out Train.Train train)) return;
             
             ChangeState(UnitState.Attack);
             transform.parent = _train.transform;
@@ -100,8 +110,7 @@ namespace _Scripts.Units
 
             if (_currentState == UnitState.Victory)
             {
-                transform.parent = null;
-                _chunkMovement.ChangeState(false);
+                StartCoroutine(ClimbTrain());
             }
         }
 
@@ -118,18 +127,39 @@ namespace _Scripts.Units
 
         private void AttackState()
         {
+            if (_gameStateManager.CurrentState == GameState.Fail)
+            {
+                ChangeState(UnitState.Victory);
+            }
+            
             if (AttackTimer < CoolDown) 
                 return;
 
             _zombieAnimationManager.SetAnimation(_currentState);
             AttackTimer = 0f;
         }
+
+        private IEnumerator ClimbTrain()
+        {
+            _chunkMovement.ChangeState(false);
+            DisableDust();
+            
+            var targetPosition = transform.position;
+            targetPosition.y = _train.ClimbingHeight.position.y;
+            var tween = transform.DOMove(targetPosition, climbDuration).SetEase(Ease.Linear);
+            yield return new WaitForSeconds(climbDuration);
+            tween.Kill();
+            _zombieAnimationManager.SetAnimation(UnitState.Run);
+            targetPosition += transform.forward * 10f;
+            transform.DOMove(targetPosition, speedOnTrain).SetSpeedBased();
+        }
         #endregion
 
-        public void Init(Chunk firstChunk, float deltaX)
+        public void Init(Chunk firstChunk, float deltaX, float speedMultiplier)
         {
             _chunkMovement.Init(firstChunk);
             _chunkMovement.ChangeState(true);
+            _chunkMovement.SetSpeed(_chunkMovement.MovementSpeed * speedMultiplier);
             
             transform.GetChild(0).localPosition = new Vector3(deltaX, 0, 0);
             var boxCollider = GetComponent<BoxCollider>();
@@ -142,6 +172,7 @@ namespace _Scripts.Units
         
         public void Attack()
         {
+            //Debug.Log("Attack with damage " + Damage);
             _train.GetDamage(Damage);
         }
         
@@ -153,14 +184,18 @@ namespace _Scripts.Units
             
             var healthBefore = Health;
             Health = Mathf.Max(0, Health - damagePoint);
-            GetDamageEvent?.Invoke(healthBefore - Health);
-            
+            var damage = healthBefore - Health;
+            GetDamageEvent?.Invoke(damage);
+            CreateDamageText(damage);
+            _coinsAnimation.CollectCoins(shootPoint, damage);
+
             if (Health <= 0)
                 Die();
             
             for (var i = 0; i < _materials.Length; i++)
             {
                 _damageTweens[i].Rewind();
+                _damageTweens[i].Kill();
                 _damageTweens[i] = _materials[i].DOColor(damageColor, "_Color", DamageAnimationDuration)
                     .SetLoops(2, LoopType.Yoyo);
             }
@@ -177,10 +212,31 @@ namespace _Scripts.Units
             
             transform.parent = null;
             _chunkMovement.ChangeState(false);
+            DisableDust();
             
             _zombieAnimationManager.DisableAnimator();
             _ragdollController.EnableRagdoll(true);
+
+            StartCoroutine(DestroyObject());
+        }
+
+        private void CreateDamageText(int damage)
+        {
+            var text =
+                _masterObjectPooler.GetObjectComponent<DamageText>(damageText.PoolName, shootPoint.position, transform.rotation);
+            text.SetText(damage.ToString());
         }
         #endregion
+
+        private IEnumerator DestroyObject()
+        {
+            yield return new WaitForSeconds(10f);
+            Destroy(gameObject);
+        }
+
+        private void DisableDust()
+        {
+            dustObject.SetActive(false);
+        }
     }
 }

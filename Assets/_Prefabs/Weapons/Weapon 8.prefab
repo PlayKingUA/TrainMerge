@@ -4989,8 +4989,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 700
-  damage: 70
-  attackSpeedPerSecond: 1.2
+  damage: 200
+  attackSpeedPerSecond: 3
   attackRadius: 15
   appearFx: {fileID: 2842827359928896588}
   destroyFx: {fileID: 7748397857024755145}
@@ -5001,7 +5001,7 @@ MonoBehaviour:
   DestoyredColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 0}
   shootPoint: {fileID: 4674850418641642810}
   projectilePool: {fileID: 11400000, guid: 55e99204010fd9f45a7862a0e3ab693d, type: 2}
-  bulletCount: 7
+  bulletCount: 6
   damageCoefficient: 2
 --- !u!1 &7647173795625094641
 GameObject:

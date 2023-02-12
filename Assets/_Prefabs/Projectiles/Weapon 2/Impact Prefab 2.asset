@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Impact Prefab 2
   _template: {fileID: 1879272669879180, guid: 20e3bb564ae5c3347ab4b32ec07bab8d, type: 3}
-  _defaultSize: 15
+  _defaultSize: 0
   _maxSize: -1
   _incrementalInstanceNames: 0
   _autoInitialize: 0

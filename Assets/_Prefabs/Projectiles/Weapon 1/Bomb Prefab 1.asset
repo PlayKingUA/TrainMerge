@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Bomb Prefab 1
   _template: {fileID: 1955566163644328152, guid: 0a1ada00be2b9f942b74f879d27be35a,
     type: 3}
-  _defaultSize: 15
+  _defaultSize: 0
   _maxSize: -1
   _incrementalInstanceNames: 0
   _autoInitialize: 0

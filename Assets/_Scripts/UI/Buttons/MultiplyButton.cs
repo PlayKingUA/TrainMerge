@@ -2,6 +2,7 @@
 using _Scripts.Levels;
 using _Scripts.Money_Logic;
 using _Scripts.UI.Displays;
+using _Scripts.UI.Windows;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,12 +16,14 @@ namespace _Scripts.UI.Buttons
         [SerializeField] private float restartDelay;
         [SerializeField] private TextMeshProUGUI amountText;
         [SerializeField] private MultiplierBar multiplierBar;
+        [SerializeField] private GameObject effectObject;
         
         private Button _button;
 
         private int _reward;
 
         [Inject] private MoneyWallet _moneyWallet;
+        [Inject] private WindowsManager _windowsManager;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -46,7 +49,7 @@ namespace _Scripts.UI.Buttons
         {
             multiplierBar.StopPointer();
             _moneyWallet.Add((int) (_reward * (multiplierBar.GetMultiplayer() - 1)));
-            //show money animation
+            effectObject.SetActive(true);
             StartCoroutine(Restart());
         }
 
@@ -58,6 +61,8 @@ namespace _Scripts.UI.Buttons
         private IEnumerator Restart()
         {
             yield return new WaitForSeconds(restartDelay);
+            _windowsManager.OpenLoadingScreen(true);
+            yield return new WaitForSeconds(WindowsManager.LoadingScreenDuration);
             LevelManager.RestartForce();
         }
     }

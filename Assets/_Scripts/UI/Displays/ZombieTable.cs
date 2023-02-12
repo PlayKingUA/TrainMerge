@@ -12,6 +12,8 @@ namespace _Scripts.UI.Displays
         [SerializeField] private ZombieDisplay usualZombieCount;
         [SerializeField] private ZombieDisplay fastZombieCount;
         [SerializeField] private ZombieDisplay bigZombieCount;
+
+        private ZombieCount _zombieCount;
         #endregion
 
         public void UpdatePanel(IEnumerable<Zombie> zombies)
@@ -43,9 +45,36 @@ namespace _Scripts.UI.Displays
 
         public void UpdatePanel(ZombieCount zombieCount)
         {
-            usualZombieCount.UpdateCount(zombieCount.UsualZombieCount);
-            fastZombieCount.UpdateCount(zombieCount.FastZombieCount);
-            bigZombieCount.UpdateCount(zombieCount.BigZombieCount);
+            _zombieCount = zombieCount;
+            
+            usualZombieCount.UpdateCount(_zombieCount.UsualZombieCount);
+            fastZombieCount.UpdateCount(_zombieCount.FastZombieCount);
+            bigZombieCount.UpdateCount(_zombieCount.BigZombieCount);
+        }
+
+        public void RemoveZombie(ZombieType zombieType)
+        {
+            var usualZombie = _zombieCount.UsualZombieCount;
+            var fastZombie = _zombieCount.FastZombieCount;
+            var bigZombie = _zombieCount.BigZombieCount;
+            
+            switch (zombieType)
+            {
+                case ZombieType.Usual:
+                    usualZombie--;
+                    break;
+                case ZombieType.Fast:
+                    fastZombie--;
+                    break;
+                case ZombieType.Big:
+                    bigZombie--;
+                    break;
+                case ZombieType.CountTypes:
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+            UpdatePanel(new ZombieCount(usualZombie, fastZombie, bigZombie));
         }
     }
 }

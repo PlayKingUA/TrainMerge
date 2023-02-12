@@ -9,6 +9,8 @@
         StartSecondLevel,
         OpenUpgradeMenu,
         UpgradeDamage,
+        CloseUpgradeWindow,
+        BuyThirdWeapon,
         Finished
     }
 }

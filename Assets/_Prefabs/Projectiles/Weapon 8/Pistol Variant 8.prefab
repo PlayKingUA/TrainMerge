@@ -121,4 +121,4 @@ MonoBehaviour:
   impactPool: {fileID: 11400000, guid: db30f11b65cc14b4a823cd48e4b8dd02, type: 2}
   projectileParticles: {fileID: 11400000, guid: 53615165a123b4f4a8ec0e76b1d307cb,
     type: 2}
-  fieldOfShooting: 10
+  fieldOfShooting: 15

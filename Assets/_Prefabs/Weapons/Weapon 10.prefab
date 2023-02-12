@@ -4989,9 +4989,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3500
-  damage: 150
+  damage: 1000
   attackSpeedPerSecond: 1
-  attackRadius: 20
+  attackRadius: 15
   appearFx: {fileID: 2842827359928896588}
   destroyFx: {fileID: 1727327882882300981}
   gunTransform: {fileID: 7206753402198427230}

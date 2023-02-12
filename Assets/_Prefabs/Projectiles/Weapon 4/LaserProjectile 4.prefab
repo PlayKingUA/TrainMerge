@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageRadius: 0.1
+  isSplash: 0
   laserScript: {fileID: 4710119163646998351}
 --- !u!1001 &4668789305451186073
 PrefabInstance:
@@ -101,6 +102,31 @@ PrefabInstance:
     - target: {fileID: 4692998033864990, guid: 30f45a15e0a47a943912fda204502b81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120067324791973530, guid: 30f45a15e0a47a943912fda204502b81,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120067324791973530, guid: 30f45a15e0a47a943912fda204502b81,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 120067324791973530, guid: 30f45a15e0a47a943912fda204502b81,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120067324791973530, guid: 30f45a15e0a47a943912fda204502b81,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 0.5331744
+      objectReference: {fileID: 0}
+    - target: {fileID: 120067324791973530, guid: 30f45a15e0a47a943912fda204502b81,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30f45a15e0a47a943912fda204502b81, type: 3}

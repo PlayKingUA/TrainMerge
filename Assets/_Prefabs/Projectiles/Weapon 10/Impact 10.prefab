@@ -24015,7 +24015,7 @@ GameObject:
   - component: {fileID: 10887776}
   - component: {fileID: 11490286}
   - component: {fileID: 8213454}
-  - component: {fileID: 1297139457677215099}
+  - component: {fileID: 7963923666140424788}
   m_Layer: 0
   m_Name: Impact 10
   m_TagString: Untagged
@@ -28993,7 +28993,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &1297139457677215099
+--- !u!114 &7963923666140424788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29002,10 +29002,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 134878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8510a2f18fef47ada2f59b6f27d83a1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a74a2569b533ef428d80f59a131284a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Impact Prefab 10
+  pool: {fileID: 11400000, guid: ebdf80dd3877bac4094f86fa1a6a856b, type: 2}
+  lifeTime: 1.5
 --- !u!1 &137708
 GameObject:
   m_ObjectHideFlags: 0

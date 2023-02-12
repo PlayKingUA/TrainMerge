@@ -48,8 +48,14 @@ namespace _Scripts.Weapons
             {
                 var distance = Vector3.Distance(transform.position, 
                     zombie.transform.position);
-                if (distance < attackRadius)
+                if (distance < attackRadius && _targetZombies.Count < bulletCount)
+                {
                     _targetZombies.Add(zombie);
+                }
+                else
+                {
+                    break;
+                }
             }
         }
     }

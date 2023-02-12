@@ -9630,10 +9630,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4074934030344262}
   - component: {fileID: 114173672514095102}
-  - component: {fileID: 114715709320567964}
   - component: {fileID: 199325038705722070}
   - component: {fileID: 198686446084952802}
-  - component: {fileID: -3108541138496391737}
+  - component: {fileID: 4105814994221569712}
   m_Layer: 0
   m_Name: Muzzleflare 2
   m_TagString: FX
@@ -9771,19 +9770,6 @@ MonoBehaviour:
       m_NumAlphaKeys: 3
   applyChanges: 0
   Keep_applyChanges: 0
---- !u!114 &114715709320567964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584403288528622}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a895231490da6545890b1e1794f8704, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathtimer: 3
 --- !u!199 &199325038705722070
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -14575,7 +14561,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &-3108541138496391737
+--- !u!114 &4105814994221569712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14584,10 +14570,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1584403288528622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8510a2f18fef47ada2f59b6f27d83a1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a74a2569b533ef428d80f59a131284a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Muzzleflare Pool 2
+  pool: {fileID: 11400000, guid: 7c4989bdde4f4c24886c63577f63c00d, type: 2}
+  lifeTime: 2
 --- !u!1 &1764162705995776
 GameObject:
   m_ObjectHideFlags: 0

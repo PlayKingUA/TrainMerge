@@ -25,6 +25,7 @@ namespace _Scripts.UI.Tutorial
         public event Action OnWeaponBuy;
         public event Action OnUpgradeMenuOpen;
         public event Action OnUpgradeDamage;
+        public event Action OnUpgradeClose;
         #endregion
 
         private void Awake()
@@ -58,13 +59,15 @@ namespace _Scripts.UI.Tutorial
                 case TutorialWindowState.UpgradeDamage:
                     EnableUpgradeDamage();
                     break;
+                case TutorialWindowState.CLoseUpgradeWindow:
+                    EnableCloseUpgradeWindowButton();
+                    break;
                 case TutorialWindowState.Nothing:
                     EnableBaseButtons(true);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(tutorialWindowState), tutorialWindowState, null);
             }
-            
         }
 
         private void EnableBaseButtons(bool isEnabled)
@@ -117,6 +120,16 @@ namespace _Scripts.UI.Tutorial
             {
                 OnUpgradeDamage?.Invoke();
             };
+        }
+
+        private void EnableCloseUpgradeWindowButton()
+        {
+            closeUpgradeButton.interactable = true;
+            
+            closeUpgradeButton.onClick.AddListener(() =>
+            {
+                OnUpgradeClose?.Invoke();
+            });
         }
 
         private void EnableTutorialText(string text)

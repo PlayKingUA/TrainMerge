@@ -19,6 +19,7 @@ namespace _Scripts.UI.Displays
         private void Start()
         {
             _moneyWallet.MoneyCountChanged += Display;
+            Display(_moneyWallet.MoneyCount);
         }
         #endregion
         

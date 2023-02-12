@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using _Scripts.Game_States;
 using _Scripts.Levels;
 using _Scripts.Money_Logic;
 using _Scripts.Train;
+using _Scripts.UI.Displays;
 using _Scripts.UI.Upgrade;
 using _Scripts.Weapons;
 using UnityEngine;
@@ -21,11 +21,13 @@ namespace _Scripts.Units
         [SerializeField] private Transform creatingPositionFrom;
         [SerializeField] private Transform creatingPositionTo;
         [SerializeField] private Transform zombieTransform;
-        [SerializeField] private Zombie usualZombie;
+        [SerializeField] private Zombie[] usualZombie;
         [SerializeField] private Zombie fastZombie;
         [SerializeField] private Zombie bigZombie;
-        
-        
+        [Space]
+        [SerializeField] private ZombieTable zombieTable;
+        [SerializeField] private float messageTimeBeforeLastWave = 2f;
+        [SerializeField] private float tapMessageDelayAfterLastWave = 0.5f;
 
         private List<Wave> _zombiesWaves;
         private int _zombiesLeft;
@@ -46,9 +48,11 @@ namespace _Scripts.Units
         public float WholeHpSum { get; private set; }
         public float LostHp { get; private set; }
         public float HpToLastWave { get; private set;}
+        public float Progress => LostHp / WholeHpSum;
         
         public event Action OnHpChanged;
         public event Action LastWaveStarted;
+        public event Action HugeWaveMessage;
         #endregion
         
         #region Monobehaviour Callbacks
@@ -69,13 +73,13 @@ namespace _Scripts.Units
         #endregion
 
         #region Init
-        public void Init(List<Wave> zombiesWaves)
+        public void Init(Level currentLevel)
         {
-            _zombiesWaves = zombiesWaves;
+            _zombiesWaves = currentLevel.ZombiesWaves;
 
             foreach (var zombieWave in _zombiesWaves)
             {
-                if (zombieWave == zombiesWaves[^1])
+                if (zombieWave == _zombiesWaves[^1])
                     HpToLastWave = WholeHpSum;
 
                 foreach (var subWave in zombieWave.subWaves)
@@ -85,11 +89,13 @@ namespace _Scripts.Units
                     _zombiesLeft += subWave.ZombieCount.BigZombieCount;
 
                     WholeHpSum += subWave.ZombieCount.UsualZombieCount *
-                                  usualZombie.StartHp(_levelManager.CurrentLevel);
+                                  usualZombie[0].StartHp(_levelManager.CurrentLevel);
                     WholeHpSum += subWave.ZombieCount.FastZombieCount * fastZombie.StartHp(_levelManager.CurrentLevel);
                     WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie.StartHp(_levelManager.CurrentLevel);
                 }
             }
+            
+            zombieTable.UpdatePanel(currentLevel.ZombieCount);
         }
 
         public void InitMotion(Chunk firstChunk)
@@ -123,7 +129,7 @@ namespace _Scripts.Units
             foreach (var zombieWave in _zombiesWaves)
             {
                 if (zombieWave == _zombiesWaves[^1])
-                    LastWaveStarted?.Invoke();
+                    StartCoroutine(LasWaveStartedEvent());
                 
                 foreach (var subWave in zombieWave.subWaves)
                 {
@@ -155,20 +161,30 @@ namespace _Scripts.Units
                             }
                         }
                         
-                        CreateZombie(GetTargetZombie(zombieType));
+                        CreateZombie(GetTargetZombie(zombieType), zombieWave.SpeedMultiplier);
                         yield return new WaitForSeconds(subWave.TimeBetweenZombie);
                     }
                     yield return new WaitForSeconds(subWave.TimeBetweenWaves);
                 }
-                yield return new WaitForSeconds(zombieWave.TimeBetweenWaves);
+                yield return new WaitForSeconds(zombieWave.TimeBetweenWaves - messageTimeBeforeLastWave);
+                if (zombieWave == _zombiesWaves[^2])
+                    HugeWaveMessage?.Invoke();
+                yield return new WaitForSeconds(messageTimeBeforeLastWave);
+
             }
         }
 
-        private void CreateZombie(Zombie targetZombie)
+        private IEnumerator LasWaveStartedEvent()
+        {
+            yield return new WaitForSeconds(tapMessageDelayAfterLastWave);
+            LastWaveStarted?.Invoke();
+        }
+
+        private void CreateZombie(Zombie targetZombie, float speedMultiplier)
         {
             var zombie = _diContainer.InstantiatePrefabForComponent<Zombie>(targetZombie, transform.position, transform.rotation, zombieTransform);
             
-            zombie.Init(_chunkMovement.CurrentChunk, ZombieDelta);
+            zombie.Init(_chunkMovement.CurrentChunk, ZombieDelta, speedMultiplier);
             
             zombie.DeadEvent += RemoveZombie;
             zombie.GetDamageEvent += UpdateLostHp;
@@ -183,10 +199,11 @@ namespace _Scripts.Units
 
         private Zombie GetTargetZombie(ZombieType zombieType)
         {
-            var targetZombie = usualZombie;
+            Zombie targetZombie;
             switch (zombieType)
             {
                 case ZombieType.Usual:
+                    targetZombie = usualZombie[Random.Range(0, usualZombie.Length)];
                     break;
                 case ZombieType.Fast:
                     targetZombie = fastZombie;
@@ -225,6 +242,7 @@ namespace _Scripts.Units
         {
             AliveZombies.Remove(zombie);
             DeadZombies.Add(zombie);
+            zombieTable.RemoveZombie(zombie.ZombieType);
             _zombiesLeft--;
             
             if (_zombiesLeft <= 0 && AliveZombies.Count == 0)
@@ -239,11 +257,6 @@ namespace _Scripts.Units
             
             if (_creatingCoroutine != null) 
                 StopCoroutine(_creatingCoroutine);
-            
-            foreach (var zombie in AliveZombies)
-            {
-                zombie.ChangeState(UnitState.Victory);
-            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.Game_States;
 using _Scripts.Slot_Logic;
 using _Scripts.UI.Upgrade;
 using _Scripts.Units;
@@ -25,6 +26,7 @@ namespace _Scripts.Weapons
         [SerializeField] private Material transparentMaterial;
         [SerializeField] private Color DestoyredColor;
 
+        [Inject] private GameStateManager _gameStateManager;
         [Inject] protected ZombieManager ZombieManager;
         [Inject] private UpgradeMenu _upgradeMenu;
         [Inject] private SpeedUpLogic _speedUpLogic;
@@ -64,6 +66,8 @@ namespace _Scripts.Weapons
             _gunMaterial = gunRenderer.material;
 
             _speedUpLogic.OnTapCountChanged += Shake;
+
+            _gameStateManager.Fail += DestroyWeapon;
         }
 
         protected override void Update()
@@ -162,8 +166,10 @@ namespace _Scripts.Weapons
             baseRenderer.material = isGreen ? transparentMaterial : _gunMaterial;
         }
 
-        public void DestroyWeapon()
+        private void DestroyWeapon()
         {
+            if (destroyFx == null)
+                return;
             destroyFx.SetActive(true);
             gunRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);
             baseRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);

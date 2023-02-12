@@ -22,20 +22,23 @@ MonoBehaviour:
         fastZombieCount: 0
         bigZombieCount: 0
     timeBetweenWaves: 4
+    speedMultiplier: 1
   - subWaves:
-    - timeBetweenZombie: 0.4
+    - timeBetweenZombie: 0.5
       timeBetweenWaves: 0
       zombieCount:
-        usualZombieCount: 22
+        usualZombieCount: 18
         fastZombieCount: 0
         bigZombieCount: 0
     timeBetweenWaves: 4
+    speedMultiplier: 1
   - subWaves:
-    - timeBetweenZombie: 0.4
+    - timeBetweenZombie: 0.5
       timeBetweenWaves: 0
       zombieCount:
         usualZombieCount: 35
         fastZombieCount: 0
         bigZombieCount: 1
     timeBetweenWaves: 0
-  index: 1
+    speedMultiplier: 1.8
+  index: 16

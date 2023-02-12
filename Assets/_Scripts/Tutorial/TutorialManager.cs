@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using _Scripts.Game_States;
 using _Scripts.Input_Logic;
+using _Scripts.Levels;
 using _Scripts.Slot_Logic;
 using _Scripts.UI.Tutorial;
 using _Scripts.Units;
@@ -22,6 +23,7 @@ namespace _Scripts.Tutorial
         private const string TutorialProgressKey = "TutorialProgressKey";
 
         [Inject] private TutorialWindow _tutorialWindow;
+        [Inject] private LevelManager _levelManager;
         [Inject] private ZombieManager _zombieManager;
         [Inject] private SpeedUpLogic _speedUpLogic;
         [Inject] private GameStateManager _gameStateManager;
@@ -41,8 +43,8 @@ namespace _Scripts.Tutorial
             {
                 return;
             }
-            
-            ChangeState();
+
+            Invoke(nameof(ChangeState), 0.1f);
         }
         #endregion
 
@@ -79,6 +81,14 @@ namespace _Scripts.Tutorial
                     _infoText = "Tap to increase your turret's damage!";
                     UpgradeDamage();
                     break;
+                case TutorialStates.CloseUpgradeWindow:
+                    _infoText = "Tap elsewhere to close Upgrade menu";
+                    CloseUpgradeMenu();
+                    break;
+                case TutorialStates.BuyThirdWeapon:
+                    _infoText = "Buy even more turrets!";
+                    BuyWeapon();
+                    break;
                 case TutorialStates.Finished:
                     _infoText = "";
                     FinishTutorial();
@@ -92,13 +102,12 @@ namespace _Scripts.Tutorial
         {
             _tutorialWindow.SetState(TutorialWindowState.BuyWeapon, _infoText);
 
-            _tutorialWindow.OnWeaponBuy += () =>
-            {
-                _tutorialState++;
-                ChangeState();
-                
-                Save();
-            };
+            _tutorialWindow.OnWeaponBuy += BuyWeaponDelegate;
+        }
+        private void BuyWeaponDelegate()
+        {
+            NextState(true);
+            _tutorialWindow.OnWeaponBuy -= BuyWeaponDelegate;
         }
 
         private void StartLevel()
@@ -164,27 +173,43 @@ namespace _Scripts.Tutorial
         }
         private void UpgradeMenuOpenDelegate()
         {
-            _tutorialState++;
-            ChangeState();
+            NextState(false);
             _tutorialWindow.OnUpgradeMenuOpen -= UpgradeMenuOpenDelegate;
         }
         
         private void UpgradeDamage()
         {
             _tutorialWindow.SetState(TutorialWindowState.UpgradeDamage, _infoText);
-            _tutorialWindow.OnUpgradeDamage += UpgradeDamageDelegate;
+            _tutorialWindow.OnUpgradeDamage += UpgradeDelegate;
         }
-        private void UpgradeDamageDelegate()
+        private void UpgradeDelegate()
         {
-            _tutorialState++;
-            ChangeState();
-            Save();
-            _tutorialWindow.OnUpgradeDamage -= UpgradeDamageDelegate;
+            NextState(true);
+            _tutorialWindow.OnUpgradeDamage -= UpgradeDelegate;
+        }
+
+        private void CloseUpgradeMenu()
+        {
+            _tutorialWindow.SetState(TutorialWindowState.CLoseUpgradeWindow, _infoText);
+            _tutorialWindow.OnUpgradeClose += CLoseUpgradeDelegate;
+        }
+        private void CLoseUpgradeDelegate()
+        {
+            NextState(true);
+            _tutorialWindow.OnUpgradeClose -= CLoseUpgradeDelegate;
         }
 
         private void FinishTutorial()
         {
             _tutorialWindow.SetState(TutorialWindowState.Nothing, _infoText);
+        }
+        
+        private void NextState(bool isSaving)
+        {
+            _tutorialState++;
+            ChangeState();
+            if (isSaving)
+                Save();
         }
         #endregion
         

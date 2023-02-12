@@ -21,6 +21,8 @@ namespace _Scripts.Train
         [Space(10)] 
         [SerializeField] private float menuSpeed;
         [SerializeField] private float gameSpeed;
+        [Space(10)]
+        [SerializeField] private Transform climbingHeight;
 
         private ChunkMovement _chunkMovement;
         private float _startPlayTime;
@@ -34,7 +36,8 @@ namespace _Scripts.Train
         public float CurrentHealth { get; private set; }
         public bool IsDead { get; private set;}
         public float TrainSpeed => _chunkMovement.MovementSpeed;
-        
+        public Transform ClimbingHeight => climbingHeight;
+
         public event Action HpChanged;
         public event Action<float> DistanceChanged;
         #endregion
@@ -100,10 +103,9 @@ namespace _Scripts.Train
         }
         
         #region Get Damage\Die
-        public void GetDamage(int damagePoint)
+        public void GetDamage(int damageAmount)
         {
-            CurrentHealth -= damagePoint;
-            CurrentHealth = Mathf.Max(0, CurrentHealth - damagePoint);
+            CurrentHealth = Mathf.Max(0, CurrentHealth - damageAmount);
             HpChanged?.Invoke();
 
             if (CurrentHealth <= 0 && !IsDead)
