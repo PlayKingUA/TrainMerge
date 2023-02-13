@@ -8013,13 +8013,11 @@ MonoBehaviour:
   creatingPositionTo: {fileID: 788842154}
   zombieTransform: {fileID: 1393814159}
   usualZombie:
-  - {fileID: 5211598505331636553, guid: 2c02fd68b3846974f8317eebd465d829, type: 3}
-  - {fileID: 7065103317371180495, guid: 1a7683d345e457b4e8ed6fd925da0c40, type: 3}
-  - {fileID: 6325086252172432639, guid: 59a51384d1a05c44cb2ac2af9a367c5e, type: 3}
-  fastZombie: {fileID: 6325086252172432639, guid: 4a715ab49f6b4244f96df21dae21c354,
-    type: 3}
-  bigZombie: {fileID: 6325086252172432639, guid: 39b564d0008b07b4d89ca5ab169bf57c,
-    type: 3}
+  - {fileID: 6325086252172432639, guid: 6615a8e4bf3c83f46a6027580fcec59b, type: 3}
+  fastZombie:
+  - {fileID: 6325086252172432639, guid: 976c907ab95d8fb4e96617989f6a1821, type: 3}
+  bigZombie:
+  - {fileID: 6325086252172432639, guid: caa4d3243186ce342affb9156af95a14, type: 3}
   zombieTable: {fileID: 358078093}
   messageTimeBeforeLastWave: 2
   tapMessageDelayAfterLastWave: 1

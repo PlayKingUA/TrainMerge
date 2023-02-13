@@ -22,8 +22,8 @@ namespace _Scripts.Units
         [SerializeField] private Transform creatingPositionTo;
         [SerializeField] private Transform zombieTransform;
         [SerializeField] private Zombie[] usualZombie;
-        [SerializeField] private Zombie fastZombie;
-        [SerializeField] private Zombie bigZombie;
+        [SerializeField] private Zombie[] fastZombie;
+        [SerializeField] private Zombie[] bigZombie;
         [Space]
         [SerializeField] private ZombieTable zombieTable;
         [SerializeField] private float messageTimeBeforeLastWave = 2f;
@@ -90,8 +90,9 @@ namespace _Scripts.Units
 
                     WholeHpSum += subWave.ZombieCount.UsualZombieCount *
                                   usualZombie[0].StartHp(_levelManager.CurrentLevel);
-                    WholeHpSum += subWave.ZombieCount.FastZombieCount * fastZombie.StartHp(_levelManager.CurrentLevel);
-                    WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie.StartHp(_levelManager.CurrentLevel);
+                    WholeHpSum += subWave.ZombieCount.FastZombieCount *
+                                  fastZombie[0].StartHp(_levelManager.CurrentLevel);
+                    WholeHpSum += subWave.ZombieCount.BigZombieCount * bigZombie[0].StartHp(_levelManager.CurrentLevel);
                 }
             }
             
@@ -206,10 +207,10 @@ namespace _Scripts.Units
                     targetZombie = usualZombie[Random.Range(0, usualZombie.Length)];
                     break;
                 case ZombieType.Fast:
-                    targetZombie = fastZombie;
+                    targetZombie = fastZombie[Random.Range(0, fastZombie.Length)];
                     break;
                 case ZombieType.Big:
-                    targetZombie = bigZombie;
+                    targetZombie = bigZombie[Random.Range(0, bigZombie.Length)];
                     break;
                 case ZombieType.CountTypes:
                 default:
