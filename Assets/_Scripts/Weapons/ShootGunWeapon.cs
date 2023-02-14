@@ -31,6 +31,8 @@ namespace _Scripts.Weapons
                 _masterObjectPooler.GetObjectComponent<ShootGunProjectile>(projectilePool.PoolName, shootPoint.position, shootPoint.rotation);
 
             bullet.Init(_targetZombies, bulletCount, (int) (Damage * TargetCoefficient), projectilePool);
+            
+            WeaponAnimator.SetAnimation(WeaponState.Attack);
         }
 
         private void GetAims()

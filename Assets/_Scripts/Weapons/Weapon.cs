@@ -22,7 +22,6 @@ namespace _Scripts.Weapons
         [ShowInInspector, ReadOnly] private int _level;
         [Space(10)]
         [SerializeField] private MeshRenderer gunRenderer;
-        [SerializeField] private MeshRenderer baseRenderer;
         [SerializeField] private Material transparentMaterial;
         [SerializeField] private Color DestoyredColor;
 
@@ -31,6 +30,7 @@ namespace _Scripts.Weapons
         [Inject] private UpgradeMenu _upgradeMenu;
         [Inject] private SpeedUpLogic _speedUpLogic;
 
+        protected WeaponAnimator WeaponAnimator;
         private Quaternion _startRotation;
         private Material _gunMaterial;
         private Tweener _tween;
@@ -60,6 +60,8 @@ namespace _Scripts.Weapons
         protected override void Start()
         {
             base.Start();
+            WeaponAnimator = GetComponent<WeaponAnimator>();
+            
             ChangeState(WeaponState.Idle);
             _startRotation = gunTransform.rotation;
 
@@ -107,6 +109,7 @@ namespace _Scripts.Weapons
 
         protected virtual void IdleState()
         {
+            WeaponAnimator.SetAnimation(WeaponState.Idle);
         }
 
         protected virtual void AttackState()
@@ -163,16 +166,15 @@ namespace _Scripts.Weapons
         public void SetGreenColor(bool isGreen)
         {
             gunRenderer.material = isGreen ? transparentMaterial : _gunMaterial;
-            baseRenderer.material = isGreen ? transparentMaterial : _gunMaterial;
         }
 
         private void DestroyWeapon()
         {
             if (destroyFx == null)
                 return;
-            destroyFx.SetActive(true);
-            gunRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);
-            baseRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);
+            /*destroyFx.SetActive(true);
+            gunRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);*/
+            WeaponAnimator.SetAnimation(WeaponState.Death);
         }
         
         private void UpdateTargetZombie()

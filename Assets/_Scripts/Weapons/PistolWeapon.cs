@@ -42,6 +42,7 @@ namespace _Scripts.Weapons
                 _masterObjectPooler.GetObjectComponent<Projectile>(projectilePool.PoolName, shootPoint.position, shootPoint.rotation);
 
             bullet.Init(TargetZombie, Damage, projectilePool);
+            WeaponAnimator.SetAnimation(WeaponState.Attack);
         }
     }
 }

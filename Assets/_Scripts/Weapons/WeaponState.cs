@@ -3,6 +3,7 @@
     public enum WeaponState
     {
         Idle,
-        Attack
+        Attack,
+        Death
     }
 }
