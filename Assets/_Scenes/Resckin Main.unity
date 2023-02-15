@@ -4309,7 +4309,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845429543}
-  m_LocalRotation: {x: 0.37926635, y: 0.00000001592085, z: -0.000000006525801, w: 0.92528754}
+  m_LocalRotation: {x: 0.37926635, y: -0.000000015920849, z: 0.0000000065258003, w: 0.92528754}
   m_LocalPosition: {x: 0.651905, y: 5.4532275, z: 1.8075371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4787,7 +4787,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.37926635, y: 0.00000001592085, z: -0.000000006525801, w: 0.92528754}
+  m_LocalRotation: {x: 0.37926635, y: -0.000000015920849, z: 0.0000000065258003, w: 0.92528754}
   m_LocalPosition: {x: 0.651905, y: 5.4532275, z: 1.8075371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8014,10 +8014,15 @@ MonoBehaviour:
   zombieTransform: {fileID: 1393814159}
   usualZombie:
   - {fileID: 6325086252172432639, guid: 6615a8e4bf3c83f46a6027580fcec59b, type: 3}
+  - {fileID: 3726500925090518842, guid: 5bdd9b16c2ea2db4c81d83912e0a91e8, type: 3}
+  - {fileID: 5850589195365391259, guid: 95f0fe502f3a6a14cad8aad111e25ffe, type: 3}
+  - {fileID: 3544475846504601595, guid: 2a78b1be078af8f4aa1f914ca134be2c, type: 3}
   fastZombie:
   - {fileID: 6325086252172432639, guid: 976c907ab95d8fb4e96617989f6a1821, type: 3}
+  - {fileID: 2236294462132502750, guid: 645a7b9f87b5846458ca04f0ff293c3d, type: 3}
   bigZombie:
   - {fileID: 6325086252172432639, guid: caa4d3243186ce342affb9156af95a14, type: 3}
+  - {fileID: 2648204795264686379, guid: fed6ec594dbe24c47a78575cbdd2f178, type: 3}
   zombieTable: {fileID: 358078093}
   messageTimeBeforeLastWave: 2
   tapMessageDelayAfterLastWave: 1

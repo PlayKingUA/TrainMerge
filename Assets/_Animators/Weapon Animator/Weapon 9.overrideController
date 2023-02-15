@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Weapon 9
+  m_Controller: {fileID: 9100000, guid: 79bd0bcebc177eb47852f26a0db3ca94, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 111c0a7bcc0efd541b0cd32c90fc95cc, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 1d7a8316ea0b3d541bcc9c1ffc8a2b7b, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: bb3f3a4c28963f847b1fadf586aaacc9, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 1b85fcb21c7b78141b4bcc244f5b01a4, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 6dfacb3ca3e22f54aa6278ae4f4f220b, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 126a0fe47cb78e642888f72bd32cdecb, type: 3}

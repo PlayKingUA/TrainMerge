@@ -170,11 +170,11 @@ namespace _Scripts.Weapons
 
         private void DestroyWeapon()
         {
+            WeaponAnimator.SetAnimation(WeaponState.Death);
             if (destroyFx == null)
                 return;
             /*destroyFx.SetActive(true);
             gunRenderer.material.DOColor(DestoyredColor, _destoryColorChangeDuration);*/
-            WeaponAnimator.SetAnimation(WeaponState.Death);
         }
         
         private void UpdateTargetZombie()

@@ -11,6 +11,8 @@ namespace _Scripts.Weapons
         private readonly int _attackHash = Animator.StringToHash("Attack");
         private readonly int _deathHash = Animator.StringToHash("Death");
 
+        private int _currentState;
+
         private void Awake()
         {
             _animator = GetComponent<Animator>();
@@ -18,7 +20,11 @@ namespace _Scripts.Weapons
 
         public void SetAnimation(WeaponState state)
         {
-            _animator.CrossFade(GetHash(state), 0.3f);
+            if (_currentState == _deathHash)
+                return;
+            
+            _currentState = GetHash(state);
+            _animator.Play(_currentState, 0, 0);
         }
 
         private int GetHash(WeaponState state)
