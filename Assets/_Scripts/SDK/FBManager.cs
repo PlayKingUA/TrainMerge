@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using Facebook.Unity;
 using UnityEngine;
@@ -39,4 +39,4 @@ public class FBManager : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-}
+}*/
