@@ -1,10 +1,12 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Scripts.Weapons
 {
     public class WeaponAnimator : MonoBehaviour
     {
+        [ShowInInspector]
         private Animator _animator;
 
         private readonly int _idleHash = Animator.StringToHash("Idle");
@@ -24,7 +26,8 @@ namespace _Scripts.Weapons
                 return;
             
             _currentState = GetHash(state);
-            _animator.Play(_currentState, 0, 0);
+            if (_animator)
+                _animator.Play(_currentState, 0, 0);
         }
 
         private int GetHash(WeaponState state)

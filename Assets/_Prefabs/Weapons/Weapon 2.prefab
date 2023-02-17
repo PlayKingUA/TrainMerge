@@ -5323,6 +5323,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToonSoldiers_officer
       objectReference: {fileID: 0}
+    - target: {fileID: 412338, guid: d7b7766a3fcf5264dbe662007a3d95bc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6646334
+      objectReference: {fileID: 0}
+    - target: {fileID: 412338, guid: d7b7766a3fcf5264dbe662007a3d95bc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7451423
+      objectReference: {fileID: 0}
     - target: {fileID: 496506, guid: d7b7766a3fcf5264dbe662007a3d95bc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5391,7 +5399,8 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9582242, guid: d7b7766a3fcf5264dbe662007a3d95bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d7b7766a3fcf5264dbe662007a3d95bc, type: 3}
 --- !u!23 &7679168541661066159 stripped
 MeshRenderer:
