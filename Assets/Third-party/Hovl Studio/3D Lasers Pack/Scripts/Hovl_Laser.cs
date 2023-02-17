@@ -43,6 +43,7 @@ public class Hovl_Laser : MonoBehaviour
 
     void Update()
     {
+        return;
         //if (Laser.material.HasProperty("_SpeedMainTexUVNoiseZW")) Laser.material.SetVector("_SpeedMainTexUVNoiseZW", LaserSpeed);
         //SetVector("_TilingMainTexUVNoiseZW", Length); - old code, _TilingMainTexUVNoiseZW no more exist
         Laser.material.SetTextureScale("_MainTex", new Vector2(Length[0], Length[1]));                    
@@ -109,6 +110,31 @@ public class Hovl_Laser : MonoBehaviour
     public void UpdateLaserTargetPosition(Vector3 targetPosition)
     {
         _targetPosition = targetPosition;
+        Laser.SetPosition(0, transform.position);
+        Laser.SetPosition(1, _targetPosition);
+        
+        HitEffect.transform.position = _targetPosition + _targetPosition.normalized * HitOffset;
+        if (useLaserRotation)
+            HitEffect.transform.rotation = transform.rotation;
+        else
+            HitEffect.transform.LookAt(_targetPosition + _targetPosition.normalized);
+
+        foreach (var AllPs in Effects)
+        {
+            if (!AllPs.isPlaying) AllPs.Play();
+        }
+        
+        Laser.material.SetTextureScale("_MainTex", new Vector2(Length[0], Length[1]));                    
+        Laser.material.SetTextureScale("_Noise", new Vector2(Length[2], Length[3]));
+        
+        Length[0] = MainTextureLength * (Vector3.Distance(transform.position, _targetPosition));
+        Length[2] = NoiseTextureLength * (Vector3.Distance(transform.position, _targetPosition));
+        
+        if (Laser.enabled == false && LaserSaver == false)
+        {
+            LaserSaver = true;
+            Laser.enabled = true;
+        }
     }
     
     public void DisablePrepare()

@@ -175,10 +175,20 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3957247045911909625, guid: a678fdf77af53334db02420165e064d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6687381637206541443, guid: a678fdf77af53334db02420165e064d3,
         type: 3}
       propertyPath: m_Name
       value: Playing_Field_Cell
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687381637206541443, guid: a678fdf77af53334db02420165e064d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a678fdf77af53334db02420165e064d3, type: 3}
