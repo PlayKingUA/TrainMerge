@@ -1,5 +1,5 @@
 {
-    "m_SelectedDeviceId": "",
+    "m_SelectedDeviceId": "FYWCDYXGB6CIDQFM",
     "m_SelectedPackage": {
         "deviceId": "",
         "name": "",
@@ -7,7 +7,26 @@
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [],
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "FYWCDYXGB6CIDQFM",
+            "name": "com.android.settings",
+            "processId": 20697,
+            "exited": true
+        },
+        {
+            "deviceId": "FYWCDYXGB6CIDQFM",
+            "name": "com.android.launcher",
+            "processId": 12152,
+            "exited": false
+        },
+        {
+            "deviceId": "FYWCDYXGB6CIDQFM",
+            "name": "zombie.bus.merge",
+            "processId": 4413,
+            "exited": true
+        }
+    ],
     "m_Tags": {
         "m_Entries": [
             {
@@ -41,14 +60,25 @@
         ]
     },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 0.0,
-        "MemoryWindowWidth": 0.0,
-        "MemoryTypeEnabled": [],
+        "MemoryWindowHeight": 300.0,
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
         "MemoryGroup": 2,
         "Behavior": 0
     },
     "m_FilterOptions": {
-        "m_Filter": "",
+        "m_Filter": "merge",
         "m_UseRegularExpressions": false,
         "m_MatchCase": false
     },
